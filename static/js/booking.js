@@ -17,6 +17,9 @@
 
     let dragged = null;
 
+    // Restore visual state for cards loaded from the session.
+    slotEls.forEach((slot) => updateSlotState(slot));
+
     // =====================================================
     // GENDER TABS
     // =====================================================
@@ -258,6 +261,7 @@
                 slot.querySelector(".slot-winner-mode").value;
             const winnerOverrideId =
                 slot.querySelector(".slot-winner-override").value || null;
+            const storyId = slot.querySelector(".slot-story").value || null;
 
             // Auto-select championship type if a title is picked
             let finalMatchType = matchType;
@@ -274,7 +278,7 @@
                 winner_mode: winnerMode,
                 winner_override_id:
                     winnerMode === "MANUAL" ? winnerOverrideId : null,
-                story_id: slot.dataset.storyId || null,
+                story_id: storyId,
             });
         });
         return result;
@@ -332,8 +336,15 @@
                             data.importance;
                     }
 
-                    emptySlot.dataset.storyId = storyId;
+                    const storySelect = emptySlot.querySelector(".slot-story");
+                    if (storySelect) storySelect.value = storyId;
+                    if (data.championship_id) {
+                        emptySlot.querySelector(".slot-championship").value =
+                            data.championship_id;
+                    }
+
                     updateSlotState(emptySlot);
+                    emptySlot.scrollIntoView({ behavior: "smooth", block: "center" });
                 })
                 .catch((err) => {
                     console.error(err);

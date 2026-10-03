@@ -13,6 +13,7 @@ from domain.models.show import Show
 from domain.models.rivalry import Rivalry
 from domain.models.storyline import Storyline
 from domain.models.championship import Championship
+from data.seed_ai_wrestlers import seed_ai_roster
 
 
 class GameState:
@@ -35,6 +36,7 @@ class GameState:
         self.ai_budget: int = Config.STARTING_BUDGET
         self.ai_fans: int = Config.STARTING_FANS
         self.ai_last_show_rating: int = 50
+        self.ai_roster: list[Wrestler] = []
 
         # ===== Player Roster (unified list) =====
         self.roster: list[Wrestler] = []
@@ -54,6 +56,13 @@ class GameState:
         # ===== News Feed =====
         self.news: list[dict] = []
 
+        # ===== Weekly gameplay layer =====
+        self.weekly_objective: Optional[dict] = None
+        self.pending_decision: Optional[dict] = None
+        self.decision_resolved_week: Optional[int] = None
+        self.last_objective_result: Optional[dict] = None
+        self.last_decision_result: Optional[dict] = None
+
         # ===== Season Stats =====
         self.total_revenue: int = 0
         self.total_expenses: int = 0
@@ -70,6 +79,9 @@ class GameState:
 
     def get_wrestler(self, wrestler_id: str) -> Optional[Wrestler]:
         for w in self.roster:
+            if w.id == wrestler_id:
+                return w
+        for w in self.ai_roster:
             if w.id == wrestler_id:
                 return w
         return None
@@ -229,12 +241,18 @@ class GameState:
             "ai_budget": self.ai_budget,
             "ai_fans": self.ai_fans,
             "ai_last_show_rating": self.ai_last_show_rating,
+            "ai_roster": [w.to_dict() for w in self.ai_roster],
             "roster": [w.to_dict() for w in self.roster],
             "championships": [c.to_dict() for c in self.championships],
             "rivalries": [r.to_dict() for r in self.rivalries],
             "storylines": [s.to_dict() for s in self.storylines],
             "shows": [s.to_dict() for s in self.shows],
             "news": list(self.news),
+            "weekly_objective": self.weekly_objective,
+            "pending_decision": self.pending_decision,
+            "decision_resolved_week": self.decision_resolved_week,
+            "last_objective_result": self.last_objective_result,
+            "last_decision_result": self.last_decision_result,
             "total_revenue": self.total_revenue,
             "total_expenses": self.total_expenses,
             "best_match_rating": self.best_match_rating,
@@ -260,6 +278,12 @@ class GameState:
         gs.ai_last_show_rating = data.get("ai_last_show_rating", 50)
 
         gs.roster = [Wrestler.from_dict(w) for w in data.get("roster", [])]
+        saved_ai_roster = data.get("ai_roster")
+        gs.ai_roster = (
+            [Wrestler.from_dict(w) for w in saved_ai_roster]
+            if saved_ai_roster is not None
+            else seed_ai_roster()
+        )
         gs.championships = [
             Championship.from_dict(c) for c in data.get("championships", [])
         ]
@@ -267,6 +291,11 @@ class GameState:
         gs.storylines = [Storyline.from_dict(s) for s in data.get("storylines", [])]
         gs.shows = [Show.from_dict(s) for s in data.get("shows", [])]
         gs.news = data.get("news", [])
+        gs.weekly_objective = data.get("weekly_objective")
+        gs.pending_decision = data.get("pending_decision")
+        gs.decision_resolved_week = data.get("decision_resolved_week")
+        gs.last_objective_result = data.get("last_objective_result")
+        gs.last_decision_result = data.get("last_decision_result")
         gs.total_revenue = data.get("total_revenue", 0)
         gs.total_expenses = data.get("total_expenses", 0)
         gs.best_match_rating = data.get("best_match_rating", 0)

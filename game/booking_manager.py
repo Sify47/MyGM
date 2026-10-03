@@ -110,6 +110,52 @@ class BookingManager:
             }
         )
 
+    def add_segment(
+        self,
+        show: Show,
+        segment_type: str,
+        participant_ids: list[str],
+        story_id: Optional[str] = None,
+    ) -> dict:
+        """Validate and add a story-driven non-match segment."""
+        allowed = {
+            "PROMO",
+            "CALLOUT",
+            "BACKSTAGE_ATTACK",
+            "INTERFERENCE",
+            "CONTRACT_SIGNING",
+            "CELEBRATION",
+        }
+        if segment_type not in allowed:
+            raise BookingError(f"Unknown segment type: {segment_type}.")
+
+        max_segments = (
+            Config.SEGMENTS_PER_PLE if show.is_ple else Config.SEGMENTS_PER_SHOW
+        )
+        if len(show.segments) >= max_segments:
+            raise BookingError(f"Show already has {max_segments} segments (max).")
+
+        if not participant_ids or len(participant_ids) > 2:
+            raise BookingError("A segment needs one or two participants.")
+
+        for pid in participant_ids:
+            wrestler = self.state.get_wrestler(pid)
+            if wrestler is None:
+                raise BookingError(f"Wrestler {pid} not found.")
+            if not wrestler.is_available():
+                raise BookingError(f"{wrestler.name} is not available.")
+
+        if story_id and self.state.get_storyline(story_id) is None:
+            raise BookingError("Story not found.")
+
+        segment = {
+            "type": segment_type,
+            "participant_ids": list(dict.fromkeys(participant_ids)),
+            "story_id": story_id,
+        }
+        show.segments.append(segment)
+        return segment
+
     # =========================================================
     # VALIDATION
     # =========================================================

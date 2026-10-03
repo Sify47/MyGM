@@ -65,13 +65,6 @@ class EconomyEngine:
         show.revenue = revenue
         show.expenses = expenses
 
-        # ✅ FIX #2: Bankruptcy tracking
-        if hasattr(state, "negative_weeks"):
-            if state.player_budget < 0:
-                state.negative_weeks = getattr(state, "negative_weeks", 0) + 1
-            else:
-                state.negative_weeks = 0
-
         # ===== Fans change =====
         self._update_fans(show, state, profit)
 

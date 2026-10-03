@@ -3,6 +3,36 @@
 
 {% block content %}
 
+{% if objective %}
+<div class="card weekly-objective">
+    <h2>🎯 Weekly Objective</h2>
+    <strong>{{ objective.title }}</strong>
+    <p>{{ objective.description }}</p>
+    <span class="muted">Reward: ${{ "{:,}".format(objective.reward_budget) }} + {{ "{:,}".format(objective.reward_fans) }} fans</span>
+</div>
+{% endif %}
+
+{% if pending_decision %}
+<div class="card decision-card">
+    <h2>⚖️ Decision Required</h2>
+    <p><strong>{{ pending_decision.title }}</strong> — {{ pending_decision.text }}</p>
+    <div class="actions">
+        {% for option in pending_decision.options %}
+        <form method="POST" action="{{ url_for('game.resolve_decision') }}">
+            <input type="hidden" name="option_id" value="{{ option.id }}">
+            <button type="submit" class="btn {% if loop.first %}primary{% endif %}">
+                {{ option.label }}<br><small>{{ option.summary }}</small>
+            </button>
+        </form>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% if last_objective_result %}
+<div class="event-banner">{{ last_objective_result.text }}</div>
+{% endif %}
+
 {# ✅ FIX #2: تحذير الإفلاس #}
 {% if negative_weeks and negative_weeks > 0 %}
 <div class="bankruptcy-warning">

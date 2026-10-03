@@ -2,12 +2,13 @@
 {% block title %}Book Show{% endblock %}
 
 {% block content %}
-<div class="booking-header">
+<div class="booking-hero">
     <div>
-        <h1>📅 Book Show — Week {{ show.week }}</h1>
-        <p class="muted">
-            {{ show.name }}
-            {% if show.is_ple %} · 🔥 PLE (6 matches){% endif %}
+        <span class="eyebrow">BOOKING ROOM · WEEK {{ show.week }}</span>
+        <h1>{{ show.name }}</h1>
+        <p class="muted show-subtitle">
+            Week {{ show.week }} · {{ "PLE" if show.is_ple else "Weekly Show" }}
+            {% if show.is_ple %} · 🔥 6 matches{% endif %}
         </p>
     </div>
     <div class="booking-actions">
@@ -25,11 +26,34 @@
     </div>
 </div>
 
+<div class="booking-brief">
+    <div class="brief-item">
+        <span class="brief-label">Story focus</span>
+        <strong>{{ active_stories|length }} active arc{{ '' if active_stories|length == 1 else 's' }}</strong>
+    </div>
+    <div class="brief-item">
+        <span class="brief-label">Card slots</span>
+        <strong>{{ show.matches|length }}/{{ 6 if show.is_ple else 4 }} booked</strong>
+    </div>
+    {% if state.weekly_objective %}
+    <div class="brief-item objective-brief">
+        <span class="brief-label">This week's ask</span>
+        <strong>{{ state.weekly_objective.title }}</strong>
+    </div>
+    {% endif %}
+</div>
+
 <div class="booking-layout">
 
     <!-- ============ LEFT: AVAILABLE WRESTLERS ============ -->
     <aside class="roster-panel">
-        <h2>👥 Available</h2>
+        <div class="panel-heading">
+            <div>
+                <span class="eyebrow">TALENT POOL</span>
+                <h2>👥 Available</h2>
+            </div>
+            <span class="drag-note">Drag to book</span>
+        </div>
 
         <div class="roster-tabs">
             <button class="tab-btn active" data-gender="MALE">
@@ -72,21 +96,39 @@
 
     <!-- ============ RIGHT: CARD ============ -->
     <section class="card-panel">
-        <h2>🎬 Card</h2>
+        <div class="card-panel-heading">
+            <div>
+                <span class="eyebrow">TONIGHT'S RUNNING ORDER</span>
+                <h2>🎬 Build the story</h2>
+            </div>
+            <span class="muted">Every match can move an arc forward.</span>
+        </div>
 
         <!-- STORIES FEED -->
         {% if active_stories %}
         <div class="story-feed">
-            <h3>📖 Active Stories</h3>
-            {% for s in active_stories %}
-            <div class="story-item">
-                <div class="story-title">
-                    <a href="{{ url_for('story.story_detail', story_id=s.id) }}">
-                        {{ s.title }}
-                    </a>
+            <div class="story-feed-heading">
+                <div>
+                    <span class="eyebrow">NARRATIVE DESK</span>
+                    <h3>📖 Active Stories</h3>
                 </div>
-                <div class="story-stage">
-                    {{ s.current_stage_name }} ({{ s.stage + 1 }}/{{ s.total_stages }})
+                <a href="{{ url_for('story.stories') }}" class="btn tiny">Manage stories</a>
+            </div>
+            {% for s in active_stories %}
+            <div class="story-item" data-story-card="{{ s.id }}">
+                <div class="story-item-topline">
+                    <div class="story-title">
+                        <a href="{{ url_for('story.story_detail', story_id=s.id) }}">{{ s.title }}</a>
+                    </div>
+                    <span class="story-heat">HEAT {{ s.heat }}</span>
+                </div>
+                <div class="story-progress">
+    <span class="story-progress-bar"
+          data-progress="{{ 0 if s.total_stages == 0 else (((s.stage + 1) / s.total_stages) * 100)|round|int }}"></span>
+</div>
+                <div class="story-stage"><strong>{{ s.current_stage_name }}</strong> · Chapter {{ s.stage + 1 }}/{{ s.total_stages }}</div>
+                <div class="story-beat-hint">
+                    {% if s.beats %}{{ s.get_completed_beats()|length }}/{{ s.beats|length }} beats complete{% else %}Auto arc · feature it to advance{% endif %}
                 </div>
                 <div class="story-participants">
                     {% for pid in s.participant_ids %}
@@ -94,14 +136,56 @@
                         {% if w %}<span class="mini-chip">{{ w.name }}</span>{% endif %}
                     {% endfor %}
                 </div>
-                <button class="btn tiny suggest-btn"
+                <button class="btn tiny primary suggest-btn"
                         data-story-id="{{ s.id }}">
-                    ✨ Suggest Match
+                    ✨ Put in the show
                 </button>
             </div>
             {% endfor %}
         </div>
         {% endif %}
+
+        <!-- NON-MATCH SEGMENTS -->
+        <div class="segment-builder" id="segment-builder"
+             data-existing-segments='{{ show.segments | tojson }}'
+             data-limit="{{ segment_limit }}">
+            <div class="segment-heading">
+                <div>
+                    <span class="eyebrow">SHOW MOMENTS</span>
+                    <h3>🎙️ Segments <span class="muted">(0/{{ segment_limit }})</span></h3>
+                </div>
+                <span class="muted">Build heat between matches.</span>
+            </div>
+            <div class="segment-form-row">
+                <select id="segment-type" aria-label="Segment type">
+                    {% for segment_type in segment_types %}
+                    <option value="{{ segment_type }}">{{ segment_type.replace('_', ' ') }}</option>
+                    {% endfor %}
+                </select>
+                <select id="segment-actor" aria-label="Segment lead">
+                    <option value="">Lead performer</option>
+                    {% for w in available_male + available_female %}
+                    <option value="{{ w.id }}">{{ w.name }}</option>
+                    {% endfor %}
+                </select>
+                <select id="segment-target" aria-label="Segment target">
+                    <option value="">No target</option>
+                    {% for w in available_male + available_female %}
+                    <option value="{{ w.id }}">{{ w.name }}</option>
+                    {% endfor %}
+                </select>
+                <select id="segment-story" aria-label="Segment story">
+                    <option value="">Standalone moment</option>
+                    {% for s in active_stories %}
+                    <option value="{{ s.id }}">{{ s.title }}</option>
+                    {% endfor %}
+                </select>
+                <button type="button" class="btn tiny primary" id="add-segment-btn">+ Add</button>
+            </div>
+            <div id="segment-list" class="segment-list">
+                <span class="segment-empty">No moments booked yet.</span>
+            </div>
+        </div>
 
         <!-- MATCH SLOTS -->
         <div id="match-slots"
@@ -117,7 +201,7 @@
                      data-match-id="{{ existing.id if existing else '' }}">
 
                     <div class="slot-header">
-                        <span class="slot-number">Match {{ i + 1 }}</span>
+                        <span class="slot-number">{{ '%02d'|format(i + 1) }} <span>· MATCH</span></span>
                         <div class="slot-controls">
                             <select class="slot-type" data-slot="{{ i }}" title="Match Type">
                                 {% for mt in ['SINGLES', 'TAG_TEAM', 'TRIPLE_THREAT', 'CHAMPIONSHIP'] %}
@@ -144,6 +228,19 @@
                                 {% endfor %}
                             </select>
                         </div>
+                    </div>
+
+                    <div class="slot-story-row">
+                        <span class="slot-label">Story</span>
+                        <select class="slot-story" data-slot="{{ i }}" title="Link this match to a story">
+                            <option value="">— Standalone match —</option>
+                            {% for s in active_stories %}
+                                <option value="{{ s.id }}"
+                                    {% if existing and existing.story_id == s.id %}selected{% endif %}>
+                                    {{ s.title }} · {{ s.current_stage_name }}
+                                </option>
+                            {% endfor %}
+                        </select>
                     </div>
 
                     <div class="slot-championship-row">
@@ -197,7 +294,7 @@
                     </div>
 
                     <div class="slot-footer">
-                        <span class="slot-status">Empty</span>
+                        <span class="slot-status">{% if existing %}{{ existing.participant_ids|length }} wrestlers{% else %}Empty{% endif %}</span>
                         <button class="btn tiny clear-slot-btn" data-slot="{{ i }}">✕ Clear</button>
                     </div>
                 </div>
@@ -208,6 +305,7 @@
         <form method="POST" id="booking-form" style="margin-top: 20px;">
             <input type="hidden" name="action" value="save_and_simulate">
             <input type="hidden" name="card_json" id="card_json">
+            <input type="hidden" name="segments_json" id="segments_json">
             <button type="submit" class="btn primary big" id="simulate-btn">
                 ▶️ Save & Simulate Show
             </button>

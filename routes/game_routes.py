@@ -24,6 +24,7 @@ from core.enums import (
     Division,
 )
 from domain.engines import StoryEngine
+from config import Config
 
 game_bp = Blueprint("game", __name__)
 
@@ -65,6 +66,10 @@ def dashboard():
         active_rivalries=state.get_active_rivalries(),
         active_stories=state.get_active_storylines(),
         recent_news=state.news[-5:][::-1],
+        objective=state.weekly_objective,
+        pending_decision=state.pending_decision,
+        last_objective_result=state.last_objective_result,
+        last_decision_result=state.last_decision_result,
         can_take_loan=gm.can_take_loan(),
         has_active_loan=state.has_active_loan(),
         negative_weeks=state.negative_weeks,
@@ -99,6 +104,23 @@ def take_loan():
     else:
         flash(f"❌ Loan rejected: {result.get('reason', 'Unknown error')}", "error")
 
+    _save_gm(gm)
+    return redirect(url_for("game.dashboard"))
+
+
+@game_bp.route("/decision", methods=["POST"])
+def resolve_decision():
+    """Resolve the current week's decision before booking."""
+    gm = _load_gm()
+    if gm is None:
+        return redirect(url_for("main.index"))
+    result = gm.turn.event_engine.apply_decision(
+        gm.state, request.form.get("option_id", "")
+    )
+    if result.get("ok"):
+        flash(result["text"], "success")
+    else:
+        flash(result.get("reason", "Decision failed."), "error")
     _save_gm(gm)
     return redirect(url_for("game.dashboard"))
 
@@ -151,6 +173,9 @@ def booking():
         return redirect(url_for("game.bankrupt"))
 
     state = gm.state
+    if state.pending_decision:
+        flash("Resolve this week's decision before booking the show.", "error")
+        return redirect(url_for("game.dashboard"))
 
     story_engine = StoryEngine()
     active_stories = story_engine.get_active_stories(state)
@@ -174,6 +199,10 @@ def booking():
                 card = json.loads(card_json)
             except json.JSONDecodeError:
                 card = []
+            try:
+                segments = json.loads(request.form.get("segments_json", "[]"))
+            except json.JSONDecodeError:
+                segments = []
 
             show = gm.booking.create_show()
             errors = []
@@ -211,6 +240,17 @@ def booking():
                 except BookingError as e:
                     errors.append(str(e))
 
+            for segment in segments:
+                try:
+                    gm.booking.add_segment(
+                        show,
+                        segment_type=segment.get("type", "PROMO"),
+                        participant_ids=segment.get("participant_ids", []),
+                        story_id=segment.get("story_id") or None,
+                    )
+                except BookingError as e:
+                    errors.append(str(e))
+
             for err in errors:
                 flash(err, "error")
 
@@ -234,8 +274,10 @@ def booking():
                 "show_rating": result["show_rating"],
                 "economy": result["economy"],
                 "match_count": len(result["matches"]),
+                "story_updates": result.get("story_updates", []),
                 "ai_rating": ai_result["ai_show_rating"],
                 "week_event": week_result.get("event"),
+                "objective": week_result.get("objective"),
                 "loan": week_result.get("loan"),
                 "negative_weeks": week_result.get("negative_weeks", 0),
             }
@@ -270,6 +312,17 @@ def booking():
         importance_levels=[i.value for i in MatchImportance],
         stipulations=[s.value for s in MatchStipulation],
         championships=state.championships,
+        segment_types=[
+            "PROMO",
+            "CALLOUT",
+            "BACKSTAGE_ATTACK",
+            "INTERFERENCE",
+            "CONTRACT_SIGNING",
+            "CELEBRATION",
+        ],
+        segment_limit=(
+            Config.SEGMENTS_PER_PLE if show.is_ple else Config.SEGMENTS_PER_SHOW
+        ),
     )
 
 
@@ -324,6 +377,7 @@ def _show_to_session(show) -> dict:
         "name": show.name,
         "is_ple": show.is_ple,
         "matches": [m.to_dict() for m in show.matches],
+        "segments": list(show.segments),
     }
 
 
@@ -338,4 +392,5 @@ def _session_to_show(data: dict):
         show_id=data["id"],
     )
     show.matches = [Match.from_dict(m) for m in data["matches"]]
+    show.segments = data.get("segments", [])
     return show

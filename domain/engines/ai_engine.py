@@ -31,8 +31,7 @@ class AIEngine:
         ✅ FIX #1: نستخدم used_ids عشان مفيش مصارع يتكرر
         في أكتر من match في نفس الليلة.
 
-        AI keeps its own roster simple: it just reuses the player's
-        roster IDs for simulation (MVP shortcut).
+        The AI uses its own roster so both promotions can grow independently.
         """
         show = Show(
             week=state.current_week,
@@ -42,7 +41,7 @@ class AIEngine:
 
         # ─── نجيب المتاحين مرتبين حسب القوة ───
         roster = sorted(
-            state.roster,
+            state.ai_roster,
             key=lambda w: w.popularity + w.ring_skill,
             reverse=True,
         )

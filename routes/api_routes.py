@@ -89,12 +89,19 @@ def suggest_story_match(story_id: str):
         return jsonify({"error": "not_found"}), 404
 
     suggestion = engine.suggest_match_for_story(story, gm.state)
+    championship_id = None
+    if suggestion["match_type"] == "CHAMPIONSHIP":
+        for championship in gm.state.championships:
+            if championship.champion_id in story.participant_ids:
+                championship_id = championship.id
+                break
     return jsonify(
         {
             "story_id": story.id,
             "participant_ids": story.participant_ids,
             "match_type": suggestion["match_type"],
             "importance": suggestion["importance"],
+            "championship_id": championship_id,
         }
     )
 

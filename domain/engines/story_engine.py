@@ -203,6 +203,10 @@ class StoryEngine:
             sid = p.get("story_id")
             if sid:
                 featured_ids.add(sid)
+        for segment in getattr(last_show, "segments", []):
+            sid = segment.get("story_id")
+            if sid:
+                featured_ids.add(sid)
 
         for story in self.get_active_stories(state):
             # Skip manual stories

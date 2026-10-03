@@ -19,6 +19,7 @@ from core.enums import (
 from domain.models.game_state import GameState
 from domain.models.championship import Championship
 from data.seed_wrestlers import seed_roster
+from data.seed_ai_wrestlers import seed_ai_roster
 from data.save_manager import SaveManager
 from game.booking_manager import BookingManager, BookingError
 from game.turn_manager import TurnManager
@@ -48,6 +49,10 @@ class GameManager:
         state = GameState()
         state.player_name = player_name
         state.roster = seed_roster()
+        state.ai_name = "Rival Promotion"
+        state.ai_budget = Config.AI_STARTING_BUDGET
+        state.ai_fans = Config.AI_STARTING_FANS
+        state.ai_roster = seed_ai_roster()
 
         # ----- Create Championships (WWE-style) -----
         world_heavyweight = Championship(

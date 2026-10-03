@@ -45,6 +45,177 @@ class EventEngine:
         return self._omg_event(state)
 
     # =========================================================
+    # WEEKLY GAMEPLAY LAYER
+    # =========================================================
+
+    def generate_objective(self, state: GameState) -> dict:
+        """Create a short-term goal that changes how the player books."""
+        candidates = [
+            {
+                "id": "great_show",
+                "title": "Put on a Great Show",
+                "description": "Finish the week with a show rating of 78 or higher.",
+                "kind": "SHOW_RATING",
+                "target": 78,
+                "reward_budget": 75_000,
+                "reward_fans": 3_000,
+            },
+            {
+                "id": "profitable_week",
+                "title": "Keep the Books Healthy",
+                "description": "Finish the week with at least $180,000 profit.",
+                "kind": "PROFIT",
+                "target": 180_000,
+                "reward_budget": 100_000,
+                "reward_fans": 1_000,
+            },
+            {
+                "id": "push_a_rookie",
+                "title": "Build the Next Star",
+                "description": "Book a Rookie in a match this week.",
+                "kind": "ROOKIE_BOOKED",
+                "target": 1,
+                "reward_budget": 40_000,
+                "reward_fans": 4_000,
+            },
+            {
+                "id": "champion_main_event",
+                "title": "Put the Champion in the Spotlight",
+                "description": "Book a current champion in the Main Event.",
+                "kind": "CHAMPION_MAIN_EVENT",
+                "target": 1,
+                "reward_budget": 60_000,
+                "reward_fans": 2_000,
+            },
+        ]
+        return dict(self.rng.choice(candidates))
+
+    def generate_decision(self, state: GameState) -> dict:
+        """Create a decision with meaningful trade-offs for the current week."""
+        candidates = [w for w in state.roster if w.contract_weeks > 0]
+        wrestler = self.rng.choice(candidates) if candidates else None
+        if wrestler:
+            return {
+                "id": "role_demand",
+                "title": "Locker Room Decision",
+                "text": f"{wrestler.name} wants a bigger role this week.",
+                "wrestler_id": wrestler.id,
+                "options": [
+                    {
+                        "id": "push",
+                        "label": "Give them a Push",
+                        "summary": "Popularity +4, Morale +6",
+                    },
+                    {
+                        "id": "bonus",
+                        "label": "Offer a Bonus",
+                        "summary": "Pay $50,000, Morale +10",
+                    },
+                    {
+                        "id": "ignore",
+                        "label": "Ignore the Demand",
+                        "summary": "Save money, but Morale -8",
+                    },
+                ],
+            }
+        return {
+            "id": "sponsor_choice",
+            "title": "Sponsor Offer",
+            "text": "A sponsor offers money in exchange for a louder presence on your show.",
+            "options": [
+                {
+                    "id": "accept",
+                    "label": "Accept",
+                    "summary": "Budget +$45,000, Fans -500",
+                },
+                {
+                    "id": "decline",
+                    "label": "Decline",
+                    "summary": "Keep the show independent",
+                },
+            ],
+        }
+
+    def apply_decision(self, state: GameState, option_id: str) -> dict:
+        decision = state.pending_decision
+        if not decision:
+            return {"ok": False, "reason": "There is no pending decision."}
+
+        valid = {option["id"] for option in decision.get("options", [])}
+        if option_id not in valid:
+            return {"ok": False, "reason": "Invalid decision option."}
+
+        wrestler = state.get_wrestler(decision.get("wrestler_id"))
+        if decision["id"] == "role_demand" and wrestler:
+            if option_id == "push":
+                wrestler.adjust_popularity(4)
+                wrestler.adjust_morale(6)
+                text = f"📈 You gave {wrestler.name} a bigger push."
+            elif option_id == "bonus":
+                state.player_budget -= 50_000
+                wrestler.adjust_morale(10)
+                text = f"💰 You paid a $50,000 bonus to {wrestler.name}."
+            else:
+                wrestler.adjust_morale(-8)
+                text = f"😤 You ignored {wrestler.name}'s demand. Morale dropped."
+        elif decision["id"] == "sponsor_choice" and option_id == "accept":
+            state.player_budget += 45_000
+            state.player_fans = max(1_000, state.player_fans - 500)
+            text = "💰 You accepted the sponsor's offer."
+        else:
+            text = "🛡️ You kept the show independent."
+
+        state.pending_decision = None
+        state.decision_resolved_week = state.current_week
+        state.last_decision_result = {"text": text, "option_id": option_id}
+        state.add_news(text)
+        return {"ok": True, "text": text, "option_id": option_id}
+
+    def evaluate_objective(self, state: GameState) -> dict:
+        objective = state.weekly_objective
+        show = state.shows[-1] if state.shows else None
+        if not objective or not show:
+            return {"completed": False, "text": "No weekly objective was active."}
+
+        kind = objective["kind"]
+        if kind == "SHOW_RATING":
+            completed = show.rating >= objective["target"]
+            progress = show.rating
+        elif kind == "PROFIT":
+            completed = show.revenue - show.expenses >= objective["target"]
+            progress = show.revenue - show.expenses
+        elif kind == "ROOKIE_BOOKED":
+            rookie_ids = {
+                w.id
+                for w in state.roster
+                if "Rookie" in w.traits or "Rising Star" in w.traits
+            }
+            booked = {pid for match in show.matches for pid in match.participant_ids}
+            completed = bool(rookie_ids & booked)
+            progress = 1 if completed else 0
+        else:
+            champion_ids = {w.id for w in state.roster if w.is_champion}
+            main = next(
+                (m for m in show.matches if m.importance.value == "MAIN_EVENT"), None
+            )
+            completed = bool(main and champion_ids & set(main.participant_ids))
+            progress = 1 if completed else 0
+
+        if completed:
+            state.player_budget += objective["reward_budget"]
+            state.player_fans += objective["reward_fans"]
+            text = (
+                f"✅ Objective complete: {objective['title']} "
+                f"(+${objective['reward_budget']:,}, +{objective['reward_fans']:,} fans)."
+            )
+        else:
+            text = f"❌ Objective missed: {objective['title']}."
+        result = {"completed": completed, "text": text, "progress": progress}
+        state.last_objective_result = result
+        state.add_news(text)
+        return result
+
+    # =========================================================
     # MINOR EVENTS
     # =========================================================
 

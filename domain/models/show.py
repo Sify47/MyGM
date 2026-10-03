@@ -25,6 +25,7 @@ class Show:
 
         self.matches: list[Match] = []
         self.promos: list[dict] = []  # {"participant_id": ..., "type": ...}
+        self.segments: list[dict] = []
 
         # Result
         self.rating: int = 0
@@ -43,6 +44,7 @@ class Show:
             "is_ple": self.is_ple,
             "matches": [m.to_dict() for m in self.matches],
             "promos": list(self.promos),
+            "segments": list(self.segments),
             "rating": self.rating,
             "expected_attendance": self.expected_attendance,
             "actual_attendance": self.actual_attendance,
@@ -60,6 +62,7 @@ class Show:
         )
         s.matches = [Match.from_dict(m) for m in data.get("matches", [])]
         s.promos = data.get("promos", [])
+        s.segments = data.get("segments", [])
         s.rating = data.get("rating", 0)
         s.expected_attendance = data.get("expected_attendance", 0)
         s.actual_attendance = data.get("actual_attendance", 0)

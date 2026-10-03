@@ -20,6 +20,8 @@ class Config:
     MATCHES_PER_SHOW = 4
     PROMOS_PER_SHOW = 1
     MATCHES_PER_PLE = 6
+    SEGMENTS_PER_SHOW = 3
+    SEGMENTS_PER_PLE = 5
 
     # ===== Economy =====
     # ✅ FIX #2: رفعنا رأس المال الابتدائي + قللنا المصاريف
