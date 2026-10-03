@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Results{% endblock %}
+
+{% block content %}
+<h1>🎬 Show Results</h1>
+
+{% if result %}
+<div class="stats-row">
+    <div class="stat">
+        <span class="label">Show Rating</span>
+        <span class="value">{{ result.show_rating }}/100</span>
+    </div>
+    <div class="stat">
+        <span class="label">Attendance</span>
+        <span class="value">{{ "{:,}".format(result.economy.attendance) }}</span>
+    </div>
+    <div class="stat">
+        <span class="label">Revenue</span>
+        <span class="value">${{ "{:,}".format(result.economy.revenue) }}</span>
+    </div>
+    <div class="stat">
+        <span class="label">Profit</span>
+        <span class="value {% if result.economy.profit >= 0 %}positive{% else %}negative{% endif %}">
+            ${{ "{:,}".format(result.economy.profit) }}
+        </span>
+    </div>
+    <div class="stat">
+        <span class="label">AI Show</span>
+        <span class="value">{{ result.ai_rating }}/100</span>
+    </div>
+</div>
+
+{% if result.week_event %}
+<div class="event-banner">
+    🎲 <strong>Event:</strong> {{ result.week_event.text }}
+</div>
+{% endif %}
+{% endif %}
+
+{% if show %}
+<div class="card">
+    <h2>📋 Match Results</h2>
+    <ul class="results-list">
+        {% for m in show.matches %}
+        <li>
+            <strong>[{{ m.importance.value }}]</strong>
+            {% for pid in m.participant_ids %}
+                {% set w = state.get_wrestler(pid) %}
+                <span class="{% if pid == m.winner_id %}winner{% endif %}">
+                    {{ w.name if w else "?" }}
+                </span>{% if not loop.last %} vs {% endif %}
+            {% endfor %}
+            <span class="rating">Rating: {{ m.rating }} · {{ m.crowd_reaction.value }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<div class="actions">
+    <a href="{{ url_for('game.dashboard') }}" class="btn primary">← Back to Dashboard</a>
+    <a href="{{ url_for('game.booking') }}" class="btn">Book Next Show</a>
+</div>
+{% endblock %}

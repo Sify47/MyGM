@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+{% block title %}Book Show{% endblock %}
+
+{% block content %}
+<div class="booking-header">
+    <div>
+        <h1>📅 Book Show — Week {{ show.week }}</h1>
+        <p class="muted">
+            {{ show.name }}
+            {% if show.is_ple %} · 🔥 PLE (6 matches){% endif %}
+        </p>
+    </div>
+    <div class="booking-actions">
+        <a href="{{ url_for('story.stories') }}" class="btn">
+            📖 Stories
+        </a>
+        <form method="POST" style="display: inline;">
+            <input type="hidden" name="action" value="auto">
+            <button type="submit" class="btn">⚡ Auto-Build</button>
+        </form>
+        <form method="POST" style="display: inline;">
+            <input type="hidden" name="action" value="clear">
+            <button type="submit" class="btn danger">🗑️ Clear</button>
+        </form>
+    </div>
+</div>
+
+<div class="booking-layout">
+
+    <!-- ============ LEFT: AVAILABLE WRESTLERS ============ -->
+    <aside class="roster-panel">
+        <h2>👥 Available</h2>
+
+        <div class="roster-tabs">
+            <button class="tab-btn active" data-gender="MALE">
+                💪 Men (<span id="male-count">{{ available_male|length }}</span>)
+            </button>
+            <button class="tab-btn" data-gender="FEMALE">
+                👑 Women (<span id="female-count">{{ available_female|length }}</span>)
+            </button>
+        </div>
+
+        <div class="roster-scroll" id="roster-pool" data-active-gender="MALE">
+            {% for w in available_male %}
+            <div class="wrestler-chip align-{{ w.alignment.value.lower() }}"
+                 draggable="true"
+                 data-wrestler-id="{{ w.id }}"
+                 data-wrestler-name="{{ w.name }}"
+                 data-gender="{{ w.gender.value }}"
+                 data-popularity="{{ w.popularity }}"
+                 data-alignment="{{ w.alignment.value }}">
+                <span class="wrestler-name">{{ w.name }}</span>
+                <span class="wrestler-meta">POP {{ w.popularity }}</span>
+            </div>
+            {% endfor %}
+
+            {% for w in available_female %}
+            <div class="wrestler-chip align-{{ w.alignment.value.lower() }} gender-female"
+                 draggable="true"
+                 data-wrestler-id="{{ w.id }}"
+                 data-wrestler-name="{{ w.name }}"
+                 data-gender="{{ w.gender.value }}"
+                 data-popularity="{{ w.popularity }}"
+                 data-alignment="{{ w.alignment.value }}"
+                 style="display: none;">
+                <span class="wrestler-name">{{ w.name }}</span>
+                <span class="wrestler-meta">POP {{ w.popularity }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </aside>
+
+    <!-- ============ RIGHT: CARD ============ -->
+    <section class="card-panel">
+        <h2>🎬 Card</h2>
+
+        <!-- STORIES FEED -->
+        {% if active_stories %}
+        <div class="story-feed">
+            <h3>📖 Active Stories</h3>
+            {% for s in active_stories %}
+            <div class="story-item">
+                <div class="story-title">
+                    <a href="{{ url_for('story.story_detail', story_id=s.id) }}">
+                        {{ s.title }}
+                    </a>
+                </div>
+                <div class="story-stage">
+                    {{ s.current_stage_name }} ({{ s.stage + 1 }}/{{ s.total_stages }})
+                </div>
+                <div class="story-participants">
+                    {% for pid in s.participant_ids %}
+                        {% set w = state.get_wrestler(pid) %}
+                        {% if w %}<span class="mini-chip">{{ w.name }}</span>{% endif %}
+                    {% endfor %}
+                </div>
+                <button class="btn tiny suggest-btn"
+                        data-story-id="{{ s.id }}">
+                    ✨ Suggest Match
+                </button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- MATCH SLOTS -->
+        <div id="match-slots"
+             data-is-ple="{{ 'true' if show.is_ple else 'false' }}"
+             data-stipulations='{{ stipulations | tojson }}'
+             data-championships='{{ championships | map(attribute="id") | list | tojson }}'>
+
+            {% set max_matches = 6 if show.is_ple else 4 %}
+            {% for i in range(max_matches) %}
+                {% set existing = show.matches[i] if i < show.matches|length else None %}
+                <div class="match-slot {% if existing %}filled{% endif %}"
+                     data-slot-index="{{ i }}"
+                     data-match-id="{{ existing.id if existing else '' }}">
+
+                    <div class="slot-header">
+                        <span class="slot-number">Match {{ i + 1 }}</span>
+                        <div class="slot-controls">
+                            <select class="slot-type" data-slot="{{ i }}" title="Match Type">
+                                {% for mt in ['SINGLES', 'TAG_TEAM', 'TRIPLE_THREAT', 'CHAMPIONSHIP'] %}
+                                    <option value="{{ mt }}"
+                                        {% if existing and existing.match_type.value == mt %}selected{% endif %}>
+                                        {{ mt }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                            <select class="slot-importance" data-slot="{{ i }}" title="Importance">
+                                {% for imp in ['OPENER', 'MIDCARD', 'UPPER_CARD', 'MAIN_EVENT'] %}
+                                    <option value="{{ imp }}"
+                                        {% if existing and existing.importance.value == imp %}selected{% endif %}>
+                                        {{ imp }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                            <select class="slot-stipulation" data-slot="{{ i }}" title="Stipulation">
+                                {% for stip in stipulations %}
+                                    <option value="{{ stip }}"
+                                        {% if existing and existing.stipulation.value == stip %}selected{% endif %}>
+                                        {{ stip }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="slot-championship-row">
+                        <select class="slot-championship" data-slot="{{ i }}" title="Championship">
+                            <option value="">— No Title —</option>
+                            {% for c in championships %}
+                                <option value="{{ c.id }}"
+                                    {% if existing and existing.championship_id == c.id %}selected{% endif %}>
+                                    {{ c.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="slot-body drop-zone">
+                        {% if existing %}
+                            {% for pid in existing.participant_ids %}
+                                {% set w = state.get_wrestler(pid) %}
+                                {% if w %}
+                                <span class="wrestler-chip small align-{{ w.alignment.value.lower() }}"
+                                      draggable="true"
+                                      data-wrestler-id="{{ w.id }}"
+                                      data-wrestler-name="{{ w.name }}"
+                                      data-gender="{{ w.gender.value }}">
+                                    {{ w.name }}
+                                </span>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <span class="drop-hint">Drag wrestlers here</span>
+                        {% endif %}
+                    </div>
+
+                    <!-- Winner Mode -->
+                    <div class="slot-winner-row">
+                        <label>Winner:</label>
+                        <select class="slot-winner-mode" data-slot="{{ i }}">
+                            <option value="AUTO"
+                                {% if not existing or existing.winner_mode.value == 'AUTO' %}selected{% endif %}>
+                                🎲 Auto
+                            </option>
+                            <option value="MANUAL"
+                                {% if existing and existing.winner_mode.value == 'MANUAL' %}selected{% endif %}>
+                                ✋ Manual
+                            </option>
+                        </select>
+                        <select class="slot-winner-override" data-slot="{{ i }}"
+                                style="display: none;" title="Pick Winner">
+                            <option value="">— Select Winner —</option>
+                        </select>
+                    </div>
+
+                    <div class="slot-footer">
+                        <span class="slot-status">Empty</span>
+                        <button class="btn tiny clear-slot-btn" data-slot="{{ i }}">✕ Clear</button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- SUBMIT -->
+        <form method="POST" id="booking-form" style="margin-top: 20px;">
+            <input type="hidden" name="action" value="save_and_simulate">
+            <input type="hidden" name="card_json" id="card_json">
+            <button type="submit" class="btn primary big" id="simulate-btn">
+                ▶️ Save & Simulate Show
+            </button>
+        </form>
+    </section>
+</div>
+
+<script src="{{ url_for('static', filename='js/booking.js') }}"></script>
+{% endblock %}

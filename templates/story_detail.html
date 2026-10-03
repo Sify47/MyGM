@@ -1,0 +1,332 @@
+{% extends "base.html" %}
+{% block title %}{{ story.title }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1>{{ story.title }}</h1>
+        <p class="muted">
+            {{ story.story_type.value }} ·
+            {% if story.manual_mode %}✋ Manual Mode{% else %}🎲 Auto Mode{% endif %}
+        </p>
+    </div>
+    <a href="{{ url_for('story.stories') }}" class="btn">← All Stories</a>
+</div>
+
+<!-- ============ PROGRESS BAR ============ -->
+<div class="card">
+    <h2>📊 Progress</h2>
+    <div class="stage-bar big">
+        {% for i in range(story.total_stages) %}
+        <div class="stage-node
+                    {% if i < story.stage %}done{% endif %}
+                    {% if i == story.stage %}current{% endif %}">
+            <div class="stage-dot"></div>
+            <span class="stage-name">{{ story.stages[i] }}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="progress-info">
+        <span><strong>Current Stage:</strong> {{ story.current_stage_name }}</span>
+        <span><strong>Heat:</strong> {{ story.heat }}</span>
+        <span><strong>Weeks Active:</strong> {{ story.weeks_active }}</span>
+    </div>
+
+    {% if story.manual_mode and not story.completed %}
+    <form method="POST"
+          action="{{ url_for('story.advance_stage', story_id=story.id) }}"
+          style="margin-top: 12px;">
+        <button type="submit" class="btn primary"
+                onclick="return confirm('Advance to next stage?');">
+            ⏭️ Advance Stage Manually
+        </button>
+    </form>
+    {% endif %}
+</div>
+
+<!-- ============ PARTICIPANTS ============ -->
+<div class="card">
+    <h2>👥 Participants ({{ story.participant_ids|length }})</h2>
+    <div class="participant-list">
+        {% for pid in story.participant_ids %}
+            {% set w = state.get_wrestler(pid) %}
+            {% if w %}
+            <div class="participant-row align-{{ w.alignment.value.lower() }}">
+                <div>
+                    <strong>{{ w.name }}</strong>
+                    <span class="muted">
+                        · {{ w.wrestler_class.value }} ·
+                        POP {{ w.popularity }} ·
+                        MOR {{ w.morale }}
+                    </span>
+                </div>
+                {% if not story.completed and story.participant_ids|length > 2 %}
+                <form method="POST"
+                      action="{{ url_for('story.remove_participant',
+                                          story_id=story.id,
+                                          wrestler_id=w.id) }}"
+                      style="display: inline;"
+                      onsubmit="return confirm('Remove this participant?');">
+                    <button type="submit" class="btn tiny danger">✕</button>
+                </form>
+                {% endif %}
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    {% if addable_wrestlers and not story.completed %}
+    <form method="POST"
+          action="{{ url_for('story.add_participant', story_id=story.id) }}"
+          class="inline-form">
+        <select name="wrestler_id" required>
+            <option value="">— Add Participant —</option>
+            {% for w in addable_wrestlers %}
+            <option value="{{ w.id }}">
+                {{ w.name }} ({{ w.wrestler_class.value }})
+            </option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn">➕ Add</button>
+    </form>
+    {% endif %}
+</div>
+
+<!-- ============ BEATS ============ -->
+<div class="card">
+    <h2>🎬 Story Beats ({{ story.get_completed_beats()|length }}/{{ story.beats|length }})</h2>
+
+    {% if story.beats %}
+        <div class="beats-list">
+            {% for beat in story.beats %}
+            <div class="beat-row {% if beat.completed %}completed{% endif %}">
+                <div class="beat-icon">
+                    {% if beat.completed %}✓{% else %}○{% endif %}
+                </div>
+                <div class="beat-body">
+                    <div class="beat-header">
+                        <strong>{{ beat.label }}</strong>
+                        <span class="beat-type-tag">{{ beat.beat_type.value }}</span>
+                    </div>
+                    {% if beat.description %}
+                    <p class="beat-desc muted">{{ beat.description }}</p>
+                    {% endif %}
+                    {% if beat.custom_text %}
+                    <p class="beat-custom">
+                        <em>"{{ beat.custom_text }}"</em>
+                    </p>
+                    {% endif %}
+                    {% if beat.completed %}
+                    <span class="beat-week muted">Completed Week {{ beat.week_completed }}</span>
+                    {% endif %}
+                </div>
+                <div class="beat-actions">
+                    {% if not beat.completed and not story.completed %}
+                    <form method="POST"
+                          action="{{ url_for('story.complete_beat',
+                                              story_id=story.id,
+                                              beat_id=beat.id) }}"
+                          style="display: inline;">
+                        <button type="submit" class="btn tiny">✓ Complete</button>
+                    </form>
+                    {% endif %}
+                    {% if not story.completed %}
+                    <form method="POST"
+                          action="{{ url_for('story.remove_beat',
+                                              story_id=story.id,
+                                              beat_id=beat.id) }}"
+                          style="display: inline;"
+                          onsubmit="return confirm('Remove this beat?');">
+                        <button type="submit" class="btn tiny danger">✕</button>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="muted">No beats yet. Add one below.</p>
+    {% endif %}
+</div>
+
+<!-- ============ ADD BEAT ============ -->
+{% if not story.completed %}
+<div class="card">
+    <h2>➕ Add Beat</h2>
+
+    <!-- Suggested for current stage -->
+    {% if suggested_beats %}
+    <div class="suggested-beats">
+        <span class="muted">Suggested for "{{ story.current_stage_name }}":</span>
+        {% for sb in suggested_beats %}
+        <button type="button" class="btn tiny suggest-beat-btn"
+                data-beat-label="{{ sb }}">
+            + {{ sb }}
+        </button>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Tabs: Library / Custom -->
+    <div class="beat-tabs">
+        <button type="button" class="beat-tab active" data-mode="library">
+            📚 From Library
+        </button>
+        <button type="button" class="beat-tab" data-mode="custom">
+            ✏️ Custom Beat
+        </button>
+    </div>
+
+    <!-- Library Form -->
+    <form method="POST"
+          action="{{ url_for('story.add_beat', story_id=story.id) }}"
+          class="beat-form" id="library-form">
+        <input type="hidden" name="mode" value="library">
+        <div class="form-group">
+            <label>Beat from Library</label>
+            <select name="beat_label" id="beat_label" required>
+                <option value="">— Select a Beat —</option>
+                <optgroup label="Promos">
+                    <option>Cutting Promo</option>
+                    <option>Hype Package</option>
+                </optgroup>
+                <optgroup label="Callouts">
+                    <option>The Callout</option>
+                    <option>Challenge Issued</option>
+                </optgroup>
+                <optgroup label="Matches">
+                    <option>First Encounter</option>
+                    <option>Rematch</option>
+                    <option>Tag Team Clash</option>
+                </optgroup>
+                <optgroup label="Interference">
+                    <option>Distraction</option>
+                    <option>Costly Mistake</option>
+                </optgroup>
+                <optgroup label="Betrayal">
+                    <option>The Turn</option>
+                    <option>Tag Team Split</option>
+                </optgroup>
+                <optgroup label="Alliance">
+                    <option>Forming an Alliance</option>
+                    <option>Faction Formation</option>
+                </optgroup>
+                <optgroup label="Attack">
+                    <option>Backstage Brawl</option>
+                    <option>Ambush</option>
+                </optgroup>
+                <optgroup label="Return">
+                    <option>Surprise Return</option>
+                    <option>Unexpected Comeback</option>
+                </optgroup>
+                <optgroup label="Confrontation">
+                    <option>Face-to-Face</option>
+                    <option>Contract Signing</option>
+                </optgroup>
+                <optgroup label="Title Shot">
+                    <option>Title Opportunity</option>
+                    <option>Title Match</option>
+                </optgroup>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Custom Text (optional)</label>
+            <textarea name="custom_text" rows="2"
+                      placeholder="Add a note or promo line..."></textarea>
+        </div>
+        <button type="submit" class="btn primary">Add Beat</button>
+    </form>
+
+    <!-- Custom Form -->
+    <form method="POST"
+          action="{{ url_for('story.add_beat', story_id=story.id) }}"
+          class="beat-form hidden" id="custom-form">
+        <input type="hidden" name="mode" value="custom">
+        <div class="form-group">
+            <label>Beat Type</label>
+            <select name="beat_type">
+                {% for bt in beat_types %}
+                    <option value="{{ bt }}">{{ bt }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Label</label>
+            <input type="text" name="custom_label"
+                   placeholder="e.g. The Mind Games Begin" required>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea name="custom_description" rows="2"
+                      placeholder="What happens in this beat?"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Custom Text (optional)</label>
+            <textarea name="custom_text" rows="2"
+                      placeholder="Promo line, quote, etc."></textarea>
+        </div>
+        <button type="submit" class="btn primary">Add Custom Beat</button>
+    </form>
+</div>
+{% endif %}
+
+<!-- ============ HISTORY ============ -->
+{% if story.history %}
+<div class="card">
+    <h2>📜 History</h2>
+    <ul class="history-list">
+        {% for h in story.history %}
+        <li>
+            <span class="week-tag">W{{ h.week }}</span>
+            {% if h.beat_label %}
+                <strong>[{{ h.beat_type }}]</strong> {{ h.beat_label }}
+            {% else %}
+                {{ h.stage or h.note or '—' }}
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<script>
+    // Beat tabs
+    document.querySelectorAll(".beat-tab").forEach((tab) => {
+        tab.addEventListener("click", () => {
+            const mode = tab.dataset.mode;
+            document.querySelectorAll(".beat-tab").forEach((t) =>
+                t.classList.remove("active")
+            );
+            tab.classList.add("active");
+
+            document.getElementById("library-form").classList.toggle(
+                "hidden", mode !== "library"
+            );
+            document.getElementById("custom-form").classList.toggle(
+                "hidden", mode !== "custom"
+            );
+        });
+    });
+
+    // Suggested beat buttons: pre-fill library dropdown
+    document.querySelectorAll(".suggest-beat-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const label = btn.dataset.beatLabel;
+            // Switch to library tab
+            document.querySelector('.beat-tab[data-mode="library"]').click();
+            const select = document.getElementById("beat_label");
+            for (const opt of select.options) {
+                if (opt.text === label) {
+                    select.value = opt.value;
+                    break;
+                }
+            }
+            // Scroll to form
+            document.getElementById("library-form").scrollIntoView({
+                behavior: "smooth",
+            });
+        });
+    });
+</script>
+{% endblock %}

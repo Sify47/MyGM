@@ -1,0 +1,2313 @@
+تمام. خلينا نعاملها كـ **Game Product كامل** مش مجرد Flutter app. الفكرة الأساسية:
+
+> **لعبة Wrestling Management Simulator للموبايل** مستوحاة من إحساس MyGM، لكن بعالم وشخصيات أصلية، والهدف إن كل Season ينتج قصة مختلفة بسبب قرارات اللاعب والأحداث العشوائية.
+
+# 🎮 1. Core Game Concept
+
+أنت General Manager لاتحاد مصارعة.
+
+عندك:
+
+* Roster
+* Budget
+* Champions
+* Fans
+* Shows
+* Rivalries
+* Contracts
+* Morale
+* Injuries
+* Storylines
+* AI Competitor
+
+وهدفك خلال Season إنك تبني اتحاد ناجح وتحقق أهداف الإدارة.
+
+لكن **مش كل حاجة تتحل بالأرقام**.
+
+قرارك اليوم ممكن يعمل مشكلة بعد 5 أسابيع.
+
+---
+
+# 🔄 2. الـCore Gameplay Loop
+
+ده أهم جزء في المشروع كله:
+
+```text
+                    ┌─────────────┐
+                    │   NEW WEEK  │
+                    └──────┬──────┘
+                           ↓
+                    📰 NEWS / EVENTS
+                           ↓
+                    👥 MANAGE ROSTER
+                           ↓
+                    📖 MANAGE STORIES
+                           ↓
+                    📅 BOOK SHOW
+                           ↓
+                    🎬 SHOW SIMULATION
+                           ↓
+                    💥 RESULTS / EVENTS
+                           ↓
+               ┌───────────┴───────────┐
+               ↓                       ↓
+           💰 BUSINESS             👥 ROSTER
+               ↓                       ↓
+           Fans/Revenue          Morale/Injury
+               └───────────┬───────────┘
+                           ↓
+                    🤖 AI GM ACTION
+                           ↓
+                    🏆 WEEK SUMMARY
+                           ↓
+                       NEXT WEEK
+```
+
+المهم إن كل أسبوع **يغير حالة اللعبة**.
+
+---
+
+# 🗺️ 3. شكل الـGame Progression
+
+أقترح:
+
+```text
+Season
+│
+├── Week 1
+├── Week 2
+├── Week 3
+├── Week 4
+│
+├── PLE #1
+│
+├── Week 5
+├── Week 6
+├── Week 7
+├── Week 8
+│
+├── PLE #2
+│
+...
+│
+└── Season Finale
+```
+
+مثلاً Season = **20 أسبوع**.
+
+والـPLE كل 4 أسابيع.
+
+ده يخلي فيه إحساس:
+
+> "لازم أوصل للـPLE وأنا جاهز."
+
+---
+
+# 👤 4. Wrestler System
+
+كل Wrestler مش مجرد صورة + Rating.
+
+عنده مجموعة Stats:
+
+```text
+Wrestler
+│
+├── Name
+├── Age
+├── Gender
+├── Popularity
+├── Ring Skill
+├── Mic Skill
+├── Stamina
+├── Morale
+├── Health
+├── Salary
+├── Contract
+├── Face / Heel
+├── Class
+├── Personality
+└── Traits
+```
+
+### Classes
+
+مثلاً:
+
+```text
+Technician
+Brawler
+High Flyer
+Powerhouse
+Showman
+```
+
+والـMatch Engine يستخدم الـClasses في تقييم الماتش.
+
+---
+
+# 🧠 5. Personality System
+
+دي مهمة جدًا عشان تخلي الشخصيات حية.
+
+مثلاً:
+
+### The Ego
+
+```text
+High Popularity
+High Salary
+Low Teamwork
+High Ego
+```
+
+لو حطيته في Tag Team مع واحد مش بيحبه:
+
+احتمال يحصل:
+
+> Argument
+
+أو:
+
+> Betrayal
+
+---
+
+### The Rookie
+
+```text
+Low Popularity
+High Potential
+Cheap
+Ambitious
+```
+
+لو استخدمته باستمرار:
+
+```text
+Popularity ↑
+Skill ↑
+Morale ↑
+```
+
+ممكن بعد 15 أسبوع يبقى:
+
+> Future Main Eventer
+
+---
+
+# 📈 6. Popularity
+
+Popularity لازم تكون Dynamic.
+
+مثلاً:
+
+```text
+Popularity
+0 ─────────────────── 100
+```
+
+وتتأثر بـ:
+
+```text
+Match Performance
+Storyline
+Wins
+Championship
+Promo
+TV Time
+Fan Reaction
+Booking
+```
+
+مثلاً:
+
+```text
+Rookie
+Popularity = 35
+
+Great Rivalry
++8
+
+Great Match
++5
+
+Win Championship
++15
+
+Bad Promo
+-3
+```
+
+---
+
+# ❤️ 7. Morale
+
+Morale منفصل عن Popularity.
+
+مثلاً Wrestler مشهور لكن زعلان:
+
+```text
+Popularity = 88
+Morale = 32
+```
+
+وده ممكن يؤدي إلى:
+
+* طلب زيادة راتب
+* رفض Match
+* طلب Push
+* طلب Championship
+* Contract issue
+* Leaving promotion
+
+---
+
+# 🩹 8. Health & Injury
+
+كل Wrestler عنده:
+
+```text
+Health = 100
+```
+
+المباريات تقلل Health.
+
+```text
+Normal Match
+-8
+
+Hardcore
+-15
+
+Main Event
+-10
+```
+
+ولو Health قليل:
+
+```text
+Injury Chance ↑
+```
+
+لكن الإصابة نفسها **Random**.
+
+مش لازم تحصل كل مرة.
+
+---
+
+# 📖 9. Rivalry Engine
+
+بدل ما تعمل:
+
+```text
+Rivalry = 75%
+```
+
+خليها State.
+
+```text
+NONE
+  ↓
+TENSION
+  ↓
+RIVALRY
+  ↓
+HEATED
+  ↓
+BLOWOFF
+  ↓
+ENDED
+```
+
+مثلاً:
+
+```text
+Alex vs Mike
+
+Week 1
+Promo
+
+Week 2
+Interference
+
+Week 3
+Singles Match
+
+Week 4
+Backstage Attack
+
+Week 5
+Championship Match
+```
+
+كل Event يزيد الـRivalry.
+
+---
+
+# 🎬 10. Story Engine
+
+وده مختلف عن Rivalry.
+
+Storyline ممكن تكون:
+
+```text
+Underdog Story
+Betrayal
+Rise of a Star
+Champion vs Challenger
+Tag Team Breakup
+Legend's Last Run
+Faction War
+```
+
+والـStory Engine يحدد:
+
+> إيه الحدث المناسب الأسبوع ده؟
+
+مثلاً:
+
+```text
+Story:
+Rookie vs Champion
+
+Stage:
+BUILD
+
+Possible Events:
+- Promo
+- Callout
+- Interference
+- Tag Match
+- Champion avoids Rookie
+```
+
+---
+
+# 🎟️ 11. Booking System
+
+قبل العرض اللاعب يشوف:
+
+```text
+MONDAY NIGHT SHOW
+
+Match 1
+Alex vs John
+
+Match 2
+Tag Team
+
+Promo
+Mike
+
+Main Event
+Champion vs #1 Contender
+```
+
+لكل Match:
+
+```text
+Match Type
+Participants
+Stipulation
+Importance
+Story
+```
+
+---
+
+# ⚔️ 12. Match Types
+
+في MVP مش محتاج 50 نوع.
+
+ابدأ بـ:
+
+```text
+Singles
+Tag Team
+Triple Threat
+Championship
+```
+
+وبعدين:
+
+```text
+Fatal 4-Way
+Ladder
+Hardcore
+Submission
+Battle Royal
+```
+
+---
+
+# 🎲 13. Match Simulation Engine
+
+دي أهم Logic في اللعبة.
+
+ممكن تكون الفكرة:
+
+```text
+Match Score =
+Base Skill
++ Popularity
++ Rivalry
++ Story Importance
++ Match Compatibility
++ Crowd Interest
++ Momentum
++ Random Factor
+```
+
+مثلاً:
+
+```text
+Alex
+Skill = 80
+Popularity = 70
+
+Mike
+Skill = 75
+Popularity = 85
+
+Rivalry = 90
+Story = 80
+```
+
+الـEngine يحسب:
+
+```text
+Base Score
++
+Chemistry
++
+Story
++
+Crowd
++
+Random
+```
+
+ويطلع:
+
+```text
+⭐⭐⭐⭐½
+
+Crowd Reaction: 🔥🔥🔥
+```
+
+---
+
+# 🎲 14. Randomness
+
+**مهم جدًا.**
+
+لو اللعبة كلها Calculations هتبقى Spreadsheet.
+
+لازم:
+
+```text
+Expected Result
++
+Random Event
+```
+
+مثلاً:
+
+```text
+Expected Match Score = 82
+Random = -6
+
+Final = 76
+```
+
+أو:
+
+```text
+Expected = 82
+Random = +8
+
+Final = 90
+```
+
+وده يخلي اللاعب مش عارف النتيجة 100%.
+
+---
+
+# 😱 15. OMG Events
+
+Events نادرة:
+
+```text
+Unexpected Return
+Injury
+Betrayal
+Contract Dispute
+Surprise Challenge
+Title Change
+Backstage Fight
+Fan Favorite Moment
+Rival GM Interference
+```
+
+لكن لازم يكون عندها **Probability منخفضة**.
+
+مثلاً:
+
+```text
+Normal Event      60%
+Minor Event       30%
+Major Event        9%
+OMG Event          1%
+```
+
+مش لازم تستخدم النسب دي حرفيًا؛ دي نقطة بداية للتوازن.
+
+---
+
+# 🤖 16. AI GM
+
+الـAI مش لازم يكون Machine Learning.
+
+**Rule-based AI كفاية جدًا في البداية.**
+
+مثلاً:
+
+```text
+IF Champion Popularity > 80
+→ Book Champion Main Event
+
+IF Wrestler Morale < 30
+→ Give Wrestler Important Match
+
+IF Rivalry > 70
+→ Continue Rivalry
+
+IF Budget < 20%
+→ Reduce Expensive Matches
+```
+
+وبعدين نضيف Personality.
+
+### AI GM Types
+
+```text
+Business GM
+Story GM
+Aggressive GM
+Development GM
+```
+
+كل واحد له Strategy مختلفة.
+
+---
+
+# 💰 17. Economy System
+
+عندك:
+
+```text
+Budget
+Revenue
+Expenses
+Salary
+Arena Cost
+Production
+Marketing
+```
+
+مثلاً:
+
+```text
+Revenue
+├── Tickets
+├── Merchandise
+├── Sponsorship
+└── TV Deal
+
+Expenses
+├── Salaries
+├── Arena
+├── Production
+└── Marketing
+```
+
+---
+
+# 👥 18. Fans
+
+بدل رقم واحد:
+
+```text
+Fans = 150,000
+```
+
+خلي فيه:
+
+```text
+Casual Fans
+Hardcore Fans
+```
+
+الـCasual يهتم بالـStars.
+
+الـHardcore يهتم بجودة المباريات والـStories.
+
+ده يفتح مجال لاستراتيجيات مختلفة.
+
+---
+
+# 🏆 19. Championships
+
+في MVP:
+
+```text
+World Championship
+Tag Team Championship
+```
+
+وبعدين:
+
+```text
+Women's Championship
+Midcard Championship
+```
+
+كل Championship له:
+
+```text
+Champion
+Prestige
+Defenses
+Days Held
+```
+
+والـPrestige يزيد مع دفاعات قوية.
+
+---
+
+# 📊 20. Season Goals
+
+بدل ما يكون الهدف:
+
+> العب وخلاص.
+
+كل Season عندك Objectives.
+
+مثلاً:
+
+```text
+Season Goal
+
+✓ Reach 500K Fans
+✓ Make $1M Profit
+✓ Create 2 Rivalries
+✓ Build 1 New Superstar
+✓ Defend Championship 4 times
+```
+
+وفي نهاية الموسم:
+
+```text
+SEASON COMPLETE
+
+Fans: 820K
+Profit: $1.4M
+Championships: 2
+
+Legacy:
+"Rising Promotion"
+```
+
+---
+
+# 🧬 21. Progression
+
+بعد Season اللاعب يفتح:
+
+```text
+New Wrestlers
+New Arenas
+New Match Types
+New GM Abilities
+New Story Types
+```
+
+لكن مهم جدًا:
+
+**ما نخليش اللعبة Pay-to-Win.**
+
+---
+
+# 🧠 22. GM Skills
+
+ممكن يكون عندك Skill Tree:
+
+```text
+GM
+│
+├── Finance
+│   ├── Lower Arena Cost
+│   └── Better Sponsorship
+│
+├── Booking
+│   ├── Better Match Chemistry
+│   └── Better Story Building
+│
+└── Talent
+    ├── Faster Rookie Growth
+    └── Better Morale
+```
+
+وده يضيف Strategy.
+
+---
+
+# 📱 23. Screens
+
+الـMVP محتاج Screens قليلة.
+
+```text
+Splash
+   ↓
+Main Menu
+   ↓
+New Game
+   ↓
+Choose Promotion
+   ↓
+Roster
+   ↓
+Dashboard
+   ↓
+Book Show
+   ↓
+Show Simulation
+   ↓
+Results
+   ↓
+Week Summary
+   ↓
+Next Week
+```
+
+وفي الـDashboard:
+
+```text
+┌─────────────────────────┐
+│ WEEK 6        $420K      │
+│ 👥 180K Fans             │
+├─────────────────────────┤
+│ 📰 NEWS                  │
+│ Superstar wants a raise  │
+├─────────────────────────┤
+│ 📖 ACTIVE STORIES        │
+│ Alex vs Mike             │
+├─────────────────────────┤
+│ 📅 NEXT SHOW             │
+│ Monday Night             │
+└─────────────────────────┘
+```
+
+---
+
+# 🗃️ 24. Database
+
+بما إنها Flutter، في البداية أنا **مش هحط Backend**.
+
+استخدم Local Database.
+
+مثلاً:
+
+```text
+players
+wrestlers
+matches
+shows
+rivalries
+storylines
+championships
+contracts
+events
+game_state
+```
+
+ولو اخترنا SQLite/Drift لاحقًا، يبقى سهل ننقل الـGame Engine للـBackend.
+
+---
+
+# 🏗️ 25. Architecture
+
+أنا أقترح:
+
+```text
+Flutter
+│
+├── Presentation
+│
+├── Game
+│   ├── GameEngine
+│   ├── MatchEngine
+│   ├── StoryEngine
+│   ├── RivalryEngine
+│   ├── EconomyEngine
+│   ├── AIEngine
+│   └── EventEngine
+│
+├── Domain
+│   ├── Wrestler
+│   ├── Match
+│   ├── Show
+│   ├── Storyline
+│   └── GameState
+│
+├── Data
+│   ├── LocalDatabase
+│   ├── Repositories
+│   └── SeedData
+│
+└── UI
+    ├── Dashboard
+    ├── Roster
+    ├── Booking
+    ├── Simulation
+    └── Results
+```
+
+**Game Engine ما يعرفش حاجة عن Flutter UI.**
+
+وده مهم جدًا.
+
+---
+
+# 🥇 دلوقتي أهم حاجة: MVP
+
+أنا **مش أنصح** تبدأ بكل اللي فوق.
+
+الـMVP يكون:
+
+## 🎮 MVP Version 0.1
+
+### 1. Wrestlers
+
+مثلاً:
+
+**20 Wrestlers**
+
+كل واحد:
+
+```text
+Name
+Image
+Popularity
+Skill
+Stamina
+Morale
+Face/Heel
+Class
+Salary
+```
+
+---
+
+### 2. Player vs AI
+
+```text
+Your Promotion
+       VS
+AI Promotion
+```
+
+---
+
+### 3. 4 Match Types
+
+```text
+Singles
+Tag
+Triple Threat
+Championship
+```
+
+---
+
+### 4. Booking
+
+كل Show:
+
+```text
+4 Matches
++
+1 Promo
+```
+
+---
+
+### 5. Match Engine
+
+يحسب:
+
+```text
+Match Rating
+Winner
+Crowd Reaction
+Popularity Change
+Health Change
+```
+
+---
+
+### 6. Rivalry
+
+فقط:
+
+```text
+None
+Building
+Hot
+Blowoff
+```
+
+---
+
+### 7. Economy
+
+```text
+Budget
+Revenue
+Expenses
+```
+
+---
+
+### 8. Morale
+
+```text
+Happy
+Neutral
+Unhappy
+```
+
+---
+
+### 9. Random Events
+
+ابدأ بـ **10 Events فقط**.
+
+مثلاً:
+
+```text
+Injury
+Contract Demand
+Backstage Fight
+Surprise Return
+Fan Favorite
+Bad Promo
+Great Promo
+Locker Room Conflict
+Unexpected Challenge
+Sponsor Offer
+```
+
+---
+
+### 10. 12-Week Season
+
+```text
+Week 1
+Week 2
+Week 3
+Week 4
+PLE
+
+Week 5
+...
+Week 8
+PLE
+
+Week 9
+...
+Week 12
+FINAL PLE
+```
+
+وفي النهاية:
+
+```text
+SEASON RESULTS
+```
+
+---
+
+# 🔥 الـMVP الحقيقي في جملة
+
+لو عايز نحدد المشروع لأقصى درجة:
+
+> **لاعب يدير Wrestling Promotion لمدة 12 أسبوع، يختار Roster، يبني Rivalries، يحجز Matches، يحاكي Shows، يتعامل مع أحداث مفاجئة، ينافس AI GM، ويحاول إنهاء الموسم بأفضل Promotion ممكنة.**
+
+لو الـLoop دي طلعت **ممتعة**، ساعتها نوسع.
+
+مش العكس.
+
+---
+
+# 🚫 حاجات ما نحطهاش في MVP
+
+متعملش:
+
+❌ Online Multiplayer
+❌ Login
+❌ Cloud Backend
+❌ Real WWE licenses
+❌ 100 Wrestlers
+❌ 30 Match Types
+❌ Advanced animations
+❌ Multiplayer Draft
+❌ Complex Skill Tree
+❌ ML
+❌ Live services
+
+كل ده بعدين.
+
+---
+
+# 🧪 أهم Test للـMVP
+
+المشروع ما يتقاسش بـ:
+
+> "هل الـUI شكله حلو؟"
+
+يتقاس بـ:
+
+> **هل بعد ما أخلص Week 1 أكون عايز أعرف Week 2؟**
+
+وبعد Week 4:
+
+> **هل حصلت حاجة خلتني أغير خطتي؟**
+
+وبعد Week 8:
+
+> **هل الـUniverse بتاعي بقى مختلف عن الـUniverse اللي بدأت بيه؟**
+
+تمام. هنثبت دلوقتي **Game Design Document + Logic Specification للـMVP** بحيث يبقى ده المرجع اللي هنشتغل منه في Flutter، ومش هنبدأ بالكود لحد ما الـGame Loop والمنطق يبقوا واضحين.
+
+# 🎮 Project: Wrestling GM Simulator
+
+**Platform:** Mobile
+**Framework:** Flutter
+**Game Type:** Wrestling Management / Strategy / Simulation
+**Mode:** Single Player
+**MVP Season:** 12 Weeks
+**Players:** Human GM vs AI GM
+
+> ملاحظة مهمة: في النسخة القابلة للنشر نستخدم أسماء وشخصيات وشعارات أصلية، وليس ملكيات WWE أو صور مصارعين حقيقيين بدون ترخيص.
+
+---
+
+# 1. 🎯 هدف اللاعب
+
+اللاعب هو General Manager لاتحاد مصارعة.
+
+عنده 12 أسبوع عشان:
+
+* يبني Roster قوي
+* يرفع عدد الـFans
+* يدير الـBudget
+* يصنع Rivalries
+* يطور Stars
+* يحافظ على Morale
+* يقدم Shows ناجحة
+* ينافس AI Promotion
+
+وفي نهاية الموسم يتم حساب **Season Performance** بناءً على عدة مؤشرات، وليس Rating واحد فقط.
+
+---
+
+# 2. 🔄 الـCore Loop
+
+كل أسبوع:
+
+```text
+┌──────────────────┐
+│   START OF WEEK  │
+└────────┬─────────┘
+         ↓
+┌──────────────────┐
+│  NEWS / EVENTS   │
+└────────┬─────────┘
+         ↓
+┌──────────────────┐
+│ MANAGE ROSTER    │
+└────────┬─────────┘
+         ↓
+┌──────────────────┐
+│ MANAGE STORIES   │
+└────────┬─────────┘
+         ↓
+┌──────────────────┐
+│   BOOK SHOW      │
+└────────┬─────────┘
+         ↓
+┌──────────────────┐
+│ SIMULATE SHOW    │
+└────────┬─────────┘
+         ↓
+┌──────────────────┐
+│ RANDOM EVENTS    │
+└────────┬─────────┘
+         ↓
+┌──────────────────┐
+│ UPDATE GAMESTATE │
+└────────┬─────────┘
+         ↓
+┌──────────────────┐
+│    AI GM TURN    │
+└────────┬─────────┘
+         ↓
+┌──────────────────┐
+│  WEEK SUMMARY    │
+└────────┬─────────┘
+         ↓
+       NEXT WEEK
+```
+
+---
+
+# 3. 🧩 GameState
+
+دي أهم Object في اللعبة.
+
+كل حاجة في اللعبة في النهاية بتأثر على:
+
+```text
+GameState
+```
+
+ممكن يكون منطقيًا بالشكل ده:
+
+```text
+GameState
+
+season
+currentWeek
+
+playerPromotion
+aiPromotion
+
+playerBudget
+aiBudget
+
+playerFans
+aiFans
+
+roster
+
+shows
+
+matches
+
+rivalries
+
+storylines
+
+championships
+
+contracts
+
+events
+
+statistics
+```
+
+الـUI **ما يعدلش الـGameState مباشرة**.
+
+بدل:
+
+```text
+UI → change money
+```
+
+نستخدم:
+
+```text
+UI
+ ↓
+Game Controller
+ ↓
+Game Engine
+ ↓
+GameState
+ ↓
+UI
+```
+
+---
+
+# 4. 👤 Wrestler Model
+
+كل Wrestler:
+
+```text
+Wrestler
+
+id
+name
+image
+
+age
+
+gender
+
+class
+
+alignment
+
+popularity
+ringSkill
+micSkill
+
+stamina
+health
+morale
+
+salary
+contractWeeks
+
+potential
+
+traits
+```
+
+### Stats
+
+| Stat       | Range |
+| ---------- | ----: |
+| Popularity | 0–100 |
+| Ring Skill | 0–100 |
+| Mic Skill  | 0–100 |
+| Stamina    | 0–100 |
+| Health     | 0–100 |
+| Morale     | 0–100 |
+| Potential  | 0–100 |
+
+---
+
+# 5. 🧠 Wrestler Classes
+
+MVP:
+
+```text
+Technician
+Brawler
+High Flyer
+Powerhouse
+Showman
+```
+
+كل Class له تأثير بسيط.
+
+مثلاً:
+
+```text
+Technician
+→ أفضل في Technical Matches
+
+Brawler
+→ أفضل في Hardcore/Brawl
+
+High Flyer
+→ Crowd Bonus
+
+Powerhouse
+→ Match Impact
+
+Showman
+→ Promo Bonus
+```
+
+مش محتاج نعقدها أكتر في البداية.
+
+---
+
+# 6. 😈 Face / Heel
+
+كل Wrestler:
+
+```text
+FACE
+HEEL
+```
+
+وده مهم للـStory.
+
+مثلاً:
+
+```text
+Face vs Heel
+```
+
+يحصل على:
+
+```text
+Story Chemistry Bonus
+```
+
+بينما:
+
+```text
+Face vs Face
+```
+
+مش بالضرورة سيئ، لكنه أقل في بعض أنواع القصص.
+
+---
+
+# 7. ❤️ Morale System
+
+Morale:
+
+```text
+0–100
+```
+
+الحالات:
+
+```text
+80–100 → Happy
+50–79  → Neutral
+30–49  → Unhappy
+0–29   → Critical
+```
+
+يتأثر بـ:
+
+```text
++ Win
++ Championship
++ Main Event
++ Push
++ Good Story
+
+- Losing Streak
+- Low TV Time
+- Bad Booking
+- Salary Issues
+```
+
+---
+
+# 8. 📈 Popularity System
+
+Popularity لا تزيد عشوائيًا فقط.
+
+مثلاً:
+
+### Win
+
+```text
+Popularity +2
+```
+
+### Championship Win
+
+```text
+Popularity +6
+```
+
+### Great Match
+
+```text
+Popularity +3
+```
+
+### Bad Match
+
+```text
+Popularity -1
+```
+
+لكن نستخدم **diminishing returns**.
+
+يعني Wrestler Popularity = 95 مش هيزيد بسهولة.
+
+---
+
+# 9. 🩹 Health & Stamina
+
+### Health
+
+يتأثر بالمباريات.
+
+مثلاً:
+
+```text
+Normal Match
+-5 Health
+
+Main Event
+-7
+
+High Risk Match
+-10
+```
+
+### Stamina
+
+تقل خلال الأسبوع.
+
+```text
+Match
+-10
+
+Main Event
+-15
+```
+
+وفي بداية الأسبوع:
+
+```text
+Stamina += Recovery
+```
+
+مثلاً:
+
+```text
+Rested
++20
+```
+
+---
+
+# 10. 📖 Rivalry Engine
+
+كل Rivalry بين شخصين.
+
+```text
+Rivalry
+
+id
+wrestlerA
+wrestlerB
+
+heat
+stage
+
+weeksActive
+history
+```
+
+### Heat
+
+```text
+0–20    None
+21–40   Tension
+41–65   Building
+66–85   Heated
+86–100  Explosive
+```
+
+### Stage
+
+```text
+NONE
+BUILD
+HEATED
+BLOWOFF
+ENDED
+```
+
+---
+
+# 11. 🔥 كيف تزيد Rivalry؟
+
+مثلاً:
+
+```text
+Promo
++8
+
+Interference
++15
+
+Tag Match
++5
+
+Singles Match
++10
+
+Betrayal
++25
+```
+
+لكن:
+
+```text
+No interaction
+-3
+```
+
+عشان الـRivalry ما تفضلش للأبد.
+
+---
+
+# 12. 📚 Story Engine
+
+الـStory مش مجرد Rivalry.
+
+Story لها:
+
+```text
+type
+participants
+stage
+heat
+progress
+```
+
+MVP نبدأ بـ:
+
+```text
+Underdog
+Champion vs Challenger
+Betrayal
+Tag Team Breakup
+Rise of a Star
+```
+
+مثلاً:
+
+```text
+Rise of a Star
+
+START
+ ↓
+Rookie Introduction
+ ↓
+First Win
+ ↓
+Upset
+ ↓
+Rivalry
+ ↓
+Title Opportunity
+ ↓
+Championship
+```
+
+---
+
+# 13. 🎟️ Show System
+
+كل أسبوع عندنا Show.
+
+```text
+Show
+
+id
+week
+name
+
+matches
+promos
+
+arena
+productionLevel
+
+expectedAttendance
+actualAttendance
+
+rating
+revenue
+```
+
+MVP:
+
+```text
+4 Matches
++
+1 Promo
+```
+
+---
+
+# 14. ⚔️ Match System
+
+كل Match:
+
+```text
+Match
+
+id
+
+type
+
+participants
+
+winner
+
+championship
+
+importance
+
+rivalryId
+
+storyId
+
+rating
+
+crowdReaction
+```
+
+### Match Types MVP
+
+```text
+Singles
+Tag Team
+Triple Threat
+Championship
+```
+
+---
+
+# 15. 🧮 Match Engine
+
+دي أهم معادلة في المشروع.
+
+نحسب لكل Match:
+
+```text
+Base Performance
++
+Popularity
++
+Skill
++
+Chemistry
++
+Story
++
+Rivalry
++
+Importance
++
+Crowd
++
+Randomness
+```
+
+لكن مش نجمع الأرقام بشكل مباشر.
+
+نحولهم إلى Components.
+
+مثلاً:
+
+```text
+skillScore
+popularityScore
+storyScore
+chemistryScore
+rivalryScore
+importanceScore
+randomScore
+```
+
+ثم:
+
+```text
+finalRating =
+    skillScore
+  + popularityScore
+  + storyScore
+  + chemistryScore
+  + rivalryScore
+  + importanceScore
+  + randomScore
+```
+
+والنتيجة تتقيد:
+
+```text
+0 → 100
+```
+
+ثم نحولها إلى Stars:
+
+```text
+0–19   ⭐
+20–39  ⭐⭐
+40–59  ⭐⭐⭐
+60–79  ⭐⭐⭐⭐
+80–100 ⭐⭐⭐⭐⭐
+```
+
+---
+
+# 16. 🎲 Random Factor
+
+هنا اللعبة تبدأ تبقى ممتعة.
+
+مثلاً:
+
+```text
+Random Factor = -10 → +10
+```
+
+لكن **الـRandom لا يقدر يلغي المنطق بالكامل**.
+
+يعني Match سيئ مش فجأة يحصل 100 بسبب الحظ.
+
+ممكن:
+
+```text
+Expected = 60
+Random = +8
+
+Final = 68
+```
+
+لكن مش:
+
+```text
+Expected = 30
+Random = +70
+```
+
+---
+
+# 17. 👥 Crowd System
+
+Crowd Interest يعتمد على:
+
+```text
+Popularity
+Rivalry
+Story
+Match Type
+Star Power
+Show Momentum
+```
+
+مثلاً:
+
+```text
+Crowd = 82
+```
+
+وتظهر:
+
+> 🔥 The crowd is electric!
+
+أو:
+
+```text
+Crowd = 34
+```
+
+> 😐 The audience seems uninterested.
+
+---
+
+# 18. 📺 Show Rating
+
+بعد كل Match:
+
+```text
+Match Ratings
+```
+
+ثم:
+
+```text
+Show Rating =
+Weighted Average
++
+Show Momentum
++
+Main Event Bonus
+```
+
+الـMain Event يكون له وزن أعلى.
+
+مثلاً:
+
+```text
+Match 1 → 15%
+Match 2 → 15%
+Match 3 → 20%
+Match 4 → 20%
+Main Event → 30%
+```
+
+لو عندنا 5 Matches.
+
+---
+
+# 19. 💰 Economy
+
+كل Show:
+
+### Revenue
+
+```text
+Ticket Revenue
++
+Merchandise
++
+Sponsorship
+```
+
+### Expenses
+
+```text
+Arena
++
+Production
++
+Wrestler Salaries
+```
+
+ثم:
+
+```text
+Profit = Revenue - Expenses
+```
+
+---
+
+# 20. 🎟️ Ticket Revenue
+
+مثلاً:
+
+```text
+Attendance =
+Base Arena Capacity
+×
+Demand
+```
+
+والـDemand يعتمد على:
+
+```text
+Fans
+Show Rating Expectation
+Star Power
+Previous Show
+```
+
+وبالتالي لو عندك 200K Fans، مش معناها إنك دائمًا هتبيع 200K تذكرة.
+
+---
+
+# 21. 🤖 AI GM
+
+الـAI عنده نفس الموارد.
+
+كل أسبوع:
+
+```text
+AI analyzes:
+
+Roster
+Budget
+Popular Wrestlers
+Rivalries
+Morale
+Previous Rating
+```
+
+ثم يقرر:
+
+```text
+Who gets pushed?
+Who fights?
+What rivalry?
+Who main-events?
+```
+
+### AI Personality
+
+MVP نبدأ بـواحد فقط:
+
+**Balanced AI**
+
+وبعد نجاح الـMVP:
+
+```text
+Aggressive
+Business
+Storyteller
+```
+
+---
+
+# 22. 📰 Random Event Engine
+
+في بداية كل أسبوع:
+
+```text
+EventEngine.generate()
+```
+
+يختار:
+
+```text
+No Event
+Minor Event
+Major Event
+Rare Event
+```
+
+مثلاً:
+
+### Contract Demand
+
+```text
+Wrestler:
+"I want a bigger role."
+```
+
+الاختيارات:
+
+```text
+Give Push
+Negotiate
+Ignore
+```
+
+كل اختيار له consequences.
+
+---
+
+# 23. ⚡ OMG Events
+
+نادرة جدًا.
+
+مثلاً:
+
+```text
+Betrayal
+Unexpected Injury
+Surprise Return
+Locker Room Fight
+Major Upset
+Contract Crisis
+```
+
+المهم:
+
+**ما نخليش اللعبة تعتمد عليها.**
+
+هي فقط تكسر الـPredictability.
+
+---
+
+# 24. 🏆 Championships
+
+MVP:
+
+```text
+World Championship
+Tag Team Championship
+```
+
+Championship:
+
+```text
+id
+name
+championId
+prestige
+defenses
+```
+
+Prestige يزيد مع:
+
+```text
+Successful Defense
+High-Rated Match
+Popular Champion
+```
+
+---
+
+# 25. 📅 الـ12 Week Structure
+
+أنا أقترح:
+
+```text
+Week 1
+Build
+
+Week 2
+Build
+
+Week 3
+Build
+
+Week 4
+PLE #1
+
+Week 5
+Build
+
+Week 6
+Build
+
+Week 7
+Build
+
+Week 8
+PLE #2
+
+Week 9
+Build
+
+Week 10
+Build
+
+Week 11
+Build
+
+Week 12
+Season Finale
+```
+
+ده يعطي:
+
+**3 Arcs**
+
+كل Arc عنده بداية → Build → Payoff.
+
+---
+
+# 26. 🏆 PLE
+
+في الـPLE:
+
+```text
+6 Matches
+```
+
+بدل 4.
+
+والـMain Event ممكن يكون:
+
+```text
+Championship
+Major Rivalry
+Season Story
+```
+
+والـPLE له تأثير أكبر على:
+
+```text
+Fans
+Revenue
+Popularity
+Prestige
+```
+
+---
+
+# 27. 🎯 Season Objectives
+
+في بداية اللعبة:
+
+```text
+Main Objective
+
+Reach 300K Fans
+```
+
+وممكن Objectives جانبية:
+
+```text
+Create 2 Rivalries
+Build a Rookie
+Make $500K
+Defend Championship 3 times
+```
+
+ده يمنع الـSandbox من إنه يبقى بلا هدف.
+
+---
+
+# 28. 🏁 Season Ending
+
+بعد Week 12:
+
+```text
+SEASON COMPLETE
+```
+
+نعرض:
+
+```text
+Fans
+Revenue
+Profit
+Average Show Rating
+Best Match
+Top Superstar
+Best Rivalry
+Championship Reigns
+Major Events
+```
+
+وبعدين:
+
+```text
+NEW SEASON
+```
+
+---
+
+# 🥇 الـMVP Scope النهائي
+
+دلوقتي نقدر نقفل الـMVP رسميًا:
+
+| System           | MVP |
+| ---------------- | --- |
+| Single Player    | ✅   |
+| Human vs AI      | ✅   |
+| 12 Weeks         | ✅   |
+| 20 Wrestlers     | ✅   |
+| 2 Championships  | ✅   |
+| 4 Match Types    | ✅   |
+| Booking          | ✅   |
+| Match Simulation | ✅   |
+| Rivalries        | ✅   |
+| Basic Stories    | ✅   |
+| Popularity       | ✅   |
+| Morale           | ✅   |
+| Health           | ✅   |
+| Economy          | ✅   |
+| Random Events    | ✅   |
+| AI GM            | ✅   |
+| PLE              | ✅   |
+| Season Goals     | ✅   |
+| Local Save       | ✅   |
+| Online           | ❌   |
+| Multiplayer      | ❌   |
+| Real WWE Assets  | ❌   |
+| ML               | ❌   |
+
+---
+
+# 🏗️ والـFlutter Architecture
+
+أهم حاجة هنا إننا **نفصل Game Logic عن UI**:
+
+```text
+lib/
+│
+├── core/
+│   ├── constants/
+│   ├── enums/
+│   └── utils/
+│
+├── domain/
+│   ├── models/
+│   │   ├── wrestler.dart
+│   │   ├── match.dart
+│   │   ├── show.dart
+│   │   ├── rivalry.dart
+│   │   ├── storyline.dart
+│   │   ├── championship.dart
+│   │   └── game_state.dart
+│   │
+│   └── engines/
+│       ├── match_engine.dart
+│       ├── rivalry_engine.dart
+│       ├── story_engine.dart
+│       ├── economy_engine.dart
+│       ├── event_engine.dart
+│       └── ai_engine.dart
+│
+├── data/
+│   ├── database/
+│   ├── repositories/
+│   └── seed/
+│
+├── game/
+│   ├── game_controller.dart
+│   ├── game_manager.dart
+│   └── turn_manager.dart
+│
+└── presentation/
+    ├── screens/
+    │   ├── home/
+    │   ├── dashboard/
+    │   ├── roster/
+    │   ├── booking/
+    │   ├── simulation/
+    │   ├── results/
+    │   └── season/
+    │
+    └── widgets/
+```
+
+---
+
+# 🧠 أهم قاعدة في المشروع
+
+إحنا **مش هنعمل Flutter UI وبعدين نحاول نخلي اللعبة تشتغل**.
+
+هنعمل بالترتيب:
+
+```text
+1️⃣ Data Models
+       ↓
+2️⃣ GameState
+       ↓
+3️⃣ Match Engine
+       ↓
+4️⃣ Rivalry Engine
+       ↓
+5️⃣ Economy Engine
+       ↓
+6️⃣ Event Engine
+       ↓
+7️⃣ AI Engine
+       ↓
+8️⃣ Week/Turn System
+       ↓
+9️⃣ Local Save
+       ↓
+🔟 Flutter UI
+```
+
+وده مناسب جدًا للهدف اللي كنت بتتكلم عنه قبل كده: **ترجع تبني الـarchitecture والـlogic بنفسك بدل الـwhite coding**.
+
+## 🚀 أول Milestone
+
+أنا مش هبدأ بالـDashboard.
+
+**Milestone #1 = Console Game بدون UI.**
+
+نعمل:
+
+```text
+Create Game
+    ↓
+20 Wrestlers
+    ↓
+Player + AI
+    ↓
+Book 1 Show
+    ↓
+Simulate Matches
+    ↓
+Update Popularity
+    ↓
+Update Morale
+    ↓
+Update Money
+    ↓
+Generate Event
+    ↓
+Advance Week
+```
+
+لو الـEngine ده اشتغل صح، بعدها تحويله لـFlutter UI هيبقى **عرض اللعبة**، مش اختراع منطق اللعبة أثناء بناء الـScreens.
+
+وده بالذات هيخلي المشروع قوي كـPortfolio لأنك هتقدر تقول إنك بنيت **simulation engine + decision systems + state management**، مش مجرد Flutter CRUD application.

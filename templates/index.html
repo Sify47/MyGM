@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Wrestling GM — Home{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>🏆 Wrestling GM Simulator</h1>
+    <p class="subtitle">Build your promotion. Book your stars. Make history.</p>
+</div>
+
+<div class="grid-2">
+    <div class="card">
+        <h2>🎮 New Game</h2>
+        <form method="POST" action="{{ url_for('main.new_game') }}">
+            <label for="player_name">Promotion Name</label>
+            <input type="text" id="player_name" name="player_name"
+                   placeholder="Apex Wrestling" required>
+            <button type="submit" class="btn primary">Start Season</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h2>📁 Load Game</h2>
+        {% if saves %}
+            <ul class="save-list">
+                {% for s in saves %}
+                    <li>
+                        <a href="{{ url_for('main.load_game', filename=s) }}">{{ s }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="muted">No saved games yet.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

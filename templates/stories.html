@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block title %}Stories{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>📖 Storylines</h1>
+    <a href="{{ url_for('story.create_story') }}" class="btn primary">
+        ✨ Create Story
+    </a>
+</div>
+
+<!-- ============ ACTIVE ============ -->
+<div class="section">
+    <h2>🔥 Active Stories ({{ active_stories|length }})</h2>
+
+    {% if active_stories %}
+        <div class="stories-grid">
+            {% for s in active_stories %}
+            <div class="story-card">
+                <div class="story-card-header">
+                    <span class="story-type-tag">{{ s.story_type.value }}</span>
+                    {% if s.manual_mode %}
+                    <span class="mode-tag manual">✋ Manual</span>
+                    {% else %}
+                    <span class="mode-tag auto">🎲 Auto</span>
+                    {% endif %}
+                </div>
+
+                <h3 class="story-card-title">
+                    <a href="{{ url_for('story.story_detail', story_id=s.id) }}">
+                        {{ s.title }}
+                    </a>
+                </h3>
+
+                <div class="story-card-stage">
+                    <div class="stage-bar">
+                        {% for i in range(s.total_stages) %}
+                        <div class="stage-dot
+                                    {% if i < s.stage %}done{% endif %}
+                                    {% if i == s.stage %}current{% endif %}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <span class="stage-label">
+                        {{ s.current_stage_name }} ({{ s.stage + 1 }}/{{ s.total_stages }})
+                    </span>
+                </div>
+
+                <div class="story-card-participants">
+                    {% for pid in s.participant_ids %}
+                        {% set w = state.get_wrestler(pid) %}
+                        {% if w %}
+                        <span class="mini-chip align-{{ w.alignment.value.lower() }}">
+                            {{ w.name }}
+                        </span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                <div class="story-card-heat">
+                    Heat: <strong>{{ s.heat }}</strong>
+                    {% if s.beats %}
+                    · Beats: {{ s.get_completed_beats()|length }}/{{ s.beats|length }}
+                    {% endif %}
+                </div>
+
+                <div class="story-card-actions">
+                    <a href="{{ url_for('story.story_detail', story_id=s.id) }}"
+                       class="btn tiny">View</a>
+                    <form method="POST"
+                          action="{{ url_for('story.delete_story', story_id=s.id) }}"
+                          style="display: inline;"
+                          onsubmit="return confirm('Cancel this story?');">
+                        <button type="submit" class="btn tiny danger">Cancel</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="muted">No active stories. Create one or simulate a show to auto-generate.</p>
+    {% endif %}
+</div>
+
+<!-- ============ COMPLETED ============ -->
+<div class="section">
+    <h2>✅ Completed Stories ({{ completed_stories|length }})</h2>
+
+    {% if completed_stories %}
+        <div class="stories-grid compact">
+            {% for s in completed_stories %}
+            <div class="story-card compact">
+                <div class="story-card-header">
+                    <span class="story-type-tag">{{ s.story_type.value }}</span>
+                </div>
+                <h4>{{ s.title }}</h4>
+                <div class="story-card-participants">
+                    {% for pid in s.participant_ids %}
+                        {% set w = state.get_wrestler(pid) %}
+                        {% if w %}<span class="mini-chip">{{ w.name }}</span>{% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="muted">No completed stories yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

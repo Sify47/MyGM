@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block title %}Create Story{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>✨ Create Story</h1>
+    <a href="{{ url_for('story.stories') }}" class="btn">← Back</a>
+</div>
+
+<form method="POST" class="card story-form">
+
+    <!-- Story Type -->
+    <div class="form-group">
+        <label for="story_type">Story Type</label>
+        <select id="story_type" name="story_type" required>
+            {% for st in story_types %}
+                <option value="{{ st }}">{{ st }}</option>
+            {% endfor %}
+        </select>
+        <p class="form-help">
+            Each type has its own stage structure and suggested beats.
+        </p>
+    </div>
+
+    <!-- Title -->
+    <div class="form-group">
+        <label for="title">Custom Title (optional)</label>
+        <input type="text" id="title" name="title"
+               placeholder="Leave empty for default title">
+    </div>
+
+    <!-- Gender Filter for Participants -->
+    <div class="form-group">
+        <label>Show:</label>
+        <div class="gender-filter">
+            <button type="button" class="filter-btn active" data-gender="MALE">
+                💪 Men
+            </button>
+            <button type="button" class="filter-btn" data-gender="FEMALE">
+                👑 Women
+            </button>
+        </div>
+    </div>
+
+    <!-- Participants -->
+    <div class="form-group">
+        <label>Participants (select 2 or more)</label>
+        <div class="participant-grid" id="participant-grid">
+            {% for w in available %}
+            <label class="participant-option"
+                   data-gender="{{ w.gender.value }}">
+                <input type="checkbox" name="participant_ids"
+                       value="{{ w.id }}">
+                <div class="participant-info">
+                    <strong>{{ w.name }}</strong>
+                    <span class="muted">
+                        {{ w.wrestler_class.value }} ·
+                        POP {{ w.popularity }} ·
+                        {{ w.alignment.value }}
+                    </span>
+                </div>
+            </label>
+            {% endfor %}
+        </div>
+        <p class="form-help">
+            Only wrestlers of the same gender can be in the same story.
+        </p>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn primary big">
+            🎬 Create Story
+        </button>
+    </div>
+</form>
+
+<script>
+    // Gender filter for participants
+    document.querySelectorAll(".filter-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const gender = btn.dataset.gender;
+            document.querySelectorAll(".filter-btn").forEach((b) =>
+                b.classList.remove("active")
+            );
+            btn.classList.add("active");
+
+            document.querySelectorAll(".participant-option").forEach((opt) => {
+                if (opt.dataset.gender === gender) {
+                    opt.style.display = "";
+                } else {
+                    opt.style.display = "none";
+                    // Uncheck hidden ones
+                    const cb = opt.querySelector("input[type='checkbox']");
+                    if (cb) cb.checked = false;
+                }
+            });
+        });
+    });
+
+    // Initial filter to MEN
+    document.querySelector('.filter-btn[data-gender="MALE"]').click();
+</script>
+{% endblock %}

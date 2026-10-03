@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Wrestling GM{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="topnav">
+    <div class="brand">🏆 Wrestling GM</div>
+    <div class="navlinks">
+        <a href="{{ url_for('game.dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('game.roster') }}">Roster</a>
+        <a href="{{ url_for('game.booking') }}">Book Show</a>
+        <a href="{{ url_for('story.stories') }}">Stories</a>
+        <a href="{{ url_for('game.season') }}">Season</a>
+        <a href="{{ url_for('main.index') }}">Home</a>
+    </div>
+</nav>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <span>Wrestling GM Simulator — MVP</span>
+    </footer>
+</body>
+</html>

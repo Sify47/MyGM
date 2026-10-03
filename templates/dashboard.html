@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <div>
+        <h1>{{ state.player_name }}</h1>
+        <p class="muted">Week {{ state.current_week }} / {{ state.season_length }}
+            {% if state.is_ple_week() %} · 🔥 PLE WEEK{% endif %}
+        </p>
+    </div>
+    <div class="stat-pill">
+        <span class="label">Budget</span>
+        <span class="value">${{ "{:,}".format(state.player_budget) }}</span>
+    </div>
+    <div class="stat-pill">
+        <span class="label">Fans</span>
+        <span class="value">{{ "{:,}".format(state.player_fans) }}</span>
+    </div>
+</div>
+
+<div class="grid-2">
+    <div class="card">
+        <h2>📰 Latest News</h2>
+        {% if recent_news %}
+            <ul class="news-list">
+                {% for n in recent_news %}
+                    <li><span class="week-tag">W{{ n.week }}</span> {{ n.text }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="muted">No news yet.</p>
+        {% endif %}
+    </div>
+
+    <div class="card">
+        <h2>🏆 Championships</h2>
+        <ul class="champ-list">
+            {% for c in championships %}
+                <li>
+                    <strong>{{ c.name }}</strong>
+                    {% set champ = state.get_wrestler(c.champion_id) if c.champion_id else None %}
+                    <span class="champ-name">{{ champ.name if champ else "Vacant" }}</span>
+                    <span class="champ-prestige">Prestige: {{ c.prestige }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>🔥 Active Rivalries</h2>
+        {% if active_rivalries %}
+            <ul class="rivalry-list">
+                {% for r in active_rivalries %}
+                    {% set a = state.get_wrestler(r.wrestler_a_id) %}
+                    {% set b = state.get_wrestler(r.wrestler_b_id) %}
+                    <li>
+                        <strong>{{ a.name if a else "?" }} vs {{ b.name if b else "?" }}</strong>
+                        <span class="heat">Heat: {{ r.heat }} · {{ r.stage.value }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="muted">No active rivalries.</p>
+        {% endif %}
+    </div>
+
+    <div class="card action-card">
+        <h2>📅 Next Show</h2>
+        <p>Week {{ state.current_week }} · {{ "PLE" if state.is_ple_week() else "Weekly" }}</p>
+        <a href="{{ url_for('game.booking') }}" class="btn primary">
+            Book Show →
+        </a>
+    </div>
+</div>
+{% endblock %}
