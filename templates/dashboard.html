@@ -2,6 +2,49 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
+
+{# ✅ FIX #2: تحذير الإفلاس #}
+{% if negative_weeks and negative_weeks > 0 %}
+<div class="bankruptcy-warning">
+    <strong>⚠️ WARNING: Negative Budget!</strong>
+    <span>
+        You have {{ bankruptcy_weeks_limit - negative_weeks }}
+        week(s) before bankruptcy.
+    </span>
+    <span>Week {{ negative_weeks }} / {{ bankruptcy_weeks_limit }}</span>
+</div>
+{% endif %}
+
+{# ✅ FIX #2: زرار القرض #}
+{% if can_take_loan %}
+<div class="loan-offer">
+    <div>
+        <strong>💸 Emergency Loan Available</strong>
+        <p class="muted">
+            Take ${{ "{:,}".format(loan_amount) }} at
+            {{ (loan_interest * 100)|int }}% interest,
+            repaid over {{ loan_weeks }} weeks.
+        </p>
+    </div>
+    <form method="POST" action="{{ url_for('game.take_loan') }}">
+        <button type="submit" class="btn primary">
+            💰 Take Loan
+        </button>
+    </form>
+</div>
+{% endif %}
+
+{# ✅ FIX #2: حالة القرض النشط #}
+{% if has_active_loan %}
+<div class="loan-status">
+    <strong>📋 Active Loan</strong>
+    <span>
+        {{ state.active_loan.weeks_remaining }} weeks remaining ·
+        ${{ "{:,}".format(state.active_loan.weekly_payment) }}/week
+    </span>
+</div>
+{% endif %}
+
 <div class="dashboard-header">
     <div>
         <h1>{{ state.player_name }}</h1>
@@ -9,7 +52,7 @@
             {% if state.is_ple_week() %} · 🔥 PLE WEEK{% endif %}
         </p>
     </div>
-    <div class="stat-pill">
+    <div class="stat-pill {% if state.player_budget < 0 %}negative{% endif %}">
         <span class="label">Budget</span>
         <span class="value">${{ "{:,}".format(state.player_budget) }}</span>
     </div>

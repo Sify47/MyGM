@@ -114,14 +114,12 @@ class GameManager:
             reverse=True,
         )
 
-        # Men's champions
         if len(males) >= 4:
             cls._assign_champion(world_heavyweight, males[0], state)
             cls._assign_champion(intercontinental, males[1], state)
             cls._assign_champion(united_states, males[2], state)
             cls._assign_champion(tag_team, males[3], state)
 
-        # Women's champions
         if len(females) >= 2:
             cls._assign_champion(world_womens, females[0], state)
             cls._assign_champion(womens_ic, females[1], state)
@@ -130,11 +128,11 @@ class GameManager:
         state.add_news(f"🎉 Welcome to {player_name}!")
         if males:
             state.add_news(
-                f"🏆 {males[0].name} is your inaugural " f"World Heavyweight Champion."
+                f"🏆 {males[0].name} is your inaugural World Heavyweight Champion."
             )
         if females:
             state.add_news(
-                f"🏆 {females[0].name} is your inaugural " f"World Women's Champion."
+                f"🏆 {females[0].name} is your inaugural World Women's Champion."
             )
 
         return cls(state=state, seed=seed)
@@ -187,6 +185,23 @@ class GameManager:
         return self.turn.season_summary()
 
     # =========================================================
+    # ✅ FIX #2: BANKRUPTCY / LOAN
+    # =========================================================
+
+    def is_bankrupt(self) -> bool:
+        """3 أسابيع متتالية بالسالب → Game Over."""
+        return self.state.is_bankrupt()
+
+    def take_loan(self) -> dict:
+        """اللاعب ياخد قرض لما الـbudget يبقى سالب."""
+        result = self.turn.economy_engine.take_loan(self.state)
+        return result
+
+    def can_take_loan(self) -> bool:
+        """هل يقدر ياخد قرض؟ (budget سالب + مفيش قرض نشط)"""
+        return self.state.player_budget < 0 and not self.state.has_active_loan()
+
+    # =========================================================
     # AUTO-BUILD (for quick testing / demo)
     # =========================================================
 
@@ -198,7 +213,6 @@ class GameManager:
         show = self.booking.create_show()
         max_matches = Config.MATCHES_PER_PLE if show.is_ple else Config.MATCHES_PER_SHOW
 
-        # Get available wrestlers per gender
         available_male = [
             w for w in self.state.get_available_male() if w.contract_weeks > 0
         ]
@@ -231,7 +245,6 @@ class GameManager:
             )
             if womens_title and womens_title.champion_id:
                 champion = self.state.get_wrestler(womens_title.champion_id)
-                # Pick a challenger
                 challengers = [
                     w
                     for w in available_female
@@ -277,7 +290,6 @@ class GameManager:
 
         # ----- Fill remaining slots -----
         while len(show.matches) < max_matches:
-            # Try men first
             remaining = [
                 w
                 for w in available_male + available_female
@@ -286,17 +298,15 @@ class GameManager:
             if len(remaining) < 2:
                 break
 
-            # Pick two of same gender
             pair = self._pick_same_gender_pair(remaining)
             if pair is None:
                 break
 
-            importance = MatchImportance.OPENER
             self.booking.add_match(
                 show,
                 match_type=MatchType.SINGLES,
                 participant_ids=[pair[0].id, pair[1].id],
-                importance=importance,
+                importance=MatchImportance.OPENER,
             )
 
         return show

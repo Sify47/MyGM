@@ -72,6 +72,10 @@ class TurnManager:
         # Economy
         econ_result = self.economy_engine.process_show(show, self.state)
 
+        # ✅ FIX #2: لو الـbudget بقى موجب → نصفّر عدّاد الإفلاس
+        if self.state.player_budget >= 0 and self.state.negative_weeks > 0:
+            self.state.clear_bankruptcy_counter()
+
         # Store show in history
         self.state.shows.append(show)
         story_news = self.story_engine.advance_stories(self.state)
@@ -148,6 +152,7 @@ class TurnManager:
         - tick injuries
         - contract weeks
         - generate random event for NEXT week
+        - ✅ FIX #2: process loan payment + bankruptcy check
         """
         state = self.state
 
@@ -177,9 +182,28 @@ class TurnManager:
         for w in state.roster:
             w.adjust_stamina(Config.STAMINA_RECOVERY)
 
+        # ✅ FIX #2: قسط القرض الأسبوعي
+        loan_result = self.economy_engine.process_loan_payment(state)
+        if loan_result:
+            state.add_news(
+                f"💸 Loan payment: ${loan_result['payment']:,} "
+                f"({loan_result['weeks_remaining']} weeks remaining)"
+            )
+
+        # ✅ FIX #2: تحديث عدّاد الإفلاس بعد كل التعديلات
+        if state.player_budget < 0:
+            state.negative_weeks += 1
+            state.add_news(
+                f"⚠️ Budget is negative! Week {state.negative_weeks}/"
+                f"{Config.BANKRUPTCY_WEEKS} before bankruptcy."
+            )
+        else:
+            state.negative_weeks = 0
+
         # ----- Generate random event for next week -----
         event = self.event_engine.generate(state)
         self.story_engine.try_create_story(state)
+
         # ----- Advance week -----
         state.current_week += 1
 
@@ -187,6 +211,9 @@ class TurnManager:
             "rivalry_news": rivalry_news,
             "event": event,
             "new_week": state.current_week,
+            "loan": loan_result,
+            "is_bankrupt": state.is_bankrupt(),
+            "negative_weeks": state.negative_weeks,
         }
 
     # =========================================================
@@ -200,10 +227,8 @@ class TurnManager:
         """Generate the end-of-season report."""
         state = self.state
 
-        # Top superstar by overall
         top = max(state.roster, key=lambda w: w.overall()) if state.roster else None
 
-        # Best rivalry by heat
         best_rivalry = None
         if state.rivalries:
             best_rivalry = max(state.rivalries, key=lambda r: r.heat)
@@ -215,7 +240,6 @@ class TurnManager:
             if a and b:
                 best_rivalry_desc = f"{a.name} vs {b.name}"
 
-        # Averages
         if state.shows:
             avg_rating = sum(s.rating for s in state.shows) // len(state.shows)
         else:

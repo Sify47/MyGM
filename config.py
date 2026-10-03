@@ -22,9 +22,26 @@ class Config:
     MATCHES_PER_PLE = 6
 
     # ===== Economy =====
-    STARTING_BUDGET = 500_000
-    ARENA_COST = 50_000
-    PRODUCTION_COST = 20_000
+    # ✅ FIX #2: رفعنا رأس المال الابتدائي + قللنا المصاريف
+    STARTING_BUDGET = 1_000_000
+    ARENA_COST = 45_000  # كان 50K
+    PRODUCTION_COST = 18_000  # كان 20K
+
+    # ✅ FIX #2: إيرادات جديدة
+    TICKET_PRICE = 55  # كان 40
+    MERCH_MIN = 10  # كان 5
+    MERCH_MAX = 20  # كان 12
+    SPONSORSHIP_RATE = 0.10  # كان 0.05
+
+    # ✅ FIX #2: PLE multiplier
+    PLE_REVENUE_MULT = 1.40  # +40% إيرادات
+    PLE_EXPENSE_MULT = 1.15  # +15% مصاريف
+
+    # ✅ FIX #2: Bankruptcy + Loan
+    BANKRUPTCY_WEEKS = 3  # 3 أسابيع متتالية سالب → Game Over
+    LOAN_AMOUNT = 200_000
+    LOAN_INTEREST = 0.10  # 10%
+    LOAN_REPAY_WEEKS = 8
 
     # ===== Fans =====
     STARTING_FANS = 100_000
@@ -85,3 +102,17 @@ class Config:
 
     # ===== Display =====
     LOG_SIMULATION = True
+    # ===== AI Promotion (✅ Batch 10.a) =====
+    AI_ROSTER_SIZE = 12  # 8 male + 4 female
+    AI_STARTING_BUDGET = 500_000
+    AI_STARTING_FANS = 80_000
+    AI_PERSONALITIES = ["AGGRESSIVE", "BALANCED", "SHOWMAN", "TECHNICAL", "CHAOTIC"]
+
+    # ===== Tag Teams (✅ Batch 10.a) =====
+    PLAYER_TAG_TEAMS_READY = 3  # جاهزة
+    PLAYER_TAG_TEAMS_EMPTY = 3  # فاضية
+    AI_TAG_TEAMS_READY = 3
+    TAG_TEAM_MIN_CHEMISTRY = 40
+    TAG_TEAM_MAX_CHEMISTRY = 70
+    TAG_TEAM_WIN_CHEMISTRY_BONUS = 2
+    TAG_TEAM_LOSS_CHEMISTRY_PENALTY = -1

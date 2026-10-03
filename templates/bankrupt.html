@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Bankrupt{% endblock %}
+
+{% block content %}
+<div class="bankrupt-screen">
+    <h1>💀 BANKRUPT</h1>
+    <p class="subtitle">
+        Your promotion has run out of money.
+        The board has decided to shut down operations.
+    </p>
+
+    <div class="card">
+        <h2>📊 Final Stats</h2>
+        <ul class="stats-list">
+            <li><span>Weeks Survived:</span> <strong>{{ state.current_week - 1 }}</strong></li>
+            <li><span>Final Budget:</span> <strong class="negative">${{ "{:,}".format(state.player_budget) }}</strong></li>
+            <li><span>Total Revenue:</span> <strong>${{ "{:,}".format(state.total_revenue) }}</strong></li>
+            <li><span>Total Expenses:</span> <strong>${{ "{:,}".format(state.total_expenses) }}</strong></li>
+            <li><span>Peak Fans:</span> <strong>{{ "{:,}".format(state.player_fans) }}</strong></li>
+            <li><span>Best Match:</span> <strong>{{ state.best_match_rating }}/100</strong></li>
+            <li><span>Best Match Desc:</span> <strong>{{ state.best_match_desc or "—" }}</strong></li>
+        </ul>
+    </div>
+
+    <div class="actions">
+        <a href="{{ url_for('main.index') }}" class="btn primary">
+            🏠 Back to Home
+        </a>
+    </div>
+</div>
+{% endblock %}

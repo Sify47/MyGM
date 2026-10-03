@@ -1250,3 +1250,105 @@ input[type="text"]:focus {
     font-size: 0.8rem;
     color: var(--muted);
 }
+
+/* =========================================================
+   ✅ FIX #2: BANKRUPTCY + LOAN UI
+   ========================================================= */
+
+.bankruptcy-warning {
+    background: linear-gradient(135deg, #4a1f1f, #2a1515);
+    border: 2px solid var(--red);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    animation: pulse-warning 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-warning {
+    0%, 100% { border-color: var(--red); }
+    50% { border-color: #ff6b6b; }
+}
+
+.bankruptcy-warning strong {
+    color: var(--red);
+    font-size: 1rem;
+}
+
+.loan-offer {
+    background: linear-gradient(135deg, #1a2a3a, #1e2230);
+    border: 1px solid var(--blue);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.loan-offer strong {
+    color: var(--blue);
+    font-size: 1.05rem;
+}
+
+.loan-status {
+    background: var(--panel);
+    border-left: 4px solid var(--accent-2);
+    border-radius: 6px;
+    padding: 10px 16px;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+}
+
+.stat-pill.negative .value {
+    color: var(--red);
+}
+
+.bankrupt-screen {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.bankrupt-screen h1 {
+    font-size: 3.5rem;
+    color: var(--red);
+    margin-bottom: 12px;
+    text-shadow: 0 0 30px rgba(231, 76, 60, 0.5);
+}
+
+.bankrupt-screen .subtitle {
+    color: var(--muted);
+    font-size: 1.1rem;
+    margin-bottom: 32px;
+}
+
+.stats-list {
+    list-style: none;
+    text-align: left;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.stats-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.stats-list li span {
+    color: var(--muted);
+}
+
+.stats-list .negative {
+    color: var(--red);
+}

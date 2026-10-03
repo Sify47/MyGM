@@ -1,32 +1,32 @@
 {
-  "current_week": 13,
+  "current_week": 4,
   "season_length": 12,
-  "player_name": "test",
-  "player_budget": -1661084,
-  "player_fans": 121786,
-  "player_casual_fans": 85250,
-  "player_hardcore_fans": 36536,
+  "player_name": "س",
+  "player_budget": 1876371,
+  "player_fans": 109271,
+  "player_casual_fans": 76489,
+  "player_hardcore_fans": 32782,
   "ai_name": "Rival Promotion",
-  "ai_budget": 782538,
-  "ai_fans": 132356,
-  "ai_last_show_rating": 69,
+  "ai_budget": 1072415,
+  "ai_fans": 108173,
+  "ai_last_show_rating": 76,
   "roster": [
     {
-      "id": "f1f4b4c6-ba71-46a2-a533-ccfd00b96ab3",
+      "id": "159ea488-dd94-4f00-a3f6-db0ec1e5a8e6",
       "name": "Roman Reigns",
       "gender": "MALE",
       "age": 41,
       "wrestler_class": "POWERHOUSE",
       "alignment": "FACE",
-      "popularity": 100,
+      "popularity": 96,
       "ring_skill": 94,
       "mic_skill": 94,
-      "stamina": 100,
-      "health": 9,
-      "morale": 100,
+      "stamina": 97,
+      "health": 78,
+      "morale": 97,
       "potential": 94,
-      "salary": 45000,
-      "contract_weeks": 0,
+      "salary": 27000,
+      "contract_weeks": 9,
       "traits": [
         "Top Star",
         "Main Eventer",
@@ -34,29 +34,29 @@
       ],
       "is_injured": false,
       "injury_weeks": 0,
-      "wins": 8,
-      "losses": 7,
+      "wins": 2,
+      "losses": 2,
       "current_rivalry_id": null,
-      "current_story_id": null,
+      "current_story_id": "68e443c1-ff5d-4662-8efd-cb03f8e1f554",
       "is_champion": true,
-      "championship_id": "479b0143-615a-434c-b661-2f3e968f2006"
+      "championship_id": "e5a04b00-678b-4ce6-8e1c-bbf9af38c2e2"
     },
     {
-      "id": "8ed4b87e-44f0-4da3-b8a3-23e3f67dacce",
+      "id": "a24332e7-77a3-4f7a-a078-be8d3f73c045",
       "name": "Cody Rhodes",
       "gender": "MALE",
       "age": 41,
       "wrestler_class": "SHOWMAN",
       "alignment": "FACE",
-      "popularity": 85,
+      "popularity": 94,
       "ring_skill": 91,
       "mic_skill": 94,
-      "stamina": 100,
-      "health": 18,
-      "morale": 76,
+      "stamina": 98,
+      "health": 76,
+      "morale": 100,
       "potential": 92,
-      "salary": 42000,
-      "contract_weeks": 0,
+      "salary": 25000,
+      "contract_weeks": 9,
       "traits": [
         "American Dream",
         "Main Eventer",
@@ -64,29 +64,29 @@
       ],
       "is_injured": false,
       "injury_weeks": 0,
-      "wins": 3,
-      "losses": 13,
+      "wins": 2,
+      "losses": 2,
       "current_rivalry_id": null,
-      "current_story_id": null,
+      "current_story_id": "68e443c1-ff5d-4662-8efd-cb03f8e1f554",
       "is_champion": true,
-      "championship_id": "d3bc056f-dea1-46a1-9bdb-245c39bc6816"
+      "championship_id": "b3f30cd3-f0cc-4b7d-82be-3604778b5567"
     },
     {
-      "id": "65b088f6-e89e-4caa-9f5b-70f580de38f0",
+      "id": "848801c0-99d0-47bf-b8a4-d724447778df",
       "name": "CM Punk",
       "gender": "MALE",
       "age": 48,
       "wrestler_class": "SHOWMAN",
       "alignment": "HEEL",
-      "popularity": 98,
+      "popularity": 92,
       "ring_skill": 91,
       "mic_skill": 98,
-      "stamina": 100,
-      "health": 12,
-      "morale": 100,
+      "stamina": 95,
+      "health": 83,
+      "morale": 86,
       "potential": 84,
-      "salary": 40000,
-      "contract_weeks": 0,
+      "salary": 24000,
+      "contract_weeks": 9,
       "traits": [
         "Mic Master",
         "Veteran",
@@ -94,29 +94,29 @@
       ],
       "is_injured": false,
       "injury_weeks": 0,
-      "wins": 10,
-      "losses": 6,
-      "current_rivalry_id": "ad16762a-c65c-4768-b4e4-258be95f7c19",
+      "wins": 1,
+      "losses": 2,
+      "current_rivalry_id": "a14a933f-db3b-490a-bc5a-19701a8ec8df",
       "current_story_id": null,
-      "is_champion": false,
-      "championship_id": null
+      "is_champion": true,
+      "championship_id": "40692ff6-8487-4f2d-941e-68fa382b3cfa"
     },
     {
-      "id": "4ede7679-3f54-48ea-8240-b80ea247aff6",
+      "id": "195a9e53-04f7-44b9-b924-3d835aef06fb",
       "name": "Seth Rollins",
       "gender": "MALE",
       "age": 40,
       "wrestler_class": "SHOWMAN",
       "alignment": "HEEL",
-      "popularity": 92,
+      "popularity": 95,
       "ring_skill": 94,
       "mic_skill": 91,
-      "stamina": 100,
-      "health": 14,
-      "morale": 97,
+      "stamina": 83,
+      "health": 68,
+      "morale": 98,
       "potential": 90,
-      "salary": 39000,
-      "contract_weeks": 0,
+      "salary": 23000,
+      "contract_weeks": 9,
       "traits": [
         "Main Eventer",
         "Showman",
@@ -124,29 +124,29 @@
       ],
       "is_injured": false,
       "injury_weeks": 0,
-      "wins": 7,
-      "losses": 9,
-      "current_rivalry_id": "ad16762a-c65c-4768-b4e4-258be95f7c19",
-      "current_story_id": null,
-      "is_champion": false,
-      "championship_id": null
+      "wins": 5,
+      "losses": 1,
+      "current_rivalry_id": "a14a933f-db3b-490a-bc5a-19701a8ec8df",
+      "current_story_id": "6d77da77-3ff6-4c94-8f85-fc0f8bdfa7fe",
+      "is_champion": true,
+      "championship_id": "91f81fd9-ce79-4e72-b6ba-1c26ac4a2750"
     },
     {
-      "id": "42f05229-743f-4353-ae61-3fb2afca0946",
+      "id": "c934708c-727a-4288-b87b-039bac789448",
       "name": "Randy Orton",
       "gender": "MALE",
       "age": 46,
       "wrestler_class": "TECHNICIAN",
       "alignment": "FACE",
-      "popularity": 94,
+      "popularity": 89,
       "ring_skill": 92,
       "mic_skill": 88,
       "stamina": 100,
-      "health": 20,
-      "morale": 90,
+      "health": 95,
+      "morale": 80,
       "potential": 80,
-      "salary": 35000,
-      "contract_weeks": 0,
+      "salary": 21000,
+      "contract_weeks": 9,
       "traits": [
         "Veteran",
         "Legend",
@@ -154,15 +154,15 @@
       ],
       "is_injured": false,
       "injury_weeks": 0,
-      "wins": 8,
-      "losses": 8,
+      "wins": 0,
+      "losses": 1,
       "current_rivalry_id": null,
       "current_story_id": null,
       "is_champion": false,
       "championship_id": null
     },
     {
-      "id": "59485bd1-32dc-4282-a7e9-733c5422e77c",
+      "id": "9837599c-66d9-4d36-999a-b01875f95ffd",
       "name": "Gunther",
       "gender": "MALE",
       "age": 38,
@@ -172,11 +172,11 @@
       "ring_skill": 97,
       "mic_skill": 82,
       "stamina": 100,
-      "health": 14,
-      "morale": 99,
+      "health": 95,
+      "morale": 84,
       "potential": 94,
-      "salary": 38000,
-      "contract_weeks": 0,
+      "salary": 23000,
+      "contract_weeks": 9,
       "traits": [
         "Ring General",
         "Technical Master",
@@ -184,29 +184,29 @@
       ],
       "is_injured": false,
       "injury_weeks": 0,
-      "wins": 7,
-      "losses": 9,
+      "wins": 0,
+      "losses": 1,
       "current_rivalry_id": null,
       "current_story_id": null,
       "is_champion": false,
       "championship_id": null
     },
     {
-      "id": "34049952-cc83-42ca-959e-7f47f85e4af3",
+      "id": "0c632d3a-07ad-4390-ad3c-7c9ee8a45e1b",
       "name": "Sami Zayn",
       "gender": "MALE",
       "age": 42,
       "wrestler_class": "TECHNICIAN",
       "alignment": "FACE",
-      "popularity": 89,
+      "popularity": 86,
       "ring_skill": 90,
       "mic_skill": 87,
       "stamina": 100,
-      "health": 60,
+      "health": 83,
       "morale": 92,
       "potential": 86,
-      "salary": 28000,
-      "contract_weeks": 0,
+      "salary": 17000,
+      "contract_weeks": 9,
       "traits": [
         "Underdog",
         "Fan Favorite",
@@ -214,15 +214,15 @@
       ],
       "is_injured": false,
       "injury_weeks": 0,
-      "wins": 4,
-      "losses": 4,
+      "wins": 1,
+      "losses": 2,
       "current_rivalry_id": null,
-      "current_story_id": "1e71feab-0044-4bb1-824c-f6590602307f",
+      "current_story_id": null,
       "is_champion": false,
       "championship_id": null
     },
     {
-      "id": "4d722009-2593-4859-a708-b496f5dd4eff",
+      "id": "86d3a2eb-208b-4b92-a97d-5bb832d2b336",
       "name": "Kevin Owens",
       "gender": "MALE",
       "age": 42,
@@ -232,11 +232,11 @@
       "ring_skill": 89,
       "mic_skill": 90,
       "stamina": 100,
-      "health": 50,
-      "morale": 84,
+      "health": 95,
+      "morale": 87,
       "potential": 84,
-      "salary": 29000,
-      "contract_weeks": 0,
+      "salary": 17000,
+      "contract_weeks": 9,
       "traits": [
         "Brawler",
         "Fighter",
@@ -244,29 +244,29 @@
       ],
       "is_injured": false,
       "injury_weeks": 0,
-      "wins": 4,
-      "losses": 6,
-      "current_rivalry_id": "f99f659b-63ea-4f20-aa05-1530b9003924",
+      "wins": 1,
+      "losses": 0,
+      "current_rivalry_id": null,
       "current_story_id": null,
       "is_champion": false,
       "championship_id": null
     },
     {
-      "id": "5d0e57e7-81b1-4d66-8b71-b569e3eee980",
+      "id": "7a511d41-77ad-40da-b215-f912b419752d",
       "name": "Jey Uso",
       "gender": "MALE",
       "age": 41,
       "wrestler_class": "HIGH_FLYER",
       "alignment": "FACE",
-      "popularity": 86,
+      "popularity": 88,
       "ring_skill": 87,
       "mic_skill": 88,
       "stamina": 100,
-      "health": 35,
-      "morale": 90,
+      "health": 100,
+      "morale": 91,
       "potential": 89,
-      "salary": 30000,
-      "contract_weeks": 0,
+      "salary": 18000,
+      "contract_weeks": 9,
       "traits": [
         "Yeet",
         "Fan Favorite",
@@ -274,123 +274,33 @@
       ],
       "is_injured": false,
       "injury_weeks": 0,
-      "wins": 5,
-      "losses": 8,
-      "current_rivalry_id": "f99f659b-63ea-4f20-aa05-1530b9003924",
-      "current_story_id": null,
-      "is_champion": false,
-      "championship_id": null
-    },
-    {
-      "id": "5a52a6aa-5d6d-426b-9a4d-495876d6247b",
-      "name": "Rhea Ripley",
-      "gender": "MALE",
-      "age": 30,
-      "wrestler_class": "POWERHOUSE",
-      "alignment": "FACE",
-      "popularity": 99,
-      "ring_skill": 94,
-      "mic_skill": 88,
-      "stamina": 100,
-      "health": 13,
-      "morale": 100,
-      "potential": 95,
-      "salary": 40000,
-      "contract_weeks": 0,
-      "traits": [
-        "Main Eventer",
-        "Powerhouse",
-        "Fan Favorite"
-      ],
-      "is_injured": false,
-      "injury_weeks": 0,
-      "wins": 7,
-      "losses": 8,
+      "wins": 0,
+      "losses": 0,
       "current_rivalry_id": null,
       "current_story_id": null,
       "is_champion": false,
       "championship_id": null
     },
     {
-      "id": "00047075-5f96-4e5e-84f8-7cbf1fa25a21",
-      "name": "IYO SKY",
-      "gender": "MALE",
-      "age": 36,
-      "wrestler_class": "HIGH_FLYER",
-      "alignment": "FACE",
-      "popularity": 91,
-      "ring_skill": 96,
-      "mic_skill": 80,
-      "stamina": 90,
-      "health": 14,
-      "morale": 100,
-      "potential": 93,
-      "salary": 30000,
-      "contract_weeks": 0,
-      "traits": [
-        "Genius of the Sky",
-        "High Risk",
-        "Crowd Pleaser"
-      ],
-      "is_injured": false,
-      "injury_weeks": 0,
-      "wins": 8,
-      "losses": 8,
-      "current_rivalry_id": null,
-      "current_story_id": null,
-      "is_champion": false,
-      "championship_id": null
-    },
-    {
-      "id": "94a99096-e438-49a4-8e7a-e8fb4c9079fe",
+      "id": "9455094e-f55b-42fd-bcb9-915596d162c8",
       "name": "Finn Bálor",
       "gender": "MALE",
       "age": 45,
       "wrestler_class": "TECHNICIAN",
       "alignment": "HEEL",
-      "popularity": 87,
+      "popularity": 81,
       "ring_skill": 91,
       "mic_skill": 82,
-      "stamina": 75,
-      "health": 53,
-      "morale": 88,
+      "stamina": 100,
+      "health": 90,
+      "morale": 72,
       "potential": 80,
-      "salary": 26000,
-      "contract_weeks": 0,
+      "salary": 16000,
+      "contract_weeks": 9,
       "traits": [
         "Veteran",
         "Technical Master",
         "Mind Games"
-      ],
-      "is_injured": false,
-      "injury_weeks": 0,
-      "wins": 5,
-      "losses": 4,
-      "current_rivalry_id": null,
-      "current_story_id": "1e71feab-0044-4bb1-824c-f6590602307f",
-      "is_champion": false,
-      "championship_id": null
-    },
-    {
-      "id": "2d190225-aeb6-4efc-9246-59e2224132df",
-      "name": "Bron Breakker",
-      "gender": "MALE",
-      "age": 29,
-      "wrestler_class": "POWERHOUSE",
-      "alignment": "HEEL",
-      "popularity": 80,
-      "ring_skill": 86,
-      "mic_skill": 76,
-      "stamina": 100,
-      "health": 90,
-      "morale": 78,
-      "potential": 97,
-      "salary": 24000,
-      "contract_weeks": 0,
-      "traits": [
-        "Powerhouse",
-        "Rising Star",
-        "High Potential"
       ],
       "is_injured": false,
       "injury_weeks": 0,
@@ -402,7 +312,37 @@
       "championship_id": null
     },
     {
-      "id": "87da06a3-17cb-4b64-bbe9-a18fbe7d6826",
+      "id": "94bd83d5-ec3d-4658-8c4f-74d8a7c533db",
+      "name": "Bron Breakker",
+      "gender": "MALE",
+      "age": 29,
+      "wrestler_class": "POWERHOUSE",
+      "alignment": "HEEL",
+      "popularity": 81,
+      "ring_skill": 86,
+      "mic_skill": 76,
+      "stamina": 100,
+      "health": 95,
+      "morale": 80,
+      "potential": 97,
+      "salary": 14000,
+      "contract_weeks": 9,
+      "traits": [
+        "Powerhouse",
+        "Rising Star",
+        "High Potential"
+      ],
+      "is_injured": false,
+      "injury_weeks": 0,
+      "wins": 0,
+      "losses": 1,
+      "current_rivalry_id": null,
+      "current_story_id": "6d77da77-3ff6-4c94-8f85-fc0f8bdfa7fe",
+      "is_champion": false,
+      "championship_id": null
+    },
+    {
+      "id": "eb82c2ff-44cd-49d5-822e-b83bb95917eb",
       "name": "Oba Femi",
       "gender": "MALE",
       "age": 28,
@@ -412,11 +352,11 @@
       "ring_skill": 84,
       "mic_skill": 74,
       "stamina": 100,
-      "health": 85,
-      "morale": 85,
+      "health": 100,
+      "morale": 86,
       "potential": 98,
-      "salary": 22000,
-      "contract_weeks": 0,
+      "salary": 13000,
+      "contract_weeks": 9,
       "traits": [
         "Monster",
         "Dominant",
@@ -424,119 +364,89 @@
       ],
       "is_injured": false,
       "injury_weeks": 0,
-      "wins": 1,
-      "losses": 2,
-      "current_rivalry_id": "338a0eb9-68c0-4468-87b0-edec238341bb",
-      "current_story_id": null,
-      "is_champion": false,
-      "championship_id": null
-    },
-    {
-      "id": "9d5112b1-e330-4cba-b8f8-6fe70ebd16c4",
-      "name": "Trick Williams",
-      "gender": "MALE",
-      "age": 31,
-      "wrestler_class": "SHOWMAN",
-      "alignment": "FACE",
-      "popularity": 84,
-      "ring_skill": 82,
-      "mic_skill": 91,
-      "stamina": 100,
-      "health": 85,
-      "morale": 94,
-      "potential": 95,
-      "salary": 23000,
-      "contract_weeks": 0,
-      "traits": [
-        "Charismatic",
-        "Fan Favorite",
-        "Rising Star"
-      ],
-      "is_injured": false,
-      "injury_weeks": 0,
-      "wins": 2,
-      "losses": 1,
+      "wins": 0,
+      "losses": 0,
       "current_rivalry_id": null,
       "current_story_id": null,
       "is_champion": false,
       "championship_id": null
     },
     {
-      "id": "18000011-ecd1-4f62-85c4-054cfac1d6c8",
-      "name": "Penta",
-      "gender": "MALE",
-      "age": 41,
+      "id": "18fe73d0-1a35-47bc-b0b8-adb2c29f0756",
+      "name": "Rhea Ripley",
+      "gender": "FEMALE",
+      "age": 30,
+      "wrestler_class": "POWERHOUSE",
+      "alignment": "FACE",
+      "popularity": 100,
+      "ring_skill": 94,
+      "mic_skill": 88,
+      "stamina": 100,
+      "health": 75,
+      "morale": 95,
+      "potential": 95,
+      "salary": 24000,
+      "contract_weeks": 9,
+      "traits": [
+        "Main Eventer",
+        "Powerhouse",
+        "Fan Favorite"
+      ],
+      "is_injured": false,
+      "injury_weeks": 0,
+      "wins": 3,
+      "losses": 2,
+      "current_rivalry_id": "a6235b95-7f33-46ab-88e1-f7450027bec6",
+      "current_story_id": "ac647265-623d-404c-8765-578873db53cc",
+      "is_champion": true,
+      "championship_id": "132761fc-ea73-44e2-86c4-389caa462556"
+    },
+    {
+      "id": "bb34947e-5661-4ab3-95cc-e7ad121cc1bd",
+      "name": "IYO SKY",
+      "gender": "FEMALE",
+      "age": 36,
       "wrestler_class": "HIGH_FLYER",
       "alignment": "FACE",
-      "popularity": 82,
-      "ring_skill": 93,
-      "mic_skill": 78,
+      "popularity": 87,
+      "ring_skill": 96,
+      "mic_skill": 80,
       "stamina": 100,
-      "health": 80,
-      "morale": 86,
-      "potential": 88,
-      "salary": 25000,
-      "contract_weeks": 0,
+      "health": 75,
+      "morale": 88,
+      "potential": 93,
+      "salary": 18000,
+      "contract_weeks": 9,
       "traits": [
-        "Lucha Libre",
+        "Genius of the Sky",
         "High Risk",
         "Crowd Pleaser"
       ],
       "is_injured": false,
       "injury_weeks": 0,
       "wins": 2,
-      "losses": 2,
-      "current_rivalry_id": null,
-      "current_story_id": null,
-      "is_champion": false,
-      "championship_id": null
+      "losses": 3,
+      "current_rivalry_id": "a6235b95-7f33-46ab-88e1-f7450027bec6",
+      "current_story_id": "ac647265-623d-404c-8765-578873db53cc",
+      "is_champion": true,
+      "championship_id": "9c208109-d223-4bd1-b04a-adc2f7b26783"
     },
     {
-      "id": "bea0c9fc-d1fc-4e47-a9e5-8b40e1d9341b",
-      "name": "Dominik Mysterio",
-      "gender": "MALE",
-      "age": 29,
-      "wrestler_class": "HIGH_FLYER",
-      "alignment": "HEEL",
-      "popularity": 82,
-      "ring_skill": 78,
-      "mic_skill": 82,
-      "stamina": 100,
-      "health": 95,
-      "morale": 82,
-      "potential": 88,
-      "salary": 22000,
-      "contract_weeks": 0,
-      "traits": [
-        "Dirty Player",
-        "Heat Magnet",
-        "Young Star"
-      ],
-      "is_injured": false,
-      "injury_weeks": 0,
-      "wins": 1,
-      "losses": 0,
-      "current_rivalry_id": "338a0eb9-68c0-4468-87b0-edec238341bb",
-      "current_story_id": null,
-      "is_champion": false,
-      "championship_id": null
-    },
-    {
-      "id": "71e6d60f-f701-4a42-997c-ad40862d5b1e",
+      "id": "446b2fda-88eb-41e5-9f60-b40ed3c0a5f0",
       "name": "Tiffany Stratton",
-      "gender": "MALE",
+      "gender": "FEMALE",
       "age": 27,
       "wrestler_class": "SHOWMAN",
       "alignment": "HEEL",
-      "popularity": 87,
+      "popularity": 86,
       "ring_skill": 86,
       "mic_skill": 83,
-      "stamina": 90,
-      "health": 63,
-      "morale": 98,
+      "stamina": 100,
+      "health": 80,
+      "morale": 91,
       "potential": 97,
-      "salary": 25000,
-      "contract_weeks": 0,
+      "salary": 15000,
+      "contract_weeks": 9,
       "traits": [
         "Tiffy Time",
         "Showman",
@@ -544,29 +454,29 @@
       ],
       "is_injured": false,
       "injury_weeks": 0,
-      "wins": 4,
-      "losses": 3,
-      "current_rivalry_id": null,
+      "wins": 3,
+      "losses": 1,
+      "current_rivalry_id": "f5f7cf06-5518-48e8-858e-55ced9219873",
       "current_story_id": null,
       "is_champion": false,
       "championship_id": null
     },
     {
-      "id": "719e8f9e-029a-45ba-9e41-683d67f5b1eb",
+      "id": "2be125d8-18e7-4b26-a1c3-01b8e4f51227",
       "name": "Jade Cargill",
-      "gender": "MALE",
+      "gender": "FEMALE",
       "age": 34,
       "wrestler_class": "POWERHOUSE",
       "alignment": "HEEL",
-      "popularity": 92,
+      "popularity": 83,
       "ring_skill": 84,
       "mic_skill": 80,
-      "stamina": 80,
-      "health": 36,
-      "morale": 100,
+      "stamina": 100,
+      "health": 85,
+      "morale": 76,
       "potential": 95,
-      "salary": 26000,
-      "contract_weeks": 0,
+      "salary": 16000,
+      "contract_weeks": 9,
       "traits": [
         "Powerhouse",
         "Athletic",
@@ -574,29 +484,29 @@
       ],
       "is_injured": false,
       "injury_weeks": 0,
-      "wins": 8,
-      "losses": 4,
-      "current_rivalry_id": null,
+      "wins": 0,
+      "losses": 3,
+      "current_rivalry_id": "f5f7cf06-5518-48e8-858e-55ced9219873",
       "current_story_id": null,
       "is_champion": false,
       "championship_id": null
     },
     {
-      "id": "7994f214-b1a0-443c-948b-9729a0f9e73d",
+      "id": "559a0d51-d33d-4926-bb8e-276647b692fd",
       "name": "Chelsea Green",
-      "gender": "MALE",
+      "gender": "FEMALE",
       "age": 35,
       "wrestler_class": "SHOWMAN",
       "alignment": "HEEL",
-      "popularity": 76,
+      "popularity": 78,
       "ring_skill": 76,
       "mic_skill": 91,
       "stamina": 100,
-      "health": 90,
-      "morale": 80,
+      "health": 100,
+      "morale": 84,
       "potential": 85,
-      "salary": 18000,
-      "contract_weeks": 0,
+      "salary": 11000,
+      "contract_weeks": 9,
       "traits": [
         "Comedy",
         "Heat Magnet",
@@ -605,7 +515,97 @@
       "is_injured": false,
       "injury_weeks": 0,
       "wins": 0,
-      "losses": 2,
+      "losses": 0,
+      "current_rivalry_id": null,
+      "current_story_id": null,
+      "is_champion": false,
+      "championship_id": null
+    },
+    {
+      "id": "34841ec9-6614-416d-b800-4cfa1e607d38",
+      "name": "Liv Morgan",
+      "gender": "FEMALE",
+      "age": 32,
+      "wrestler_class": "SHOWMAN",
+      "alignment": "HEEL",
+      "popularity": 84,
+      "ring_skill": 84,
+      "mic_skill": 82,
+      "stamina": 100,
+      "health": 100,
+      "morale": 84,
+      "potential": 89,
+      "salary": 14000,
+      "contract_weeks": 9,
+      "traits": [
+        "Fan Favorite",
+        "Character",
+        "Rising Star"
+      ],
+      "is_injured": false,
+      "injury_weeks": 0,
+      "wins": 0,
+      "losses": 0,
+      "current_rivalry_id": null,
+      "current_story_id": null,
+      "is_champion": false,
+      "championship_id": null
+    },
+    {
+      "id": "7a49067b-b479-4639-b08e-a32b3023b015",
+      "name": "Sol Ruca",
+      "gender": "FEMALE",
+      "age": 26,
+      "wrestler_class": "HIGH_FLYER",
+      "alignment": "FACE",
+      "popularity": 72,
+      "ring_skill": 86,
+      "mic_skill": 68,
+      "stamina": 100,
+      "health": 100,
+      "morale": 88,
+      "potential": 96,
+      "salary": 10000,
+      "contract_weeks": 9,
+      "traits": [
+        "High Flyer",
+        "Rising Star",
+        "High Potential"
+      ],
+      "is_injured": false,
+      "injury_weeks": 0,
+      "wins": 0,
+      "losses": 0,
+      "current_rivalry_id": null,
+      "current_story_id": null,
+      "is_champion": false,
+      "championship_id": null
+    },
+    {
+      "id": "97a0e374-b900-4968-be1b-214a585a04bd",
+      "name": "Raquel Rodriguez",
+      "gender": "FEMALE",
+      "age": 35,
+      "wrestler_class": "POWERHOUSE",
+      "alignment": "FACE",
+      "popularity": 80,
+      "ring_skill": 82,
+      "mic_skill": 74,
+      "stamina": 100,
+      "health": 100,
+      "morale": 82,
+      "potential": 84,
+      "salary": 13000,
+      "contract_weeks": 9,
+      "traits": [
+        "Powerhouse",
+        "Veteran",
+        "Strong Style"
+      ],
+      "is_injured": false,
+      "injury_weeks": 0,
+      "wins": 0,
+      "losses": 0,
       "current_rivalry_id": null,
       "current_story_id": null,
       "is_champion": false,
@@ -614,39 +614,139 @@
   ],
   "championships": [
     {
-      "id": "479b0143-615a-434c-b661-2f3e968f2006",
-      "name": "World Championship",
+      "id": "e5a04b00-678b-4ce6-8e1c-bbf9af38c2e2",
+      "name": "World Heavyweight Championship",
       "division": "MEN",
       "tier": "TOP",
-      "prestige": 60,
-      "min_popularity": 0,
-      "champion_id": "f1f4b4c6-ba71-46a2-a533-ccfd00b96ab3",
+      "prestige": 75,
+      "min_popularity": 70,
+      "champion_id": "159ea488-dd94-4f00-a3f6-db0ec1e5a8e6",
       "defenses": 0,
-      "days_held": 84,
-      "weeks_held": 12,
+      "days_held": 21,
+      "weeks_held": 3,
       "history": []
     },
     {
-      "id": "d3bc056f-dea1-46a1-9bdb-245c39bc6816",
-      "name": "Tag Team Championship",
+      "id": "b3f30cd3-f0cc-4b7d-82be-3604778b5567",
+      "name": "Intercontinental Championship",
       "division": "MEN",
-      "tier": "TOP",
-      "prestige": 45,
-      "min_popularity": 0,
-      "champion_id": "8ed4b87e-44f0-4da3-b8a3-23e3f67dacce",
+      "tier": "MID",
+      "prestige": 60,
+      "min_popularity": 55,
+      "champion_id": "a24332e7-77a3-4f7a-a078-be8d3f73c045",
       "defenses": 0,
-      "days_held": 84,
-      "weeks_held": 12,
+      "days_held": 21,
+      "weeks_held": 3,
+      "history": []
+    },
+    {
+      "id": "40692ff6-8487-4f2d-941e-68fa382b3cfa",
+      "name": "United States Championship",
+      "division": "MEN",
+      "tier": "MID",
+      "prestige": 58,
+      "min_popularity": 50,
+      "champion_id": "848801c0-99d0-47bf-b8a4-d724447778df",
+      "defenses": 0,
+      "days_held": 21,
+      "weeks_held": 3,
+      "history": []
+    },
+    {
+      "id": "132761fc-ea73-44e2-86c4-389caa462556",
+      "name": "World Women's Championship",
+      "division": "WOMEN",
+      "tier": "TOP",
+      "prestige": 79,
+      "min_popularity": 70,
+      "champion_id": "18fe73d0-1a35-47bc-b0b8-adb2c29f0756",
+      "defenses": 2,
+      "days_held": 21,
+      "weeks_held": 3,
+      "history": []
+    },
+    {
+      "id": "9c208109-d223-4bd1-b04a-adc2f7b26783",
+      "name": "Women's Intercontinental Championship",
+      "division": "WOMEN",
+      "tier": "MID",
+      "prestige": 60,
+      "min_popularity": 55,
+      "champion_id": "bb34947e-5661-4ab3-95cc-e7ad121cc1bd",
+      "defenses": 0,
+      "days_held": 21,
+      "weeks_held": 3,
+      "history": []
+    },
+    {
+      "id": "91f81fd9-ce79-4e72-b6ba-1c26ac4a2750",
+      "name": "World Tag Team Championship",
+      "division": "TAG",
+      "tier": "TAG",
+      "prestige": 65,
+      "min_popularity": 60,
+      "champion_id": "195a9e53-04f7-44b9-b924-3d835aef06fb",
+      "defenses": 0,
+      "days_held": 21,
+      "weeks_held": 3,
       "history": []
     }
   ],
   "rivalries": [
     {
-      "id": "6ef3c0e0-7a91-4b6f-bd28-dce4145041a8",
-      "wrestler_a_id": "87da06a3-17cb-4b64-bbe9-a18fbe7d6826",
-      "wrestler_b_id": "2d190225-aeb6-4efc-9246-59e2224132df",
+      "id": "96d46763-cb9d-4550-87ef-c546b8a01f6c",
+      "wrestler_a_id": "159ea488-dd94-4f00-a3f6-db0ec1e5a8e6",
+      "wrestler_b_id": "a24332e7-77a3-4f7a-a078-be8d3f73c045",
       "heat": 0,
       "weeks_active": 3,
+      "history": [
+        {
+          "week": 1,
+          "event": "singles",
+          "heat_delta": 10
+        },
+        {
+          "week": 2,
+          "event": "no_interaction",
+          "heat_delta": -3
+        },
+        {
+          "week": 3,
+          "event": "no_interaction",
+          "heat_delta": -3
+        }
+      ]
+    },
+    {
+      "id": "a14a933f-db3b-490a-bc5a-19701a8ec8df",
+      "wrestler_a_id": "195a9e53-04f7-44b9-b924-3d835aef06fb",
+      "wrestler_b_id": "848801c0-99d0-47bf-b8a4-d724447778df",
+      "heat": 17,
+      "weeks_active": 3,
+      "history": [
+        {
+          "week": 1,
+          "event": "singles",
+          "heat_delta": 10
+        },
+        {
+          "week": 2,
+          "event": "no_interaction",
+          "heat_delta": -3
+        },
+        {
+          "week": 3,
+          "event": "singles",
+          "heat_delta": 10
+        }
+      ]
+    },
+    {
+      "id": "a6235b95-7f33-46ab-88e1-f7450027bec6",
+      "wrestler_a_id": "18fe73d0-1a35-47bc-b0b8-adb2c29f0756",
+      "wrestler_b_id": "bb34947e-5661-4ab3-95cc-e7ad121cc1bd",
+      "heat": 20,
+      "weeks_active": 2,
       "history": [
         {
           "week": 2,
@@ -655,471 +755,25 @@
         },
         {
           "week": 3,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 4,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 5,
-          "event": "no_interaction",
-          "heat_delta": 0
-        },
-        {
-          "week": 6,
-          "event": "no_interaction",
-          "heat_delta": 0
-        },
-        {
-          "week": 7,
-          "event": "no_interaction",
-          "heat_delta": 0
-        },
-        {
-          "week": 8,
-          "event": "no_interaction",
-          "heat_delta": 0
-        },
-        {
-          "week": 9,
-          "event": "no_interaction",
-          "heat_delta": 0
-        },
-        {
-          "week": 10,
-          "event": "no_interaction",
-          "heat_delta": 0
-        },
-        {
-          "week": 11,
-          "event": "no_interaction",
-          "heat_delta": 0
-        },
-        {
-          "week": 12,
-          "event": "no_interaction",
-          "heat_delta": 0
+          "event": "singles",
+          "heat_delta": 10
         }
       ]
     },
     {
-      "id": "8e29a9d4-21bc-49ed-b7fd-6a4cd3a48842",
-      "wrestler_a_id": "5a52a6aa-5d6d-426b-9a4d-495876d6247b",
-      "wrestler_b_id": "f1f4b4c6-ba71-46a2-a533-ccfd00b96ab3",
-      "heat": 0,
-      "weeks_active": 3,
+      "id": "f5f7cf06-5518-48e8-858e-55ced9219873",
+      "wrestler_a_id": "446b2fda-88eb-41e5-9f60-b40ed3c0a5f0",
+      "wrestler_b_id": "2be125d8-18e7-4b26-a1c3-01b8e4f51227",
+      "heat": 20,
+      "weeks_active": 2,
       "history": [
+        {
+          "week": 2,
+          "event": "singles",
+          "heat_delta": 10
+        },
         {
           "week": 3,
-          "event": "singles",
-          "heat_delta": 10
-        },
-        {
-          "week": 4,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 5,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 6,
-          "event": "no_interaction",
-          "heat_delta": 0
-        },
-        {
-          "week": 7,
-          "event": "no_interaction",
-          "heat_delta": 0
-        },
-        {
-          "week": 8,
-          "event": "no_interaction",
-          "heat_delta": 0
-        },
-        {
-          "week": 9,
-          "event": "no_interaction",
-          "heat_delta": 0
-        },
-        {
-          "week": 10,
-          "event": "no_interaction",
-          "heat_delta": 0
-        },
-        {
-          "week": 11,
-          "event": "no_interaction",
-          "heat_delta": 0
-        },
-        {
-          "week": 12,
-          "event": "no_interaction",
-          "heat_delta": 0
-        }
-      ]
-    },
-    {
-      "id": "c9003263-5260-4955-a36c-3b6f1fd1206e",
-      "wrestler_a_id": "42f05229-743f-4353-ae61-3fb2afca0946",
-      "wrestler_b_id": "4ede7679-3f54-48ea-8240-b80ea247aff6",
-      "heat": 0,
-      "weeks_active": 3,
-      "history": [
-        {
-          "week": 3,
-          "event": "singles",
-          "heat_delta": 10
-        },
-        {
-          "week": 4,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 5,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 6,
-          "event": "no_interaction",
-          "heat_delta": 0
-        },
-        {
-          "week": 7,
-          "event": "no_interaction",
-          "heat_delta": 0
-        },
-        {
-          "week": 8,
-          "event": "no_interaction",
-          "heat_delta": 0
-        },
-        {
-          "week": 9,
-          "event": "no_interaction",
-          "heat_delta": 0
-        },
-        {
-          "week": 10,
-          "event": "no_interaction",
-          "heat_delta": 0
-        },
-        {
-          "week": 11,
-          "event": "no_interaction",
-          "heat_delta": 0
-        },
-        {
-          "week": 12,
-          "event": "no_interaction",
-          "heat_delta": 0
-        }
-      ]
-    },
-    {
-      "id": "ad16762a-c65c-4768-b4e4-258be95f7c19",
-      "wrestler_a_id": "65b088f6-e89e-4caa-9f5b-70f580de38f0",
-      "wrestler_b_id": "4ede7679-3f54-48ea-8240-b80ea247aff6",
-      "heat": 12,
-      "weeks_active": 9,
-      "history": [
-        {
-          "week": 4,
-          "event": "singles",
-          "heat_delta": 10
-        },
-        {
-          "week": 5,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 6,
-          "event": "singles",
-          "heat_delta": 10
-        },
-        {
-          "week": 7,
-          "event": "singles",
-          "heat_delta": 10
-        },
-        {
-          "week": 8,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 9,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 10,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 11,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 12,
-          "event": "no_interaction",
-          "heat_delta": -3
-        }
-      ]
-    },
-    {
-      "id": "85bb621c-461b-4b24-961f-51cb41bb8e13",
-      "wrestler_a_id": "42f05229-743f-4353-ae61-3fb2afca0946",
-      "wrestler_b_id": "00047075-5f96-4e5e-84f8-7cbf1fa25a21",
-      "heat": 11,
-      "weeks_active": 8,
-      "history": [
-        {
-          "week": 5,
-          "event": "singles",
-          "heat_delta": 10
-        },
-        {
-          "week": 6,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 7,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 8,
-          "event": "singles",
-          "heat_delta": 10
-        },
-        {
-          "week": 9,
-          "event": "singles",
-          "heat_delta": 10
-        },
-        {
-          "week": 10,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 11,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 12,
-          "event": "no_interaction",
-          "heat_delta": -3
-        }
-      ]
-    },
-    {
-      "id": "3fc79b8c-c594-4d92-bbef-ae33ff4c6d68",
-      "wrestler_a_id": "59485bd1-32dc-4282-a7e9-733c5422e77c",
-      "wrestler_b_id": "8ed4b87e-44f0-4da3-b8a3-23e3f67dacce",
-      "heat": 0,
-      "weeks_active": 7,
-      "history": [
-        {
-          "week": 5,
-          "event": "singles",
-          "heat_delta": 10
-        },
-        {
-          "week": 6,
-          "event": "singles",
-          "heat_delta": 10
-        },
-        {
-          "week": 7,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 8,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 9,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 10,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 11,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 12,
-          "event": "no_interaction",
-          "heat_delta": 0
-        }
-      ]
-    },
-    {
-      "id": "b4dbaaa9-343c-40f6-8399-09562f5e7480",
-      "wrestler_a_id": "719e8f9e-029a-45ba-9e41-683d67f5b1eb",
-      "wrestler_b_id": "7994f214-b1a0-443c-948b-9729a0f9e73d",
-      "heat": 0,
-      "weeks_active": 3,
-      "history": [
-        {
-          "week": 6,
-          "event": "singles",
-          "heat_delta": 10
-        },
-        {
-          "week": 7,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 8,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 9,
-          "event": "no_interaction",
-          "heat_delta": 0
-        },
-        {
-          "week": 10,
-          "event": "no_interaction",
-          "heat_delta": 0
-        },
-        {
-          "week": 11,
-          "event": "no_interaction",
-          "heat_delta": 0
-        },
-        {
-          "week": 12,
-          "event": "no_interaction",
-          "heat_delta": 0
-        }
-      ]
-    },
-    {
-      "id": "f99f659b-63ea-4f20-aa05-1530b9003924",
-      "wrestler_a_id": "5d0e57e7-81b1-4d66-8b71-b569e3eee980",
-      "wrestler_b_id": "4d722009-2593-4859-a708-b496f5dd4eff",
-      "heat": 8,
-      "weeks_active": 6,
-      "history": [
-        {
-          "week": 7,
-          "event": "singles",
-          "heat_delta": 10
-        },
-        {
-          "week": 8,
-          "event": "singles",
-          "heat_delta": 10
-        },
-        {
-          "week": 9,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 10,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 11,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 12,
-          "event": "no_interaction",
-          "heat_delta": -3
-        }
-      ]
-    },
-    {
-      "id": "44c75231-3a05-4e7d-a266-4ed5cefedcd4",
-      "wrestler_a_id": "34049952-cc83-42ca-959e-7f47f85e4af3",
-      "wrestler_b_id": "719e8f9e-029a-45ba-9e41-683d67f5b1eb",
-      "heat": 0,
-      "weeks_active": 3,
-      "history": [
-        {
-          "week": 9,
-          "event": "singles",
-          "heat_delta": 10
-        },
-        {
-          "week": 10,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 11,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 12,
-          "event": "no_interaction",
-          "heat_delta": 0
-        }
-      ]
-    },
-    {
-      "id": "9e32725c-09b9-4780-b210-258eecb0d297",
-      "wrestler_a_id": "9d5112b1-e330-4cba-b8f8-6fe70ebd16c4",
-      "wrestler_b_id": "18000011-ecd1-4f62-85c4-054cfac1d6c8",
-      "heat": 0,
-      "weeks_active": 3,
-      "history": [
-        {
-          "week": 10,
-          "event": "singles",
-          "heat_delta": 10
-        },
-        {
-          "week": 11,
-          "event": "no_interaction",
-          "heat_delta": -3
-        },
-        {
-          "week": 12,
-          "event": "no_interaction",
-          "heat_delta": -3
-        }
-      ]
-    },
-    {
-      "id": "338a0eb9-68c0-4468-87b0-edec238341bb",
-      "wrestler_a_id": "bea0c9fc-d1fc-4e47-a9e5-8b40e1d9341b",
-      "wrestler_b_id": "87da06a3-17cb-4b64-bbe9-a18fbe7d6826",
-      "heat": 10,
-      "weeks_active": 1,
-      "history": [
-        {
-          "week": 12,
           "event": "singles",
           "heat_delta": 10
         }
@@ -1128,257 +782,100 @@
   ],
   "storylines": [
     {
-      "id": "d9c301f4-5ed9-4030-8c9f-deec6dff809f",
+      "id": "6d77da77-3ff6-4c94-8f85-fc0f8bdfa7fe",
       "story_type": "BETRAYAL",
       "participant_ids": [
-        "5d0e57e7-81b1-4d66-8b71-b569e3eee980",
-        "f1f4b4c6-ba71-46a2-a533-ccfd00b96ab3"
+        "195a9e53-04f7-44b9-b924-3d835aef06fb",
+        "94bd83d5-ec3d-4658-8c4f-74d8a7c533db"
       ],
       "title": "Betrayal",
-      "stage": 0,
-      "heat": 5,
-      "weeks_active": 5,
-      "completed": true,
-      "manual_mode": false,
-      "stages": [
-        "Alliance",
-        "Cracks",
-        "Tension",
-        "Turn",
-        "Revenge"
-      ],
-      "beats": [],
-      "history": []
-    },
-    {
-      "id": "a4fb8a6d-9acb-4f24-afb9-ffddd1d68385",
-      "story_type": "BETRAYAL",
-      "participant_ids": [
-        "719e8f9e-029a-45ba-9e41-683d67f5b1eb",
-        "7994f214-b1a0-443c-948b-9729a0f9e73d"
-      ],
-      "title": "Betrayal",
-      "stage": 0,
-      "heat": 5,
-      "weeks_active": 5,
-      "completed": true,
-      "manual_mode": false,
-      "stages": [
-        "Alliance",
-        "Cracks",
-        "Tension",
-        "Turn",
-        "Revenge"
-      ],
-      "beats": [],
-      "history": []
-    },
-    {
-      "id": "cb8e69ee-da2f-45e1-8d0b-1bacd5ab0c4d",
-      "story_type": "BETRAYAL",
-      "participant_ids": [
-        "719e8f9e-029a-45ba-9e41-683d67f5b1eb",
-        "71e6d60f-f701-4a42-997c-ad40862d5b1e"
-      ],
-      "title": "Betrayal",
-      "stage": 0,
-      "heat": 5,
-      "weeks_active": 5,
-      "completed": true,
-      "manual_mode": false,
-      "stages": [
-        "Alliance",
-        "Cracks",
-        "Tension",
-        "Turn",
-        "Revenge"
-      ],
-      "beats": [],
-      "history": []
-    },
-    {
-      "id": "fb20bbff-7309-4a20-af19-c5eed5ad4b9b",
-      "story_type": "CHAMPION_VS_CHALLENGER",
-      "participant_ids": [
-        "8ed4b87e-44f0-4da3-b8a3-23e3f67dacce",
-        "5a52a6aa-5d6d-426b-9a4d-495876d6247b"
-      ],
-      "title": "Champion vs Challenger",
-      "stage": 0,
-      "heat": 10,
-      "weeks_active": 4,
-      "completed": false,
-      "manual_mode": false,
-      "stages": [
-        "Callout",
-        "Build",
-        "Doubt",
-        "Face-to-Face",
-        "Title Match"
-      ],
-      "beats": [],
-      "history": []
-    },
-    {
-      "id": "6f39be27-4121-45b3-a6ca-544ddd870302",
-      "story_type": "CHAMPION_VS_CHALLENGER",
-      "participant_ids": [
-        "f1f4b4c6-ba71-46a2-a533-ccfd00b96ab3",
-        "5a52a6aa-5d6d-426b-9a4d-495876d6247b"
-      ],
-      "title": "Champion vs Challenger",
-      "stage": 0,
-      "heat": 15,
-      "weeks_active": 3,
-      "completed": false,
-      "manual_mode": false,
-      "stages": [
-        "Callout",
-        "Build",
-        "Doubt",
-        "Face-to-Face",
-        "Title Match"
-      ],
-      "beats": [],
-      "history": []
-    },
-    {
-      "id": "e7ba03c4-b009-4b62-a82f-a9ae46f7c0fc",
-      "story_type": "BETRAYAL",
-      "participant_ids": [
-        "94a99096-e438-49a4-8e7a-e8fb4c9079fe",
-        "bea0c9fc-d1fc-4e47-a9e5-8b40e1d9341b"
-      ],
-      "title": "Betrayal",
-      "stage": 0,
-      "heat": 30,
-      "weeks_active": 0,
-      "completed": false,
-      "manual_mode": false,
-      "stages": [
-        "Alliance",
-        "Cracks",
-        "Tension",
-        "Turn",
-        "Revenge"
-      ],
-      "beats": [],
-      "history": []
-    },
-    {
-      "id": "1e71feab-0044-4bb1-824c-f6590602307f",
-      "story_type": "CHAMPION_VS_CHALLENGER",
-      "participant_ids": [
-        "34049952-cc83-42ca-959e-7f47f85e4af3",
-        "94a99096-e438-49a4-8e7a-e8fb4c9079fe"
-      ],
-      "title": "Champion vs Challenger",
       "stage": 1,
-      "heat": 30,
-      "weeks_active": 0,
+      "heat": 35,
+      "weeks_active": 2,
       "completed": false,
-      "manual_mode": true,
+      "manual_mode": false,
       "stages": [
-        "Callout",
-        "Build",
-        "Doubt",
-        "Face-to-Face",
-        "Title Match"
+        "Alliance",
+        "Cracks",
+        "Tension",
+        "Turn",
+        "Revenge"
       ],
-      "beats": [
-        {
-          "id": "13e76204-4db7-423c-9dcc-ee0bc3d73cd2",
-          "beat_type": "PROMO",
-          "label": "Cutting Promo",
-          "description": "A participant cuts an in-ring promo to build heat.",
-          "participant_ids": [
-            "34049952-cc83-42ca-959e-7f47f85e4af3",
-            "94a99096-e438-49a4-8e7a-e8fb4c9079fe"
-          ],
-          "custom_text": "",
-          "completed": false,
-          "week_completed": null
-        }
-      ],
+      "beats": [],
       "history": [
         {
-          "week": 13,
-          "stage": "Build",
-          "note": "Manual advance"
+          "week": 2,
+          "stage": "Cracks",
+          "note": "Featured on show"
         }
       ]
+    },
+    {
+      "id": "ac647265-623d-404c-8765-578873db53cc",
+      "story_type": "BETRAYAL",
+      "participant_ids": [
+        "18fe73d0-1a35-47bc-b0b8-adb2c29f0756",
+        "bb34947e-5661-4ab3-95cc-e7ad121cc1bd"
+      ],
+      "title": "Betrayal",
+      "stage": 1,
+      "heat": 40,
+      "weeks_active": 1,
+      "completed": false,
+      "manual_mode": false,
+      "stages": [
+        "Alliance",
+        "Cracks",
+        "Tension",
+        "Turn",
+        "Revenge"
+      ],
+      "beats": [],
+      "history": [
+        {
+          "week": 3,
+          "stage": "Cracks",
+          "note": "Featured on show"
+        }
+      ]
+    },
+    {
+      "id": "68e443c1-ff5d-4662-8efd-cb03f8e1f554",
+      "story_type": "CHAMPION_VS_CHALLENGER",
+      "participant_ids": [
+        "159ea488-dd94-4f00-a3f6-db0ec1e5a8e6",
+        "a24332e7-77a3-4f7a-a078-be8d3f73c045"
+      ],
+      "title": "Champion vs Challenger",
+      "stage": 0,
+      "heat": 30,
+      "weeks_active": 0,
+      "completed": false,
+      "manual_mode": false,
+      "stages": [
+        "Callout",
+        "Build",
+        "Doubt",
+        "Face-to-Face",
+        "Title Match"
+      ],
+      "beats": [],
+      "history": []
     }
   ],
   "shows": [
     {
-      "id": "71b4571d-5b69-4b5e-85e8-86ab5105cd74",
+      "id": "2061c744-2a94-40f6-a233-8ea19f4a3ac8",
       "week": 1,
       "name": "Week 1 Show",
       "is_ple": false,
       "matches": [
         {
-          "id": "fcbb4c66-abaf-4f61-9988-1abebb177a12",
+          "id": "e241702c-8451-4814-9cd3-1ed39b0defea",
           "match_type": "SINGLES",
           "participant_ids": [
-            "34049952-cc83-42ca-959e-7f47f85e4af3",
-            "4d722009-2593-4859-a708-b496f5dd4eff"
-          ],
-          "importance": "OPENER",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "4d722009-2593-4859-a708-b496f5dd4eff",
-          "rating": 63,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        },
-        {
-          "id": "a6fbb729-adba-4ed9-8519-332008c0f390",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "00047075-5f96-4e5e-84f8-7cbf1fa25a21",
-            "5a52a6aa-5d6d-426b-9a4d-495876d6247b"
-          ],
-          "importance": "UPPER_CARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "00047075-5f96-4e5e-84f8-7cbf1fa25a21",
-          "rating": 82,
-          "crowd_reaction": "ELECTRIC",
-          "story_notes": []
-        },
-        {
-          "id": "66ad0714-4ce6-475a-add9-a25d75caf8d2",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "9d5112b1-e330-4cba-b8f8-6fe70ebd16c4",
-            "87da06a3-17cb-4b64-bbe9-a18fbe7d6826"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "9d5112b1-e330-4cba-b8f8-6fe70ebd16c4",
-          "rating": 70,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        },
-        {
-          "id": "dfae3732-b9a8-4784-a65a-e070b7b2084d",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "f1f4b4c6-ba71-46a2-a533-ccfd00b96ab3",
-            "59485bd1-32dc-4282-a7e9-733c5422e77c"
+            "159ea488-dd94-4f00-a3f6-db0ec1e5a8e6",
+            "a24332e7-77a3-4f7a-a078-be8d3f73c045"
           ],
           "importance": "MAIN_EVENT",
           "championship_id": null,
@@ -1387,230 +884,36 @@
           "stipulation": "NORMAL",
           "winner_mode": "AUTO",
           "winner_override_id": null,
-          "winner_id": "f1f4b4c6-ba71-46a2-a533-ccfd00b96ab3",
-          "rating": 69,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        }
-      ],
-      "promos": [],
-      "rating": 71,
-      "expected_attendance": 9193,
-      "actual_attendance": 9454,
-      "revenue": 468711,
-      "expenses": 677000
-    },
-    {
-      "id": "a2633b5f-328f-4f91-96e9-3c2505d16159",
-      "week": 2,
-      "name": "Week 2 Show",
-      "is_ple": false,
-      "matches": [
-        {
-          "id": "63942753-65da-4176-a082-7488ab1a6933",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "f1f4b4c6-ba71-46a2-a533-ccfd00b96ab3",
-            "8ed4b87e-44f0-4da3-b8a3-23e3f67dacce"
-          ],
-          "importance": "MAIN_EVENT",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "f1f4b4c6-ba71-46a2-a533-ccfd00b96ab3",
-          "rating": 83,
-          "crowd_reaction": "ELECTRIC",
-          "story_notes": []
-        },
-        {
-          "id": "2c5b39eb-d45c-49fa-8b5f-7806e6741d66",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "2d190225-aeb6-4efc-9246-59e2224132df",
-            "87da06a3-17cb-4b64-bbe9-a18fbe7d6826"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "87da06a3-17cb-4b64-bbe9-a18fbe7d6826",
-          "rating": 68,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        },
-        {
-          "id": "ba0d2f76-d401-4ffc-85e4-7b38c955e22e",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "4ede7679-3f54-48ea-8240-b80ea247aff6",
-            "42f05229-743f-4353-ae61-3fb2afca0946"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "4ede7679-3f54-48ea-8240-b80ea247aff6",
-          "rating": 79,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        },
-        {
-          "id": "e4f00981-cffb-491f-94ff-23320edc3b94",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "5d0e57e7-81b1-4d66-8b71-b569e3eee980",
-            "94a99096-e438-49a4-8e7a-e8fb4c9079fe"
-          ],
-          "importance": "UPPER_CARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "94a99096-e438-49a4-8e7a-e8fb4c9079fe",
-          "rating": 78,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        }
-      ],
-      "promos": [],
-      "rating": 80,
-      "expected_attendance": 9883,
-      "actual_attendance": 9907,
-      "revenue": 469940,
-      "expenses": 677000
-    },
-    {
-      "id": "acefa9fe-da47-4571-90d8-a1209b29919a",
-      "week": 3,
-      "name": "Week 3 Show",
-      "is_ple": false,
-      "matches": [
-        {
-          "id": "db474694-83ee-46e5-8aed-f0780d6e02dd",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "f1f4b4c6-ba71-46a2-a533-ccfd00b96ab3",
-            "5a52a6aa-5d6d-426b-9a4d-495876d6247b"
-          ],
-          "importance": "MAIN_EVENT",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "5a52a6aa-5d6d-426b-9a4d-495876d6247b",
-          "rating": 82,
-          "crowd_reaction": "ELECTRIC",
-          "story_notes": []
-        },
-        {
-          "id": "e0b550a9-d37d-46e6-9aaf-571238bec582",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "8ed4b87e-44f0-4da3-b8a3-23e3f67dacce",
-            "65b088f6-e89e-4caa-9f5b-70f580de38f0"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "65b088f6-e89e-4caa-9f5b-70f580de38f0",
+          "winner_id": "159ea488-dd94-4f00-a3f6-db0ec1e5a8e6",
           "rating": 69,
           "crowd_reaction": "HOT",
           "story_notes": []
         },
         {
-          "id": "dbd59f1a-3a72-4e42-9712-35f87579968b",
-          "match_type": "SINGLES",
+          "id": "46b3fb1a-a42d-4313-85c7-67349d0fbf5e",
+          "match_type": "CHAMPIONSHIP",
           "participant_ids": [
-            "4ede7679-3f54-48ea-8240-b80ea247aff6",
-            "42f05229-743f-4353-ae61-3fb2afca0946"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "42f05229-743f-4353-ae61-3fb2afca0946",
-          "rating": 80,
-          "crowd_reaction": "ELECTRIC",
-          "story_notes": []
-        },
-        {
-          "id": "715b5513-eab5-4c2a-9457-e8ee15562b3e",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "00047075-5f96-4e5e-84f8-7cbf1fa25a21",
-            "59485bd1-32dc-4282-a7e9-733c5422e77c"
+            "18fe73d0-1a35-47bc-b0b8-adb2c29f0756",
+            "bb34947e-5661-4ab3-95cc-e7ad121cc1bd"
           ],
           "importance": "UPPER_CARD",
-          "championship_id": null,
+          "championship_id": "132761fc-ea73-44e2-86c4-389caa462556",
           "rivalry_id": null,
           "story_id": null,
           "stipulation": "NORMAL",
           "winner_mode": "AUTO",
           "winner_override_id": null,
-          "winner_id": "00047075-5f96-4e5e-84f8-7cbf1fa25a21",
-          "rating": 74,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        }
-      ],
-      "promos": [],
-      "rating": 80,
-      "expected_attendance": 10567,
-      "actual_attendance": 9800,
-      "revenue": 501872,
-      "expenses": 677000
-    },
-    {
-      "id": "551842c0-14ca-4121-8022-f1ff78d5dea9",
-      "week": 4,
-      "name": "Week 4 PLE",
-      "is_ple": true,
-      "matches": [
-        {
-          "id": "902be50d-4139-466e-bba0-b732f3505a75",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "5d0e57e7-81b1-4d66-8b71-b569e3eee980",
-            "f1f4b4c6-ba71-46a2-a533-ccfd00b96ab3"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "5d0e57e7-81b1-4d66-8b71-b569e3eee980",
-          "rating": 72,
+          "winner_id": "18fe73d0-1a35-47bc-b0b8-adb2c29f0756",
+          "rating": 71,
           "crowd_reaction": "HOT",
           "story_notes": []
         },
         {
-          "id": "576eedab-06bc-4593-8e64-e4a131d6a823",
+          "id": "7df83542-b485-447a-8860-6910202fc2dd",
           "match_type": "SINGLES",
           "participant_ids": [
-            "65b088f6-e89e-4caa-9f5b-70f580de38f0",
-            "4ede7679-3f54-48ea-8240-b80ea247aff6"
+            "848801c0-99d0-47bf-b8a4-d724447778df",
+            "195a9e53-04f7-44b9-b924-3d835aef06fb"
           ],
           "importance": "MIDCARD",
           "championship_id": null,
@@ -1619,17 +922,17 @@
           "stipulation": "NORMAL",
           "winner_mode": "AUTO",
           "winner_override_id": null,
-          "winner_id": "65b088f6-e89e-4caa-9f5b-70f580de38f0",
-          "rating": 66,
+          "winner_id": "195a9e53-04f7-44b9-b924-3d835aef06fb",
+          "rating": 75,
           "crowd_reaction": "HOT",
           "story_notes": []
         },
         {
-          "id": "7f569ca6-32e1-495c-9be1-028200265afc",
+          "id": "20ce4c57-0f7b-40e0-9a85-2ae2262d7cc0",
           "match_type": "SINGLES",
           "participant_ids": [
-            "42f05229-743f-4353-ae61-3fb2afca0946",
-            "00047075-5f96-4e5e-84f8-7cbf1fa25a21"
+            "2be125d8-18e7-4b26-a1c3-01b8e4f51227",
+            "446b2fda-88eb-41e5-9f60-b40ed3c0a5f0"
           ],
           "importance": "MIDCARD",
           "championship_id": null,
@@ -1638,623 +941,121 @@
           "stipulation": "NORMAL",
           "winner_mode": "AUTO",
           "winner_override_id": null,
-          "winner_id": "42f05229-743f-4353-ae61-3fb2afca0946",
-          "rating": 74,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        },
-        {
-          "id": "ce010915-8efe-44af-84a8-8b9b42291262",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "8ed4b87e-44f0-4da3-b8a3-23e3f67dacce",
-            "59485bd1-32dc-4282-a7e9-733c5422e77c"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "8ed4b87e-44f0-4da3-b8a3-23e3f67dacce",
-          "rating": 64,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        },
-        {
-          "id": "f8bd928f-208e-4233-a92c-8a24aa3d3b8c",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "719e8f9e-029a-45ba-9e41-683d67f5b1eb",
-            "34049952-cc83-42ca-959e-7f47f85e4af3"
-          ],
-          "importance": "UPPER_CARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "719e8f9e-029a-45ba-9e41-683d67f5b1eb",
-          "rating": 74,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        }
-      ],
-      "promos": [],
-      "rating": 70,
-      "expected_attendance": 10639,
-      "actual_attendance": 10657,
-      "revenue": 557627,
-      "expenses": 677000
-    },
-    {
-      "id": "832b8af6-eeed-446d-916d-d064226b8370",
-      "week": 5,
-      "name": "Week 5 Show",
-      "is_ple": false,
-      "matches": [
-        {
-          "id": "96adcede-7311-4227-980c-c13216e6c65b",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "719e8f9e-029a-45ba-9e41-683d67f5b1eb",
-            "7994f214-b1a0-443c-948b-9729a0f9e73d"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "719e8f9e-029a-45ba-9e41-683d67f5b1eb",
-          "rating": 65,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        },
-        {
-          "id": "d7d44213-00cf-44a1-88a7-94a4350a4c40",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "5d0e57e7-81b1-4d66-8b71-b569e3eee980",
-            "f1f4b4c6-ba71-46a2-a533-ccfd00b96ab3"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "5d0e57e7-81b1-4d66-8b71-b569e3eee980",
-          "rating": 65,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        },
-        {
-          "id": "3c036f13-581c-4d41-86a3-f9baa5af2525",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "42f05229-743f-4353-ae61-3fb2afca0946",
-            "00047075-5f96-4e5e-84f8-7cbf1fa25a21"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "42f05229-743f-4353-ae61-3fb2afca0946",
-          "rating": 80,
-          "crowd_reaction": "ELECTRIC",
-          "story_notes": []
-        },
-        {
-          "id": "c3aca31a-4e7a-430a-a414-c1de05138e6d",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "8ed4b87e-44f0-4da3-b8a3-23e3f67dacce",
-            "59485bd1-32dc-4282-a7e9-733c5422e77c"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "59485bd1-32dc-4282-a7e9-733c5422e77c",
-          "rating": 79,
+          "winner_id": "446b2fda-88eb-41e5-9f60-b40ed3c0a5f0",
+          "rating": 76,
           "crowd_reaction": "HOT",
           "story_notes": []
         }
       ],
       "promos": [],
       "rating": 72,
-      "expected_attendance": 10328,
-      "actual_attendance": 10169,
-      "revenue": 501597,
-      "expenses": 677000
+      "expected_attendance": 9356,
+      "actual_attendance": 9294,
+      "revenue": 674916,
+      "expenses": 422000
     },
     {
-      "id": "07fa7f0e-2b63-454c-af53-f828914ed0fe",
-      "week": 6,
-      "name": "Week 6 Show",
+      "id": "9fd5defe-af6b-4e45-8448-c2de096d1710",
+      "week": 2,
+      "name": "Week 2 Show",
       "is_ple": false,
       "matches": [
         {
-          "id": "d98c9937-b074-4fbe-b8b1-cc6cf43025d1",
+          "id": "83112ff7-f1be-461f-b0ae-ad10d96bb1a1",
           "match_type": "SINGLES",
           "participant_ids": [
-            "71e6d60f-f701-4a42-997c-ad40862d5b1e",
-            "00047075-5f96-4e5e-84f8-7cbf1fa25a21"
+            "195a9e53-04f7-44b9-b924-3d835aef06fb",
+            "94bd83d5-ec3d-4658-8c4f-74d8a7c533db"
           ],
-          "importance": "MAIN_EVENT",
+          "importance": "MIDCARD",
           "championship_id": null,
           "rivalry_id": null,
-          "story_id": null,
+          "story_id": "6d77da77-3ff6-4c94-8f85-fc0f8bdfa7fe",
           "stipulation": "NORMAL",
           "winner_mode": "AUTO",
           "winner_override_id": null,
-          "winner_id": "71e6d60f-f701-4a42-997c-ad40862d5b1e",
-          "rating": 75,
+          "winner_id": "195a9e53-04f7-44b9-b924-3d835aef06fb",
+          "rating": 66,
           "crowd_reaction": "HOT",
           "story_notes": []
         },
         {
-          "id": "8c11c821-e536-44a1-839d-996802ee9fc6",
-          "match_type": "SINGLES",
+          "id": "30cd36fb-0c72-40a6-ad57-ba9b04d0ddb5",
+          "match_type": "CHAMPIONSHIP",
           "participant_ids": [
-            "65b088f6-e89e-4caa-9f5b-70f580de38f0",
-            "4ede7679-3f54-48ea-8240-b80ea247aff6"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "4ede7679-3f54-48ea-8240-b80ea247aff6",
-          "rating": 77,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        },
-        {
-          "id": "4fce3e74-2d02-4ba9-8a41-5da4bccf1acc",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "719e8f9e-029a-45ba-9e41-683d67f5b1eb",
-            "7994f214-b1a0-443c-948b-9729a0f9e73d"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "719e8f9e-029a-45ba-9e41-683d67f5b1eb",
-          "rating": 76,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        },
-        {
-          "id": "4894b6c0-9c93-4b08-b4a9-bb97f8bd4328",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "8ed4b87e-44f0-4da3-b8a3-23e3f67dacce",
-            "59485bd1-32dc-4282-a7e9-733c5422e77c"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "8ed4b87e-44f0-4da3-b8a3-23e3f67dacce",
-          "rating": 75,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        }
-      ],
-      "promos": [],
-      "rating": 75,
-      "expected_attendance": 10374,
-      "actual_attendance": 9854,
-      "revenue": 470078,
-      "expenses": 677000
-    },
-    {
-      "id": "8e283999-6f38-4f98-8bc9-1663ceea44f3",
-      "week": 7,
-      "name": "Week 7 Show",
-      "is_ple": false,
-      "matches": [
-        {
-          "id": "afc6bcbb-6fc7-4e94-9561-03d5023031a8",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "65b088f6-e89e-4caa-9f5b-70f580de38f0",
-            "4ede7679-3f54-48ea-8240-b80ea247aff6"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "4ede7679-3f54-48ea-8240-b80ea247aff6",
-          "rating": 73,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        },
-        {
-          "id": "79dae668-06b3-4f73-9bd4-3b5b7451974d",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "42f05229-743f-4353-ae61-3fb2afca0946",
-            "00047075-5f96-4e5e-84f8-7cbf1fa25a21"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "42f05229-743f-4353-ae61-3fb2afca0946",
-          "rating": 68,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        },
-        {
-          "id": "0b089bed-c1db-40e6-ae0c-194835efd7ac",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "8ed4b87e-44f0-4da3-b8a3-23e3f67dacce",
-            "59485bd1-32dc-4282-a7e9-733c5422e77c"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "59485bd1-32dc-4282-a7e9-733c5422e77c",
-          "rating": 64,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        },
-        {
-          "id": "ee014233-7a88-434a-8df9-9e15e50a14f5",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "4d722009-2593-4859-a708-b496f5dd4eff",
-            "5d0e57e7-81b1-4d66-8b71-b569e3eee980"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "5d0e57e7-81b1-4d66-8b71-b569e3eee980",
-          "rating": 74,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        }
-      ],
-      "promos": [],
-      "rating": 69,
-      "expected_attendance": 10602,
-      "actual_attendance": 10757,
-      "revenue": 544789,
-      "expenses": 677000
-    },
-    {
-      "id": "55a8a66c-75dd-4111-94b8-2eb0c66837b4",
-      "week": 8,
-      "name": "Week 8 PLE",
-      "is_ple": true,
-      "matches": [
-        {
-          "id": "3b8d13a4-98bb-43c0-b038-1a5fd73fb252",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "65b088f6-e89e-4caa-9f5b-70f580de38f0",
-            "4ede7679-3f54-48ea-8240-b80ea247aff6"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "65b088f6-e89e-4caa-9f5b-70f580de38f0",
-          "rating": 76,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        },
-        {
-          "id": "b4ab9d2d-c19d-4c23-b4be-1f9ca6f38015",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "42f05229-743f-4353-ae61-3fb2afca0946",
-            "00047075-5f96-4e5e-84f8-7cbf1fa25a21"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "00047075-5f96-4e5e-84f8-7cbf1fa25a21",
-          "rating": 63,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        },
-        {
-          "id": "b64e7a40-2765-4b99-ac21-2aac58ac557c",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "4d722009-2593-4859-a708-b496f5dd4eff",
-            "5d0e57e7-81b1-4d66-8b71-b569e3eee980"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "5d0e57e7-81b1-4d66-8b71-b569e3eee980",
-          "rating": 63,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        },
-        {
-          "id": "0d35c5c4-ab5d-4836-81ac-d6343dd9cd69",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "719e8f9e-029a-45ba-9e41-683d67f5b1eb",
-            "34049952-cc83-42ca-959e-7f47f85e4af3"
+            "18fe73d0-1a35-47bc-b0b8-adb2c29f0756",
+            "bb34947e-5661-4ab3-95cc-e7ad121cc1bd"
           ],
           "importance": "UPPER_CARD",
-          "championship_id": null,
+          "championship_id": "132761fc-ea73-44e2-86c4-389caa462556",
           "rivalry_id": null,
           "story_id": null,
           "stipulation": "NORMAL",
           "winner_mode": "AUTO",
           "winner_override_id": null,
-          "winner_id": "34049952-cc83-42ca-959e-7f47f85e4af3",
-          "rating": 68,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        }
-      ],
-      "promos": [],
-      "rating": 67,
-      "expected_attendance": 10476,
-      "actual_attendance": 10753,
-      "revenue": 502673,
-      "expenses": 677000
-    },
-    {
-      "id": "9c0cbf86-7346-4956-b866-a288ba8e823b",
-      "week": 9,
-      "name": "Week 9 Show",
-      "is_ple": false,
-      "matches": [
-        {
-          "id": "26b46ca6-bda2-42be-b4ef-6a61ec5018b0",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "42f05229-743f-4353-ae61-3fb2afca0946",
-            "00047075-5f96-4e5e-84f8-7cbf1fa25a21"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "00047075-5f96-4e5e-84f8-7cbf1fa25a21",
-          "rating": 69,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        },
-        {
-          "id": "04c19e4d-b8fe-4289-ab14-69d284089840",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "4d722009-2593-4859-a708-b496f5dd4eff",
-            "5d0e57e7-81b1-4d66-8b71-b569e3eee980"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "4d722009-2593-4859-a708-b496f5dd4eff",
-          "rating": 61,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        },
-        {
-          "id": "b92fc3dc-0046-4450-9df1-5fc49c72f0d5",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "719e8f9e-029a-45ba-9e41-683d67f5b1eb",
-            "34049952-cc83-42ca-959e-7f47f85e4af3"
-          ],
-          "importance": "UPPER_CARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "34049952-cc83-42ca-959e-7f47f85e4af3",
-          "rating": 65,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        }
-      ],
-      "promos": [],
-      "rating": 65,
-      "expected_attendance": 10396,
-      "actual_attendance": 10457,
-      "revenue": 495004,
-      "expenses": 677000
-    },
-    {
-      "id": "16bb8a7f-f6b9-4d2a-ab8f-1c2c91b1a5d2",
-      "week": 10,
-      "name": "Week 10 Show",
-      "is_ple": false,
-      "matches": [
-        {
-          "id": "5c4e6a38-5966-46d4-8d20-2ecdbc698898",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "719e8f9e-029a-45ba-9e41-683d67f5b1eb",
-            "71e6d60f-f701-4a42-997c-ad40862d5b1e"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "719e8f9e-029a-45ba-9e41-683d67f5b1eb",
-          "rating": 63,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        },
-        {
-          "id": "4a6525d8-d098-4f2a-96b7-865f0aff754a",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "9d5112b1-e330-4cba-b8f8-6fe70ebd16c4",
-            "18000011-ecd1-4f62-85c4-054cfac1d6c8"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "9d5112b1-e330-4cba-b8f8-6fe70ebd16c4",
-          "rating": 75,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        }
-      ],
-      "promos": [],
-      "rating": 69,
-      "expected_attendance": 10173,
-      "actual_attendance": 10216,
-      "revenue": 471664,
-      "expenses": 677000
-    },
-    {
-      "id": "53274a10-4a3e-412d-8c41-31aff5900a95",
-      "week": 11,
-      "name": "Week 11 Show",
-      "is_ple": false,
-      "matches": [
-        {
-          "id": "7f7cf792-192d-4689-a936-900ad3cbc9bf",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "719e8f9e-029a-45ba-9e41-683d67f5b1eb",
-            "71e6d60f-f701-4a42-997c-ad40862d5b1e"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "71e6d60f-f701-4a42-997c-ad40862d5b1e",
-          "rating": 77,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        },
-        {
-          "id": "f908714e-66f1-4b4f-87ef-291ad4b42076",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "34049952-cc83-42ca-959e-7f47f85e4af3",
-            "94a99096-e438-49a4-8e7a-e8fb4c9079fe"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "94a99096-e438-49a4-8e7a-e8fb4c9079fe",
-          "rating": 80,
-          "crowd_reaction": "ELECTRIC",
-          "story_notes": []
-        },
-        {
-          "id": "ab9f1edf-ef98-47f5-846e-1b837b5a2e83",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "5d0e57e7-81b1-4d66-8b71-b569e3eee980",
-            "4d722009-2593-4859-a708-b496f5dd4eff"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "5d0e57e7-81b1-4d66-8b71-b569e3eee980",
+          "winner_id": "18fe73d0-1a35-47bc-b0b8-adb2c29f0756",
           "rating": 70,
           "crowd_reaction": "HOT",
           "story_notes": []
+        },
+        {
+          "id": "71bd3437-933a-4f79-80e0-44cb81d75eec",
+          "match_type": "SINGLES",
+          "participant_ids": [
+            "446b2fda-88eb-41e5-9f60-b40ed3c0a5f0",
+            "2be125d8-18e7-4b26-a1c3-01b8e4f51227"
+          ],
+          "importance": "MIDCARD",
+          "championship_id": null,
+          "rivalry_id": null,
+          "story_id": null,
+          "stipulation": "NORMAL",
+          "winner_mode": "AUTO",
+          "winner_override_id": null,
+          "winner_id": "446b2fda-88eb-41e5-9f60-b40ed3c0a5f0",
+          "rating": 71,
+          "crowd_reaction": "HOT",
+          "story_notes": []
         }
       ],
       "promos": [],
-      "rating": 75,
-      "expected_attendance": 10491,
-      "actual_attendance": 9602,
-      "revenue": 450166,
-      "expenses": 677000
+      "rating": 69,
+      "expected_attendance": 10020,
+      "actual_attendance": 10444,
+      "revenue": 753728,
+      "expenses": 422000
     },
     {
-      "id": "c018f62c-5c6c-498e-a51b-d27f85bc4aeb",
-      "week": 12,
-      "name": "Week 12 PLE",
-      "is_ple": true,
+      "id": "f3b3bf1b-dc1b-44fd-80b6-1734f6340c51",
+      "week": 3,
+      "name": "Week 3 Show",
+      "is_ple": false,
       "matches": [
         {
-          "id": "5c16d929-6178-4dd2-b19f-e9d6efdba38e",
+          "id": "a2ff57d8-8a99-427a-b8b9-e2fcd5609325",
           "match_type": "SINGLES",
           "participant_ids": [
-            "719e8f9e-029a-45ba-9e41-683d67f5b1eb",
-            "71e6d60f-f701-4a42-997c-ad40862d5b1e"
+            "18fe73d0-1a35-47bc-b0b8-adb2c29f0756",
+            "bb34947e-5661-4ab3-95cc-e7ad121cc1bd"
+          ],
+          "importance": "MIDCARD",
+          "championship_id": null,
+          "rivalry_id": null,
+          "story_id": "ac647265-623d-404c-8765-578873db53cc",
+          "stipulation": "NORMAL",
+          "winner_mode": "AUTO",
+          "winner_override_id": null,
+          "winner_id": "bb34947e-5661-4ab3-95cc-e7ad121cc1bd",
+          "rating": 66,
+          "crowd_reaction": "HOT",
+          "story_notes": []
+        },
+        {
+          "id": "1498c018-8349-4df2-b6b3-bf7121e0afc7",
+          "match_type": "SINGLES",
+          "participant_ids": [
+            "195a9e53-04f7-44b9-b924-3d835aef06fb",
+            "848801c0-99d0-47bf-b8a4-d724447778df"
           ],
           "importance": "MIDCARD",
           "championship_id": null,
@@ -2263,17 +1064,17 @@
           "stipulation": "NORMAL",
           "winner_mode": "AUTO",
           "winner_override_id": null,
-          "winner_id": "719e8f9e-029a-45ba-9e41-683d67f5b1eb",
-          "rating": 60,
+          "winner_id": "195a9e53-04f7-44b9-b924-3d835aef06fb",
+          "rating": 75,
           "crowd_reaction": "HOT",
           "story_notes": []
         },
         {
-          "id": "da4b6fba-bcec-4bf9-867d-e51e266ab093",
+          "id": "2add878e-e142-4306-b25a-2c04c2ddf0eb",
           "match_type": "SINGLES",
           "participant_ids": [
-            "94a99096-e438-49a4-8e7a-e8fb4c9079fe",
-            "34049952-cc83-42ca-959e-7f47f85e4af3"
+            "446b2fda-88eb-41e5-9f60-b40ed3c0a5f0",
+            "2be125d8-18e7-4b26-a1c3-01b8e4f51227"
           ],
           "importance": "MIDCARD",
           "championship_id": null,
@@ -2282,141 +1083,66 @@
           "stipulation": "NORMAL",
           "winner_mode": "AUTO",
           "winner_override_id": null,
-          "winner_id": "34049952-cc83-42ca-959e-7f47f85e4af3",
-          "rating": 73,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        },
-        {
-          "id": "a7929b5e-ac21-4fd0-8036-c9f0d201f95c",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "9d5112b1-e330-4cba-b8f8-6fe70ebd16c4",
-            "4d722009-2593-4859-a708-b496f5dd4eff"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "4d722009-2593-4859-a708-b496f5dd4eff",
-          "rating": 77,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        },
-        {
-          "id": "ae55c734-745e-46fd-a94b-cd4c980cfd8a",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "2d190225-aeb6-4efc-9246-59e2224132df",
-            "18000011-ecd1-4f62-85c4-054cfac1d6c8"
-          ],
-          "importance": "MIDCARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "18000011-ecd1-4f62-85c4-054cfac1d6c8",
-          "rating": 79,
-          "crowd_reaction": "HOT",
-          "story_notes": []
-        },
-        {
-          "id": "83263b24-87df-4de2-918c-6bfa2ddaf1ad",
-          "match_type": "SINGLES",
-          "participant_ids": [
-            "bea0c9fc-d1fc-4e47-a9e5-8b40e1d9341b",
-            "87da06a3-17cb-4b64-bbe9-a18fbe7d6826"
-          ],
-          "importance": "UPPER_CARD",
-          "championship_id": null,
-          "rivalry_id": null,
-          "story_id": null,
-          "stipulation": "NORMAL",
-          "winner_mode": "AUTO",
-          "winner_override_id": null,
-          "winner_id": "bea0c9fc-d1fc-4e47-a9e5-8b40e1d9341b",
-          "rating": 77,
+          "winner_id": "446b2fda-88eb-41e5-9f60-b40ed3c0a5f0",
+          "rating": 64,
           "crowd_reaction": "HOT",
           "story_notes": []
         }
       ],
       "promos": [],
-      "rating": 73,
-      "expected_attendance": 10578,
-      "actual_attendance": 10465,
-      "revenue": 528795,
-      "expenses": 677000
+      "rating": 68,
+      "expected_attendance": 10128,
+      "actual_attendance": 9420,
+      "revenue": 655125,
+      "expenses": 422000
     }
   ],
   "news": [
     {
       "week": 1,
-      "text": "🎉 Welcome to test!"
+      "text": "🎉 Welcome to س!"
     },
     {
       "week": 1,
-      "text": "🏆 Roman Reigns is your inaugural World Champion."
+      "text": "🏆 Roman Reigns is your inaugural World Heavyweight Champion."
     },
     {
       "week": 1,
-      "text": "📖 New storyline: Betrayal (Jey Uso & Roman Reigns)"
+      "text": "🏆 Rhea Ripley is your inaugural World Women's Champion."
+    },
+    {
+      "week": 1,
+      "text": "🛡️ Rhea Ripley retains the World Women's Championship."
+    },
+    {
+      "week": 1,
+      "text": "💰 A sponsor offers $58,602! Budget increased."
+    },
+    {
+      "week": 1,
+      "text": "📖 New storyline: Betrayal (Seth Rollins & Bron Breakker)"
     },
     {
       "week": 2,
-      "text": "😱 Roman Reigns pulled off a career-defining upset!"
+      "text": "🛡️ Rhea Ripley retains the World Women's Championship."
     },
     {
-      "week": 4,
-      "text": "❤️ The crowd is chanting for Jade Cargill!"
+      "week": 2,
+      "text": "🎤 Tiffany Stratton delivered a weak promo. Popularity -2."
     },
     {
-      "week": 4,
-      "text": "📖 New storyline: Betrayal (Jade Cargill & Chelsea Green)"
+      "week": 2,
+      "text": "📖 New storyline: Betrayal (Rhea Ripley & IYO SKY)"
     },
     {
-      "week": 6,
-      "text": "📖 Storyline fizzled out: Betrayal"
-    },
-    {
-      "week": 6,
-      "text": "🎤 Gunther delivered a weak promo. Popularity -2."
-    },
-    {
-      "week": 7,
-      "text": "📖 New storyline: Betrayal (Jade Cargill & Tiffany Stratton)"
-    },
-    {
-      "week": 8,
-      "text": "📖 New storyline: Champion vs Challenger (Cody Rhodes & Rhea Ripley)"
-    },
-    {
-      "week": 9,
-      "text": "📖 Storyline fizzled out: Betrayal"
-    },
-    {
-      "week": 9,
-      "text": "📖 New storyline: Champion vs Challenger (Roman Reigns & Rhea Ripley)"
-    },
-    {
-      "week": 12,
-      "text": "📖 Storyline fizzled out: Betrayal"
-    },
-    {
-      "week": 12,
-      "text": "📖 New storyline: Betrayal (Finn Bálor & Dominik Mysterio)"
-    },
-    {
-      "week": 13,
-      "text": "📖 New storyline created: Champion vs Challenger (Sami Zayn & Finn Bálor)"
+      "week": 3,
+      "text": "📖 New storyline: Champion vs Challenger (Roman Reigns & Cody Rhodes)"
     }
   ],
-  "total_revenue": 5962916,
-  "total_expenses": 8124000,
-  "best_match_rating": 83,
-  "best_match_desc": "Roman Reigns vs Cody Rhodes (W2)"
+  "total_revenue": 2083769,
+  "total_expenses": 1266000,
+  "best_match_rating": 79,
+  "best_match_desc": "Seth Rollins vs Roman Reigns (W3)",
+  "negative_weeks": 0,
+  "active_loan": null
 }

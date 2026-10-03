@@ -27,6 +27,10 @@ class AIEngine:
     def book_ai_show(self, state: GameState) -> Show:
         """
         Build a 4-match card for the AI promotion.
+
+        ✅ FIX #1: نستخدم used_ids عشان مفيش مصارع يتكرر
+        في أكتر من match في نفس الليلة.
+
         AI keeps its own roster simple: it just reuses the player's
         roster IDs for simulation (MVP shortcut).
         """
@@ -36,62 +40,95 @@ class AIEngine:
             is_ple=False,
         )
 
+        # ─── نجيب المتاحين مرتبين حسب القوة ───
         roster = sorted(
             state.roster,
             key=lambda w: w.popularity + w.ring_skill,
             reverse=True,
         )
-        # AI picks its top 8 available wrestlers
-        available = [w for w in roster if w.is_available()][:8]
+        available = [w for w in roster if w.is_available()][:12]
+
         if len(available) < 4:
-            available = roster[:4]
+            # fallback: نستخدم أي حد متاح من غير فلتر
+            available = [w for w in roster if w.is_available()]
+            if len(available) < 4:
+                # مفيش متاحين كفاية → كارت فاضي
+                return show
 
         self.rng.shuffle(available)
 
+        # ✅ FIX #1: used_ids tracking
+        used_ids: set[int] = set()
+
+        def pick_fresh(count: int) -> list:
+            """
+            يرجّع list من المصارعين اللي مش مستخدمين لسه.
+            لو مفيش كفاية → يرجّع None.
+            """
+            fresh = [w for w in available if w.id not in used_ids]
+            if len(fresh) < count:
+                return None
+            return fresh[:count]
+
         # ----- Match 1: Opener (midcard) -----
-        show.matches.append(
-            Match(
-                match_type=MatchType.SINGLES,
-                participant_ids=[available[0].id, available[1].id],
-                importance=MatchImportance.OPENER,
+        opener = pick_fresh(2)
+        if opener:
+            show.matches.append(
+                Match(
+                    match_type=MatchType.SINGLES,
+                    participant_ids=[opener[0].id, opener[1].id],
+                    importance=MatchImportance.OPENER,
+                )
             )
-        )
+            used_ids.update(w.id for w in opener)
 
         # ----- Match 2: Midcard -----
-        show.matches.append(
-            Match(
-                match_type=MatchType.SINGLES,
-                participant_ids=[available[2].id, available[3].id],
-                importance=MatchImportance.MIDCARD,
+        midcard = pick_fresh(2)
+        if midcard:
+            show.matches.append(
+                Match(
+                    match_type=MatchType.SINGLES,
+                    participant_ids=[midcard[0].id, midcard[1].id],
+                    importance=MatchImportance.MIDCARD,
+                )
             )
-        )
+            used_ids.update(w.id for w in midcard)
 
-        # ----- Match 3: Upper card -----
-        if len(available) >= 6:
+        # ----- Match 3: Upper card (Triple Threat) -----
+        upper = pick_fresh(3)
+        if upper:
             show.matches.append(
                 Match(
                     match_type=MatchType.TRIPLE_THREAT,
-                    participant_ids=[available[4].id, available[5].id, available[0].id],
+                    participant_ids=[w.id for w in upper],
                     importance=MatchImportance.UPPER_CARD,
                 )
             )
+            used_ids.update(w.id for w in upper)
 
-        # ----- Main event: top 2 -----
-        top = sorted(available, key=lambda w: w.popularity, reverse=True)[:2]
-        # Try to make it a face vs heel
-        if len(top) == 2 and top[0].alignment == top[1].alignment:
-            for w in available[2:]:
-                if w.alignment != top[0].alignment:
-                    top[1] = w
-                    break
+        # ----- Main event: top 2 من اللي لسه متاحين -----
+        remaining = [w for w in available if w.id not in used_ids]
+        if len(remaining) >= 2:
+            # نرتب حسب الشعبية وناخد أعلى 2
+            top = sorted(remaining, key=lambda w: w.popularity, reverse=True)[:2]
 
-        show.matches.append(
-            Match(
-                match_type=MatchType.SINGLES,
-                participant_ids=[top[0].id, top[1].id],
-                importance=MatchImportance.MAIN_EVENT,
+            # نحاول نخليها Face vs Heel
+            if top[0].alignment == top[1].alignment:
+                for w in remaining:
+                    if w.id in (top[0].id, top[1].id):
+                        continue
+                    if w.alignment != top[0].alignment:
+                        top[1] = w
+                        break
+
+            show.matches.append(
+                Match(
+                    match_type=MatchType.SINGLES,
+                    participant_ids=[top[0].id, top[1].id],
+                    importance=MatchImportance.MAIN_EVENT,
+                )
             )
-        )
+            used_ids.update(w.id for w in top)
 
         return show
 

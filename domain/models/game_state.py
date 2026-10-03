@@ -60,6 +60,10 @@ class GameState:
         self.best_match_rating: int = 0
         self.best_match_desc: str = ""
 
+        # ===== Bankruptcy + Loan tracking  (✅ FIX #2) =====
+        self.negative_weeks: int = 0
+        self.active_loan: Optional[dict] = None
+
     # =========================================================
     # ROSTER HELPERS
     # =========================================================
@@ -105,7 +109,6 @@ class GameState:
         if division == Division.OPEN:
             return list(self.roster)
         if division == Division.TAG:
-            # For MVP: returns all (validation happens at booking)
             return list(self.roster)
         return []
 
@@ -185,6 +188,21 @@ class GameState:
         return profit
 
     # =========================================================
+    # BANKRUPTCY / LOAN HELPERS  (✅ FIX #2)
+    # =========================================================
+
+    def is_bankrupt(self) -> bool:
+        """3 أسابيع متتالية بالسالب → Game Over."""
+        return self.negative_weeks >= Config.BANKRUPTCY_WEEKS
+
+    def has_active_loan(self) -> bool:
+        return self.active_loan is not None
+
+    def clear_bankruptcy_counter(self) -> None:
+        """لما الـbudget يرجع موجب."""
+        self.negative_weeks = 0
+
+    # =========================================================
     # TIME HELPERS
     # =========================================================
 
@@ -221,6 +239,9 @@ class GameState:
             "total_expenses": self.total_expenses,
             "best_match_rating": self.best_match_rating,
             "best_match_desc": self.best_match_desc,
+            # ✅ FIX #2
+            "negative_weeks": self.negative_weeks,
+            "active_loan": self.active_loan,
         }
 
     @classmethod
@@ -250,6 +271,9 @@ class GameState:
         gs.total_expenses = data.get("total_expenses", 0)
         gs.best_match_rating = data.get("best_match_rating", 0)
         gs.best_match_desc = data.get("best_match_desc", "")
+        # ✅ FIX #2
+        gs.negative_weeks = data.get("negative_weeks", 0)
+        gs.active_loan = data.get("active_loan", None)
         return gs
 
     def __repr__(self) -> str:

@@ -152,3 +152,15 @@ class ChampionshipTier(str, Enum):
     MID = "MID"  # Intercontinental / US
     TAG = "TAG"  # Tag team
     SPECIAL = "SPECIAL"  # 24/7, Hardcore, etc.
+
+# في core/enums.py
+
+
+class AIPersonality(Enum):
+    """AI GM personality — affects booking style."""
+
+    AGGRESSIVE = "AGGRESSIVE"  # Hardcore matches, intense feuds
+    BALANCED = "BALANCED"  # Even distribution
+    SHOWMAN = "SHOWMAN"  # Big main events, promos
+    TECHNICAL = "TECHNICAL"  # Pure wrestling, long matches
+    CHAOTIC = "CHAOTIC"  # Unpredictable, random

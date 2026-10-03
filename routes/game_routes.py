@@ -52,6 +52,11 @@ def dashboard():
     gm = _load_gm()
     if gm is None:
         return redirect(url_for("main.index"))
+
+    # ✅ FIX #2: لو اللاعب أفلس → شاشة Game Over
+    if gm.is_bankrupt():
+        return redirect(url_for("game.bankrupt"))
+
     state = gm.state
     return render_template(
         "dashboard.html",
@@ -60,6 +65,54 @@ def dashboard():
         active_rivalries=state.get_active_rivalries(),
         active_stories=state.get_active_storylines(),
         recent_news=state.news[-5:][::-1],
+        can_take_loan=gm.can_take_loan(),
+        has_active_loan=state.has_active_loan(),
+        negative_weeks=state.negative_weeks,
+        bankruptcy_weeks_limit=__import__("config").Config.BANKRUPTCY_WEEKS,
+        loan_amount=__import__("config").Config.LOAN_AMOUNT,
+        loan_interest=__import__("config").Config.LOAN_INTEREST,
+        loan_weeks=__import__("config").Config.LOAN_REPAY_WEEKS,
+    )
+
+
+# ---------------------------------------------------------
+# ✅ FIX #2: LOAN + BANKRUPTCY
+# ---------------------------------------------------------
+
+
+@game_bp.route("/loan", methods=["POST"])
+def take_loan():
+    """اللاعب ياخد قرض."""
+    gm = _load_gm()
+    if gm is None:
+        return redirect(url_for("main.index"))
+
+    result = gm.take_loan()
+    if result.get("ok"):
+        flash(
+            f"💰 Loan approved! ${result['amount']:,} added. "
+            f"Total due: ${result['total_due']:,} "
+            f"(${result['weekly_payment']:,}/week for "
+            f"{result['weeks_remaining']} weeks).",
+            "success",
+        )
+    else:
+        flash(f"❌ Loan rejected: {result.get('reason', 'Unknown error')}", "error")
+
+    _save_gm(gm)
+    return redirect(url_for("game.dashboard"))
+
+
+@game_bp.route("/bankrupt")
+def bankrupt():
+    """شاشة Game Over."""
+    gm = _load_gm()
+    if gm is None:
+        return redirect(url_for("main.index"))
+    return render_template(
+        "bankrupt.html",
+        state=gm.state,
+        summary=gm.season_summary(),
     )
 
 
@@ -92,6 +145,11 @@ def booking():
     gm = _load_gm()
     if gm is None:
         return redirect(url_for("main.index"))
+
+    # ✅ FIX #2: لو اللاعب أفلس → Game Over
+    if gm.is_bankrupt():
+        return redirect(url_for("game.bankrupt"))
+
     state = gm.state
 
     story_engine = StoryEngine()
@@ -165,12 +223,21 @@ def booking():
             week_result = gm.end_week()
             _save_gm(gm)
 
+            # ✅ FIX #3: نمسح الـcurrent_show من الـsession
+            session.pop("current_show", None)
+
+            # ✅ FIX #2: لو اللاعب أفلس → Game Over
+            if gm.is_bankrupt():
+                return redirect(url_for("game.bankrupt"))
+
             session["last_show_result"] = {
                 "show_rating": result["show_rating"],
                 "economy": result["economy"],
                 "match_count": len(result["matches"]),
                 "ai_rating": ai_result["ai_show_rating"],
                 "week_event": week_result.get("event"),
+                "loan": week_result.get("loan"),
+                "negative_weeks": week_result.get("negative_weeks", 0),
             }
             return redirect(url_for("game.results"))
 
@@ -181,7 +248,6 @@ def booking():
         show = gm.booking.create_show()
         session["current_show"] = _show_to_session(show)
 
-    # Split available by gender
     available_male = [
         w
         for w in state.roster

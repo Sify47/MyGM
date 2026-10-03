@@ -6,6 +6,8 @@ Seed data for the MVP roster.
 
 Game stats are fictional balancing values created for the game.
 They are NOT official WWE ratings.
+
+✅ FIX #2: Salaries reduced ~40% to balance economy.
 """
 
 from core.enums import WrestlerClass, Alignment, Gender
@@ -36,7 +38,7 @@ def seed_roster() -> list[Wrestler]:
             mic_skill=94,
             stamina=82,
             morale=90,
-            salary=45000,
+            salary=27000,  # كان 45000
             contract_weeks=12,
             potential=94,
             traits=["Top Star", "Main Eventer", "Legendary Presence"],
@@ -55,7 +57,7 @@ def seed_roster() -> list[Wrestler]:
             mic_skill=94,
             stamina=88,
             morale=88,
-            salary=42000,
+            salary=25000,  # كان 42000
             contract_weeks=12,
             potential=92,
             traits=["American Dream", "Main Eventer", "Fan Favorite"],
@@ -74,7 +76,7 @@ def seed_roster() -> list[Wrestler]:
             mic_skill=98,
             stamina=72,
             morale=82,
-            salary=40000,
+            salary=24000,  # كان 40000
             contract_weeks=12,
             potential=84,
             traits=["Mic Master", "Veteran", "Ego"],
@@ -93,7 +95,7 @@ def seed_roster() -> list[Wrestler]:
             mic_skill=91,
             stamina=88,
             morale=84,
-            salary=39000,
+            salary=23000,  # كان 39000
             contract_weeks=12,
             potential=90,
             traits=["Main Eventer", "Showman", "Big Match Player"],
@@ -116,7 +118,7 @@ def seed_roster() -> list[Wrestler]:
             mic_skill=88,
             stamina=70,
             morale=82,
-            salary=35000,
+            salary=21000,  # كان 35000
             contract_weeks=12,
             potential=80,
             traits=["Veteran", "Legend", "RKO Outta Nowhere"],
@@ -135,7 +137,7 @@ def seed_roster() -> list[Wrestler]:
             mic_skill=82,
             stamina=92,
             morale=86,
-            salary=38000,
+            salary=23000,  # كان 38000
             contract_weeks=12,
             potential=94,
             traits=["Ring General", "Technical Master", "Dominant"],
@@ -154,7 +156,7 @@ def seed_roster() -> list[Wrestler]:
             mic_skill=87,
             stamina=84,
             morale=88,
-            salary=28000,
+            salary=17000,  # كان 28000
             contract_weeks=12,
             potential=86,
             traits=["Underdog", "Fan Favorite", "Storyteller"],
@@ -173,7 +175,7 @@ def seed_roster() -> list[Wrestler]:
             mic_skill=90,
             stamina=82,
             morale=84,
-            salary=29000,
+            salary=17000,  # كان 29000
             contract_weeks=12,
             potential=84,
             traits=["Brawler", "Fighter", "Mic Master"],
@@ -196,7 +198,7 @@ def seed_roster() -> list[Wrestler]:
             mic_skill=88,
             stamina=91,
             morale=91,
-            salary=30000,
+            salary=18000,  # كان 30000
             contract_weeks=12,
             potential=89,
             traits=["Yeet", "Fan Favorite", "Tag Specialist"],
@@ -215,7 +217,7 @@ def seed_roster() -> list[Wrestler]:
             mic_skill=82,
             stamina=78,
             morale=76,
-            salary=26000,
+            salary=16000,  # كان 26000
             contract_weeks=12,
             potential=80,
             traits=["Veteran", "Technical Master", "Mind Games"],
@@ -234,7 +236,7 @@ def seed_roster() -> list[Wrestler]:
             mic_skill=76,
             stamina=94,
             morale=82,
-            salary=24000,
+            salary=14000,  # كان 24000
             contract_weeks=12,
             potential=97,
             traits=["Powerhouse", "Rising Star", "High Potential"],
@@ -253,7 +255,7 @@ def seed_roster() -> list[Wrestler]:
             mic_skill=74,
             stamina=95,
             morale=86,
-            salary=22000,
+            salary=13000,  # كان 22000
             contract_weeks=12,
             potential=98,
             traits=["Monster", "Dominant", "High Potential"],
@@ -276,7 +278,7 @@ def seed_roster() -> list[Wrestler]:
             mic_skill=88,
             stamina=90,
             morale=90,
-            salary=40000,
+            salary=24000,  # كان 40000
             contract_weeks=12,
             potential=95,
             traits=["Main Eventer", "Powerhouse", "Fan Favorite"],
@@ -295,7 +297,7 @@ def seed_roster() -> list[Wrestler]:
             mic_skill=80,
             stamina=94,
             morale=88,
-            salary=30000,
+            salary=18000,  # كان 30000
             contract_weeks=12,
             potential=93,
             traits=["Genius of the Sky", "High Risk", "Crowd Pleaser"],
@@ -314,7 +316,7 @@ def seed_roster() -> list[Wrestler]:
             mic_skill=83,
             stamina=91,
             morale=87,
-            salary=25000,
+            salary=15000,  # كان 25000
             contract_weeks=12,
             potential=97,
             traits=["Tiffy Time", "Showman", "High Potential"],
@@ -337,7 +339,7 @@ def seed_roster() -> list[Wrestler]:
             mic_skill=80,
             stamina=92,
             morale=82,
-            salary=26000,
+            salary=16000,  # كان 26000
             contract_weeks=12,
             potential=95,
             traits=["Powerhouse", "Athletic", "Dominant"],
@@ -356,7 +358,7 @@ def seed_roster() -> list[Wrestler]:
             mic_skill=91,
             stamina=82,
             morale=84,
-            salary=18000,
+            salary=11000,  # كان 18000
             contract_weeks=12,
             potential=85,
             traits=["Comedy", "Heat Magnet", "Character"],
@@ -375,7 +377,7 @@ def seed_roster() -> list[Wrestler]:
             mic_skill=82,
             stamina=88,
             morale=84,
-            salary=24000,
+            salary=14000,  # كان 24000
             contract_weeks=12,
             potential=89,
             traits=["Fan Favorite", "Character", "Rising Star"],
@@ -398,7 +400,7 @@ def seed_roster() -> list[Wrestler]:
             mic_skill=68,
             stamina=94,
             morale=88,
-            salary=16000,
+            salary=10000,  # كان 16000
             contract_weeks=12,
             potential=96,
             traits=["High Flyer", "Rising Star", "High Potential"],
@@ -417,7 +419,7 @@ def seed_roster() -> list[Wrestler]:
             mic_skill=74,
             stamina=86,
             morale=82,
-            salary=22000,
+            salary=13000,  # كان 22000
             contract_weeks=12,
             potential=84,
             traits=["Powerhouse", "Veteran", "Strong Style"],
