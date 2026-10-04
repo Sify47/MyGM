@@ -59,6 +59,65 @@ class GameplayFoundationTests(unittest.TestCase):
         self.assertEqual(len(gm.state.shows), gm.state.season_length)
         self.assertEqual(len(gm.state.ai_roster), Config.AI_ROSTER_SIZE)
 
+    def test_featured_story_returns_story_update(self):
+        from core.enums import StoryType, MatchImportance, MatchType
+        from domain.engines import StoryBuilder
+
+        gm = GameManager.new_game("Story Test", seed=4)
+        men = [w for w in gm.state.roster if w.gender.value == "MALE"]
+        story = StoryBuilder(gm.state).create_story(
+            StoryType.CHAMPION_VS_CHALLENGER,
+            [men[0].id, men[1].id],
+            title="Test Crown Story",
+        )
+        show = gm.booking.create_show()
+        gm.booking.add_match(
+            show,
+            match_type=MatchType.SINGLES,
+            participant_ids=[men[0].id, men[1].id],
+            importance=MatchImportance.MAIN_EVENT,
+            story_id=story.id,
+        )
+
+        result = gm.simulate_player_show(show)
+
+        self.assertEqual(len(result["story_updates"]), 1)
+        self.assertEqual(result["story_updates"][0]["title"], "Test Crown Story")
+        self.assertGreaterEqual(result["story_updates"][0]["heat"], 30)
+
+    def test_segments_change_story_heat_and_wrestler_state(self):
+        from core.enums import MatchImportance, MatchType, StoryType
+        from domain.engines import StoryBuilder
+
+        gm = GameManager.new_game("Segments Test", seed=5)
+        men = [w for w in gm.state.roster if w.gender.value == "MALE"]
+        story = StoryBuilder(gm.state).create_story(
+            StoryType.BETRAYAL,
+            [men[0].id, men[1].id],
+            title="The Betrayal Test",
+        )
+        show = gm.booking.create_show()
+        gm.booking.add_segment(
+            show, "PROMO", [men[0].id], story_id=story.id
+        )
+        gm.booking.add_segment(
+            show, "BACKSTAGE_ATTACK", [men[0].id, men[1].id], story_id=story.id
+        )
+        gm.booking.add_match(
+            show,
+            MatchType.SINGLES,
+            [men[0].id, men[1].id],
+            MatchImportance.MAIN_EVENT,
+            story_id=story.id,
+        )
+
+        result = gm.simulate_player_show(show)
+
+        self.assertEqual(len(result["segments"]), 2)
+        self.assertGreater(story.heat, 30)
+        self.assertLess(men[1].health, 100)
+        self.assertTrue(any("BACKSTAGE_ATTACK" in item["type"] for item in result["segments"]))
+
 
 if __name__ == "__main__":
     unittest.main()

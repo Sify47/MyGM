@@ -1,23 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Wrestling GM{% endblock %}</title>
+    <title>{% block title %}WWE GM{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Noto+Kufi+Arabic:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <nav class="topnav">
-    <div class="brand">🏆 Wrestling GM</div>
-    <div class="navlinks">
-        <a href="{{ url_for('game.dashboard') }}">Dashboard</a>
-        <a href="{{ url_for('game.roster') }}">Roster</a>
-        <a href="{{ url_for('game.booking') }}">Book Show</a>
-        <a href="{{ url_for('story.stories') }}">Stories</a>
-        <a href="{{ url_for('game.season') }}">Season</a>
-        <a href="{{ url_for('main.index') }}">Home</a>
-    </div>
-</nav>
+        <div class="brand">
+            <span class="brand-mark">🏆</span>
+            <span class="brand-text">WWE <b>GM</b></span>
+        </div>
+        <div class="navlinks">
+            <a href="{{ url_for('game.dashboard') }}">لوحة الإدارة</a>
+            <a href="{{ url_for('game.roster') }}">الفريق</a>
+            <a href="{{ url_for('game.booking') }}">حجز العرض</a>
+            <a href="{{ url_for('story.stories') }}">القصص</a>
+            <a href="{{ url_for('game.season') }}">الموسم</a>
+            <a href="{{ url_for('main.index') }}">الرئيسية</a>
+        </div>
+    </nav>
 
     <main class="container">
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -33,7 +39,7 @@
     </main>
 
     <footer class="footer">
-        <span>Wrestling GM Simulator — MVP</span>
+        <span>WWE GM Simulator — MVP</span>
     </footer>
 </body>
 </html>

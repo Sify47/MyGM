@@ -26,6 +26,7 @@ class Show:
         self.matches: list[Match] = []
         self.promos: list[dict] = []  # {"participant_id": ..., "type": ...}
         self.segments: list[dict] = []
+        self.rundown: list[dict] = []
 
         # Result
         self.rating: int = 0
@@ -45,6 +46,7 @@ class Show:
             "matches": [m.to_dict() for m in self.matches],
             "promos": list(self.promos),
             "segments": list(self.segments),
+            "rundown": list(self.rundown),
             "rating": self.rating,
             "expected_attendance": self.expected_attendance,
             "actual_attendance": self.actual_attendance,
@@ -63,12 +65,29 @@ class Show:
         s.matches = [Match.from_dict(m) for m in data.get("matches", [])]
         s.promos = data.get("promos", [])
         s.segments = data.get("segments", [])
+        s.rundown = data.get("rundown", [])
+        if not s.rundown:
+            s.rebuild_rundown()
         s.rating = data.get("rating", 0)
         s.expected_attendance = data.get("expected_attendance", 0)
         s.actual_attendance = data.get("actual_attendance", 0)
         s.revenue = data.get("revenue", 0)
         s.expenses = data.get("expenses", 0)
         return s
+
+    def rebuild_rundown(self) -> list[dict]:
+        """Interleave segments and matches by each segment's position."""
+        rundown = []
+        for match_index, _match in enumerate(self.matches):
+            for segment_index, segment in enumerate(self.segments):
+                if int(segment.get("position", 0)) == match_index:
+                    rundown.append({"kind": "segment", "index": segment_index})
+            rundown.append({"kind": "match", "index": match_index})
+        for segment_index, segment in enumerate(self.segments):
+            if int(segment.get("position", 0)) >= len(self.matches):
+                rundown.append({"kind": "segment", "index": segment_index})
+        self.rundown = rundown
+        return rundown
 
     def __repr__(self) -> str:
         return f"<Show W{self.week} {self.name} matches={len(self.matches)}>"

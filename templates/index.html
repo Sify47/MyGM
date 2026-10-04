@@ -1,35 +1,38 @@
 {% extends "base.html" %}
-{% block title %}Wrestling GM — Home{% endblock %}
+{% block title %}WWE GM — الرئيسية{% endblock %}
 
 {% block content %}
 <div class="hero">
-    <h1>🏆 Wrestling GM Simulator</h1>
-    <p class="subtitle">Build your promotion. Book your stars. Make history.</p>
+    <span class="eyebrow">WWE GM SIMULATOR</span>
+    <h1>🏆 ابنِ اتحادك</h1>
+    <p class="subtitle">احجز نجومك. اصنع التاريخ. اكتب أسطورتك.</p>
 </div>
 
 <div class="grid-2">
     <div class="card">
-        <h2>🎮 New Game</h2>
+        <h2>🎮 لعبة جديدة</h2>
         <form method="POST" action="{{ url_for('main.new_game') }}">
-            <label for="player_name">Promotion Name</label>
+            <label for="player_name">اسم الاتحاد</label>
             <input type="text" id="player_name" name="player_name"
-                   placeholder="Apex Wrestling" required>
-            <button type="submit" class="btn primary">Start Season</button>
+                   placeholder="مثال: Apex Wrestling" required>
+            <button type="submit" class="btn primary big">▶️ ابدأ الموسم</button>
         </form>
     </div>
 
     <div class="card">
-        <h2>📁 Load Game</h2>
+        <h2>📁 تحميل لعبة</h2>
         {% if saves %}
             <ul class="save-list">
                 {% for s in saves %}
                     <li>
-                        <a href="{{ url_for('main.load_game', filename=s) }}">{{ s }}</a>
+                        <a href="{{ url_for('main.load_game', filename=s) }}" class="btn tiny">
+                            💾 {{ s }}
+                        </a>
                     </li>
                 {% endfor %}
             </ul>
         {% else %}
-            <p class="muted">No saved games yet.</p>
+            <p class="muted">لا توجد ألعاب محفوظة بعد.</p>
         {% endif %}
     </div>
 </div>

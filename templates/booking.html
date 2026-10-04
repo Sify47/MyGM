@@ -1,43 +1,41 @@
 {% extends "base.html" %}
-{% block title %}Book Show{% endblock %}
+{% block title %}حجز العرض{% endblock %}
 
 {% block content %}
 <div class="booking-hero">
     <div>
-        <span class="eyebrow">BOOKING ROOM · WEEK {{ show.week }}</span>
+        <span class="eyebrow">غرفة الحجز · الأسبوع {{ show.week }}</span>
         <h1>{{ show.name }}</h1>
         <p class="muted show-subtitle">
-            Week {{ show.week }} · {{ "PLE" if show.is_ple else "Weekly Show" }}
-            {% if show.is_ple %} · 🔥 6 matches{% endif %}
+            الأسبوع {{ show.week }} · {{ "عرض كبير" if show.is_ple else "عرض أسبوعي" }}
+            {% if show.is_ple %} · 🔥 6 مباريات{% endif %}
         </p>
     </div>
     <div class="booking-actions">
-        <a href="{{ url_for('story.stories') }}" class="btn">
-            📖 Stories
-        </a>
+        <a href="{{ url_for('story.stories') }}" class="btn">📖 القصص</a>
         <form method="POST" style="display: inline;">
             <input type="hidden" name="action" value="auto">
-            <button type="submit" class="btn">⚡ Auto-Build</button>
+            <button type="submit" class="btn">⚡ بناء تلقائي</button>
         </form>
         <form method="POST" style="display: inline;">
             <input type="hidden" name="action" value="clear">
-            <button type="submit" class="btn danger">🗑️ Clear</button>
+            <button type="submit" class="btn danger">🗑️ مسح</button>
         </form>
     </div>
 </div>
 
 <div class="booking-brief">
     <div class="brief-item">
-        <span class="brief-label">Story focus</span>
-        <strong>{{ active_stories|length }} active arc{{ '' if active_stories|length == 1 else 's' }}</strong>
+        <span class="brief-label">تركيز القصص</span>
+        <strong>{{ active_stories|length }} قصة نشطة</strong>
     </div>
     <div class="brief-item">
-        <span class="brief-label">Card slots</span>
-        <strong>{{ show.matches|length }}/{{ 6 if show.is_ple else 4 }} booked</strong>
+        <span class="brief-label">أماكن البطاقة</span>
+        <strong>{{ show.matches|length }}/{{ 6 if show.is_ple else 4 }} محجوزة</strong>
     </div>
     {% if state.weekly_objective %}
     <div class="brief-item objective-brief">
-        <span class="brief-label">This week's ask</span>
+        <span class="brief-label">هدف الأسبوع</span>
         <strong>{{ state.weekly_objective.title }}</strong>
     </div>
     {% endif %}
@@ -49,18 +47,18 @@
     <aside class="roster-panel">
         <div class="panel-heading">
             <div>
-                <span class="eyebrow">TALENT POOL</span>
-                <h2>👥 Available</h2>
+                <span class="eyebrow">قائمة المواهب</span>
+                <h2>👥 المصارعون المتاحون</h2>
             </div>
-            <span class="drag-note">Drag to book</span>
+            <span class="drag-note">اسحب للحجز</span>
         </div>
 
         <div class="roster-tabs">
             <button class="tab-btn active" data-gender="MALE">
-                💪 Men (<span id="male-count">{{ available_male|length }}</span>)
+                💪 رجال (<span id="male-count">{{ available_male|length }}</span>)
             </button>
             <button class="tab-btn" data-gender="FEMALE">
-                👑 Women (<span id="female-count">{{ available_female|length }}</span>)
+                👑 نساء (<span id="female-count">{{ available_female|length }}</span>)
             </button>
         </div>
 
@@ -98,10 +96,10 @@
     <section class="card-panel">
         <div class="card-panel-heading">
             <div>
-                <span class="eyebrow">TONIGHT'S RUNNING ORDER</span>
-                <h2>🎬 Build the story</h2>
+                <span class="eyebrow">ترتيب عرض الليلة</span>
+                <h2>🎬 ابنِ القصة</h2>
             </div>
-            <span class="muted">Every match can move an arc forward.</span>
+            <span class="muted">كل مباراة تستطيع دفع القصة للأمام.</span>
         </div>
 
         <!-- STORIES FEED -->
@@ -109,10 +107,10 @@
         <div class="story-feed">
             <div class="story-feed-heading">
                 <div>
-                    <span class="eyebrow">NARRATIVE DESK</span>
-                    <h3>📖 Active Stories</h3>
+                    <span class="eyebrow">غرفة القصص</span>
+                    <h3>📖 القصص النشطة</h3>
                 </div>
-                <a href="{{ url_for('story.stories') }}" class="btn tiny">Manage stories</a>
+                <a href="{{ url_for('story.stories') }}" class="btn tiny">إدارة القصص</a>
             </div>
             {% for s in active_stories %}
             <div class="story-item" data-story-card="{{ s.id }}">
@@ -123,22 +121,27 @@
                     <span class="story-heat">HEAT {{ s.heat }}</span>
                 </div>
                 <div class="story-progress">
-    <span class="story-progress-bar"
-          data-progress="{{ 0 if s.total_stages == 0 else (((s.stage + 1) / s.total_stages) * 100)|round|int }}"></span>
-</div>
-                <div class="story-stage"><strong>{{ s.current_stage_name }}</strong> · Chapter {{ s.stage + 1 }}/{{ s.total_stages }}</div>
+                    <span class="story-progress-fill"
+                          data-progress="{{ ((s.stage + 1) / s.total_stages * 100)|round|int }}"></span>
+                </div>
+                <div class="story-stage">
+                    <strong>{{ s.current_stage_name }}</strong> · الفصل {{ s.stage + 1 }}/{{ s.total_stages }}
+                </div>
                 <div class="story-beat-hint">
-                    {% if s.beats %}{{ s.get_completed_beats()|length }}/{{ s.beats|length }} beats complete{% else %}Auto arc · feature it to advance{% endif %}
+                    {% if s.beats %}
+                        {{ s.get_completed_beats()|length }}/{{ s.beats|length }} أحداث مكتملة
+                    {% else %}
+                        قصة تلقائية · استخدمها لتتقدم
+                    {% endif %}
                 </div>
                 <div class="story-participants">
                     {% for pid in s.participant_ids %}
                         {% set w = state.get_wrestler(pid) %}
-                        {% if w %}<span class="mini-chip">{{ w.name }}</span>{% endif %}
+                        {% if w %}<span class="mini-chip align-{{ w.alignment.value.lower() }}">{{ w.name }}</span>{% endif %}
                     {% endfor %}
                 </div>
-                <button class="btn tiny primary suggest-btn"
-                        data-story-id="{{ s.id }}">
-                    ✨ Put in the show
+                <button class="btn tiny primary suggest-btn" data-story-id="{{ s.id }}">
+                    ✨ أضف للعرض
                 </button>
             </div>
             {% endfor %}
@@ -151,39 +154,59 @@
              data-limit="{{ segment_limit }}">
             <div class="segment-heading">
                 <div>
-                    <span class="eyebrow">SHOW MOMENTS</span>
-                    <h3>🎙️ Segments <span class="muted">(0/{{ segment_limit }})</span></h3>
+                    <span class="eyebrow">لحظات العرض</span>
+                    <h3>🎙️ الفقرات <span class="muted">(0/{{ segment_limit }})</span></h3>
                 </div>
-                <span class="muted">Build heat between matches.</span>
+                <span class="muted">ابنِ التوتر بين المباريات.</span>
             </div>
             <div class="segment-form-row">
                 <select id="segment-type" aria-label="Segment type">
                     {% for segment_type in segment_types %}
-                    <option value="{{ segment_type }}">{{ segment_type.replace('_', ' ') }}</option>
+                    <option value="{{ segment_type }}">
+                        {% if segment_type == 'PROMO' %}برومو
+                        {% elif segment_type == 'CALLOUT' %}استفزاز
+                        {% elif segment_type == 'BACKSTAGE_ATTACK' %}هجوم خلف الكواليس
+                        {% elif segment_type == 'INTERFERENCE' %}تدخل
+                        {% elif segment_type == 'CONTRACT_SIGNING' %}توقيع عقد
+                        {% else %}احتفال{% endif %}
+                    </option>
                     {% endfor %}
                 </select>
                 <select id="segment-actor" aria-label="Segment lead">
-                    <option value="">Lead performer</option>
+                    <option value="">المصارع الرئيسي</option>
                     {% for w in available_male + available_female %}
                     <option value="{{ w.id }}">{{ w.name }}</option>
                     {% endfor %}
                 </select>
                 <select id="segment-target" aria-label="Segment target">
-                    <option value="">No target</option>
+                    <option value="">بدون مستهدف</option>
                     {% for w in available_male + available_female %}
                     <option value="{{ w.id }}">{{ w.name }}</option>
                     {% endfor %}
                 </select>
                 <select id="segment-story" aria-label="Segment story">
-                    <option value="">Standalone moment</option>
+                    <option value="">لحظة مستقلة</option>
                     {% for s in active_stories %}
                     <option value="{{ s.id }}">{{ s.title }}</option>
                     {% endfor %}
                 </select>
-                <button type="button" class="btn tiny primary" id="add-segment-btn">+ Add</button>
+                <select id="segment-position" aria-label="Segment position">
+                    <option value="0">قبل المباراة 1</option>
+                    {% for position in range(1, (6 if show.is_ple else 4) + 1) %}
+                    <option value="{{ position }}">بعد المباراة {{ position }}</option>
+                    {% endfor %}
+                </select>
+                <button type="button" class="btn tiny primary" id="add-segment-btn">+ إضافة</button>
             </div>
             <div id="segment-list" class="segment-list">
-                <span class="segment-empty">No moments booked yet.</span>
+                <span class="segment-empty">لم تتم إضافة فقرات بعد.</span>
+            </div>
+            <div id="rundown-preview" class="rundown-preview">
+                <div class="rundown-title">
+                    <span class="eyebrow">ترتيب العرض</span>
+                    <strong>الروندَاون</strong>
+                </div>
+                <div id="rundown-list"></div>
             </div>
         </div>
 
@@ -201,56 +224,64 @@
                      data-match-id="{{ existing.id if existing else '' }}">
 
                     <div class="slot-header">
-                        <span class="slot-number">{{ '%02d'|format(i + 1) }} <span>· MATCH</span></span>
+                        <span class="slot-number">
+                            {{ '%02d'|format(i + 1) }} <span>· مباراة</span>
+                        </span>
                         <div class="slot-controls">
                             <select class="slot-type" data-slot="{{ i }}" title="Match Type">
                                 {% for mt in ['SINGLES', 'TAG_TEAM', 'TRIPLE_THREAT', 'CHAMPIONSHIP'] %}
-                                    <option value="{{ mt }}"
-                                        {% if existing and existing.match_type.value == mt %}selected{% endif %}>
-                                        {{ mt }}
-                                    </option>
+                                <option value="{{ mt }}"
+                                    {% if existing and existing.match_type.value == mt %}selected{% endif %}>
+                                    {% if mt == 'SINGLES' %}فردية
+                                    {% elif mt == 'TAG_TEAM' %}فرق
+                                    {% elif mt == 'TRIPLE_THREAT' %}ثلاثية
+                                    {% else %}بطولة{% endif %}
+                                </option>
                                 {% endfor %}
                             </select>
                             <select class="slot-importance" data-slot="{{ i }}" title="Importance">
                                 {% for imp in ['OPENER', 'MIDCARD', 'UPPER_CARD', 'MAIN_EVENT'] %}
-                                    <option value="{{ imp }}"
-                                        {% if existing and existing.importance.value == imp %}selected{% endif %}>
-                                        {{ imp }}
-                                    </option>
+                                <option value="{{ imp }}"
+                                    {% if existing and existing.importance.value == imp %}selected{% endif %}>
+                                    {% if imp == 'OPENER' %}افتتاحية
+                                    {% elif imp == 'MIDCARD' %}منتصف
+                                    {% elif imp == 'UPPER_CARD' %}مرتفعة
+                                    {% else %}الحدث الرئيسي{% endif %}
+                                </option>
                                 {% endfor %}
                             </select>
                             <select class="slot-stipulation" data-slot="{{ i }}" title="Stipulation">
                                 {% for stip in stipulations %}
-                                    <option value="{{ stip }}"
-                                        {% if existing and existing.stipulation.value == stip %}selected{% endif %}>
-                                        {{ stip }}
-                                    </option>
+                                <option value="{{ stip }}"
+                                    {% if existing and existing.stipulation.value == stip %}selected{% endif %}>
+                                    {{ stip }}
+                                </option>
                                 {% endfor %}
                             </select>
                         </div>
                     </div>
 
                     <div class="slot-story-row">
-                        <span class="slot-label">Story</span>
+                        <span class="slot-label">القصة</span>
                         <select class="slot-story" data-slot="{{ i }}" title="Link this match to a story">
-                            <option value="">— Standalone match —</option>
+                            <option value="">— مباراة مستقلة —</option>
                             {% for s in active_stories %}
-                                <option value="{{ s.id }}"
-                                    {% if existing and existing.story_id == s.id %}selected{% endif %}>
-                                    {{ s.title }} · {{ s.current_stage_name }}
-                                </option>
+                            <option value="{{ s.id }}"
+                                {% if existing and existing.story_id == s.id %}selected{% endif %}>
+                                {{ s.title }} · {{ s.current_stage_name }}
+                            </option>
                             {% endfor %}
                         </select>
                     </div>
 
                     <div class="slot-championship-row">
                         <select class="slot-championship" data-slot="{{ i }}" title="Championship">
-                            <option value="">— No Title —</option>
+                            <option value="">— بدون بطولة —</option>
                             {% for c in championships %}
-                                <option value="{{ c.id }}"
-                                    {% if existing and existing.championship_id == c.id %}selected{% endif %}>
-                                    {{ c.name }}
-                                </option>
+                            <option value="{{ c.id }}"
+                                {% if existing and existing.championship_id == c.id %}selected{% endif %}>
+                                {{ c.name }}
+                            </option>
                             {% endfor %}
                         </select>
                     </div>
@@ -270,32 +301,33 @@
                                 {% endif %}
                             {% endfor %}
                         {% else %}
-                            <span class="drop-hint">Drag wrestlers here</span>
+                            <span class="drop-hint">اسحب المصارعين إلى هنا</span>
                         {% endif %}
                     </div>
 
-                    <!-- Winner Mode -->
                     <div class="slot-winner-row">
-                        <label>Winner:</label>
+                        <label>الفائز:</label>
                         <select class="slot-winner-mode" data-slot="{{ i }}">
                             <option value="AUTO"
                                 {% if not existing or existing.winner_mode.value == 'AUTO' %}selected{% endif %}>
-                                🎲 Auto
+                                🎲 تلقائي
                             </option>
                             <option value="MANUAL"
                                 {% if existing and existing.winner_mode.value == 'MANUAL' %}selected{% endif %}>
-                                ✋ Manual
+                                ✋ يدوي
                             </option>
                         </select>
                         <select class="slot-winner-override" data-slot="{{ i }}"
                                 style="display: none;" title="Pick Winner">
-                            <option value="">— Select Winner —</option>
+                            <option value="">— اختر الفائز —</option>
                         </select>
                     </div>
 
                     <div class="slot-footer">
-                        <span class="slot-status">{% if existing %}{{ existing.participant_ids|length }} wrestlers{% else %}Empty{% endif %}</span>
-                        <button class="btn tiny clear-slot-btn" data-slot="{{ i }}">✕ Clear</button>
+                        <span class="slot-status">
+                            {% if existing %}{{ existing.participant_ids|length }} مصارعين{% else %}فارغ{% endif %}
+                        </span>
+                        <button class="btn tiny clear-slot-btn" data-slot="{{ i }}">✕ مسح</button>
                     </div>
                 </div>
             {% endfor %}
@@ -307,7 +339,7 @@
             <input type="hidden" name="card_json" id="card_json">
             <input type="hidden" name="segments_json" id="segments_json">
             <button type="submit" class="btn primary big" id="simulate-btn">
-                ▶️ Save & Simulate Show
+                ▶️ حفظ ومحاكاة العرض
             </button>
         </form>
     </section>

@@ -1,33 +1,53 @@
 {% extends "base.html" %}
-{% block title %}Season{% endblock %}
+{% block title %}الموسم{% endblock %}
 
 {% block content %}
-<h1>🏁 Season {{ "Complete" if summary else "In Progress" }}</h1>
+<div class="page-header">
+    <h1>🏁 الموسم {{ "مكتمل" if summary else "قيد التقدم" }}</h1>
+</div>
 
 {% if summary %}
 <div class="stats-row">
-    <div class="stat"><span class="label">Fans</span><span class="value">{{ "{:,}".format(summary.player_fans) }}</span></div>
-    <div class="stat"><span class="label">Budget</span><span class="value">${{ "{:,}".format(summary.player_budget) }}</span></div>
-    <div class="stat"><span class="label">Revenue</span><span class="value">${{ "{:,}".format(summary.total_revenue) }}</span></div>
-    <div class="stat"><span class="label">Profit</span><span class="value">${{ "{:,}".format(summary.profit) }}</span></div>
-    <div class="stat"><span class="label">Avg Rating</span><span class="value">{{ summary.avg_show_rating }}</span></div>
+    <div class="stat">
+        <span class="label">الجماهير</span>
+        <span class="value">{{ "{:,}".format(summary.player_fans) }}</span>
+    </div>
+    <div class="stat">
+        <span class="label">الميزانية</span>
+        <span class="value">${{ "{:,}".format(summary.player_budget) }}</span>
+    </div>
+    <div class="stat">
+        <span class="label">الإيرادات</span>
+        <span class="value">${{ "{:,}".format(summary.total_revenue) }}</span>
+    </div>
+    <div class="stat">
+        <span class="label">الربح</span>
+        <span class="value">${{ "{:,}".format(summary.profit) }}</span>
+    </div>
+    <div class="stat">
+        <span class="label">متوسط التقييم</span>
+        <span class="value">{{ summary.avg_show_rating }}</span>
+    </div>
 </div>
 
 <div class="card">
-    <h2>🏅 Highlights</h2>
+    <h2>🏅 أبرز اللحظات</h2>
     <ul class="highlights">
-        <li><strong>Best Match:</strong> {{ summary.best_match_desc }} ({{ summary.best_match_rating }})</li>
-        <li><strong>Top Superstar:</strong> {{ summary.top_superstar }}</li>
-        <li><strong>Best Rivalry:</strong> {{ summary.best_rivalry }}</li>
-        <li><strong>Shows Run:</strong> {{ summary.shows_count }}</li>
+        <li><strong>أفضل مباراة:</strong> {{ summary.best_match_desc }} ({{ summary.best_match_rating }})</li>
+        <li><strong>النجم الأول:</strong> {{ summary.top_superstar }}</li>
+        <li><strong>أفضل عداوة:</strong> {{ summary.best_rivalry }}</li>
+        <li><strong>عدد العروض:</strong> {{ summary.shows_count }}</li>
     </ul>
 </div>
 
 <div class="actions">
-    <a href="{{ url_for('main.index') }}" class="btn primary">🔄 New Season</a>
+    <a href="{{ url_for('main.index') }}" class="btn primary">🔄 موسم جديد</a>
 </div>
 {% else %}
-<p class="muted">Season ends at Week {{ state.season_length }}. Currently Week {{ state.current_week }}.</p>
-<a href="{{ url_for('game.dashboard') }}" class="btn primary">← Back to Dashboard</a>
+<p class="muted">
+    الموسم ينتهي في الأسبوع {{ state.season_length }}.
+    حاليًا الأسبوع {{ state.current_week }}.
+</p>
+<a href="{{ url_for('game.dashboard') }}" class="btn primary">← العودة للوحة الإدارة</a>
 {% endif %}
 {% endblock %}

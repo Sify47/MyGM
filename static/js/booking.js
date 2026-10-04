@@ -14,6 +14,18 @@
     const pool = document.getElementById("roster-pool");
     const form = document.getElementById("booking-form");
     const cardInput = document.getElementById("card_json");
+    const segmentsInput = document.getElementById("segments_json");
+    const segmentBuilder = document.getElementById("segment-builder");
+    const segmentList = document.getElementById("segment-list");
+    let segments = segmentBuilder
+        ? JSON.parse(segmentBuilder.dataset.existingSegments || "[]")
+        : [];
+
+    // ✅ FIX: set width via JS instead of inline style with %
+    document.querySelectorAll(".story-progress-fill").forEach((bar) => {
+        const progress = bar.dataset.progress || 0;
+        bar.style.width = progress + "%";
+    });
 
     let dragged = null;
 
@@ -27,13 +39,11 @@
         tab.addEventListener("click", () => {
             const gender = tab.dataset.gender;
 
-            // Update active tab
             document.querySelectorAll(".tab-btn").forEach((t) =>
                 t.classList.remove("active")
             );
             tab.classList.add("active");
 
-            // Show/hide chips by gender
             pool.querySelectorAll(".wrestler-chip").forEach((chip) => {
                 const isFemale = chip.classList.contains("gender-female");
                 if (gender === "FEMALE") {
@@ -97,7 +107,6 @@
 
         const slot = zone.closest(".match-slot");
 
-        // Remove from old slot if applicable
         if (
             dragged.fromSlot !== null &&
             dragged.fromSlot !== slot.dataset.slotIndex
@@ -116,21 +125,18 @@
             }
         }
 
-        // Prevent duplicate in same slot
         if (zone.querySelector(`[data-wrestler-id="${dragged.id}"]`)) {
             return;
         }
 
-        // Gender consistency check
         const existingChips = zone.querySelectorAll(".wrestler-chip");
         for (const chip of existingChips) {
             if (chip.dataset.gender !== dragged.gender) {
-                alert("Cannot mix genders in the same match.");
+                alert("لا يمكن خلط الجنسين في نفس المباراة.");
                 return;
             }
         }
 
-        // Add chip
         const chip = document.createElement("span");
         chip.className = "wrestler-chip small";
         chip.draggable = true;
@@ -153,12 +159,11 @@
         if (e.target.classList.contains("clear-slot-btn")) {
             const slot = e.target.closest(".match-slot");
             const zone = slot.querySelector(".drop-zone");
-            zone.innerHTML = '<span class="drop-hint">Drag wrestlers here</span>';
+            zone.innerHTML = '<span class="drop-hint">اسحب المصارعين إلى هنا</span>';
             updateSlotState(slot);
 
-            // Reset winner override
             const override = slot.querySelector(".slot-winner-override");
-            override.innerHTML = '<option value="">— Select Winner —</option>';
+            override.innerHTML = '<option value="">— اختر الفائز —</option>';
         }
     });
 
@@ -190,15 +195,15 @@
         slot.classList.toggle("partial", count === 1);
 
         const status = slot.querySelector(".slot-status");
-        if (count === 0) status.textContent = "Empty";
-        else if (count === 1) status.textContent = "1 wrestler";
-        else status.textContent = `${count} wrestlers`;
+        if (count === 0) status.textContent = "فارغ";
+        else if (count === 1) status.textContent = "مصارع واحد";
+        else status.textContent = `${count} مصارعين`;
 
-        // Refresh winner options if manual mode
         const mode = slot.querySelector(".slot-winner-mode").value;
         if (mode === "MANUAL") {
             refreshWinnerOptions(slot);
         }
+        renderRundown();
     }
 
     function refreshWinnerOptions(slot) {
@@ -206,7 +211,7 @@
         const chips = slot.querySelectorAll(".drop-zone .wrestler-chip");
         const currentVal = override.value;
 
-        override.innerHTML = '<option value="">— Select Winner —</option>';
+        override.innerHTML = '<option value="">— اختر الفائز —</option>';
         chips.forEach((chip) => {
             const opt = document.createElement("option");
             opt.value = chip.dataset.wrestlerId;
@@ -223,24 +228,141 @@
         const card = buildCardJson();
         if (card.length === 0) {
             e.preventDefault();
-            alert("Book at least one match first.");
+            alert("احجز مباراة واحدة على الأقل أولًا.");
             return;
         }
 
-        // Validate winner override if manual
         for (const entry of card) {
             if (entry.winner_mode === "MANUAL" && !entry.winner_override_id) {
                 e.preventDefault();
-                alert(
-                    "Please pick a winner for all matches set to Manual, " +
-                    "or switch them back to Auto."
-                );
+                alert("اختر فائزًا لكل مباراة يدوية أو أعدها إلى تلقائي.");
                 return;
             }
         }
 
         cardInput.value = JSON.stringify(card);
+        segmentsInput.value = JSON.stringify(segments);
     });
+
+    // =====================================================
+    // SEGMENTS
+    // =====================================================
+    function renderSegments() {
+        if (!segmentList) return;
+        segmentList.innerHTML = "";
+        if (!segments.length) {
+            segmentList.innerHTML =
+                '<span class="segment-empty">لم تتم إضافة فقرات بعد.</span>';
+            renderRundown();
+            return;
+        }
+        segments.forEach((segment, index) => {
+            const row = document.createElement("div");
+            row.className = "segment-row";
+            const names =
+                segment.participant_names || segment.participant_ids.join(" + ");
+            row.innerHTML = `
+                <div>
+                    <span class="segment-type">${segment.type.replaceAll("_", " ")}</span>
+                    <strong>${names}</strong>
+                    ${segment.story_title ? `<small> · ${segment.story_title}</small>` : ""}
+                </div>
+                <button type="button" class="btn tiny danger" data-remove-segment="${index}">مسح</button>
+            `;
+            segmentList.appendChild(row);
+        });
+        const count = document.querySelector(".segment-heading h3 .muted");
+        if (count)
+            count.textContent = `(${segments.length}/${segmentBuilder.dataset.limit || "?"})`;
+        renderRundown();
+    }
+
+    function renderRundown() {
+        const list = document.getElementById("rundown-list");
+        if (!list) return;
+        list.innerHTML = "";
+        const typeLabels = {
+            PROMO: "برومو",
+            CALLOUT: "استفزاز",
+            BACKSTAGE_ATTACK: "هجوم خلف الكواليس",
+            INTERFERENCE: "تدخل",
+            CONTRACT_SIGNING: "توقيع عقد",
+            CELEBRATION: "احتفال",
+        };
+        const slots = document.querySelectorAll(".match-slot");
+        for (let position = 0; position <= slots.length; position += 1) {
+            segments
+                .filter((segment) => Number(segment.position || 0) === position)
+                .forEach((segment) => {
+                    const item = document.createElement("div");
+                    item.className = "rundown-item segment-item";
+                    item.innerHTML = `<span class="rundown-index">${
+                        list.children.length + 1
+                    }</span><span>🎙️ ${typeLabels[segment.type] || segment.type}</span>`;
+                    list.appendChild(item);
+                });
+            if (position < slots.length) {
+                const count = slots[position].querySelectorAll(
+                    ".drop-zone .wrestler-chip"
+                ).length;
+                const item = document.createElement("div");
+                item.className = `rundown-item ${
+                    count >= 2 ? "match-ready" : "match-empty"
+                }`;
+                item.innerHTML = `<span class="rundown-index">${
+                    list.children.length + 1
+                }</span><span>🎬 مباراة ${position + 1}</span><small>${
+                    count >= 2 ? "جاهزة" : "فارغة"
+                }</small>`;
+                list.appendChild(item);
+            }
+        }
+    }
+
+    if (segmentBuilder) {
+        segmentBuilder.dataset.limit = segmentBuilder.dataset.limit || "";
+        renderSegments();
+        document
+            .getElementById("add-segment-btn")
+            .addEventListener("click", () => {
+                const type = document.getElementById("segment-type").value;
+                const actor = document.getElementById("segment-actor");
+                const target = document.getElementById("segment-target");
+                const story = document.getElementById("segment-story");
+                const position = document.getElementById("segment-position");
+                if (!actor.value) {
+                    alert("اختر المصارع الرئيسي للفقرة.");
+                    return;
+                }
+                const ids = [actor.value];
+                const names = [actor.options[actor.selectedIndex].text];
+                if (target.value && target.value !== actor.value) {
+                    ids.push(target.value);
+                    names.push(target.options[target.selectedIndex].text);
+                }
+                segments.push({
+                    type,
+                    participant_ids: ids,
+                    participant_names: names.join(" + "),
+                    story_id: story.value || null,
+                    story_title: story.value
+                        ? story.options[story.selectedIndex].text
+                        : "",
+                    position: Number(position.value || 0),
+                });
+                renderSegments();
+                actor.value = "";
+                target.value = "";
+                story.value = "";
+                position.value = "0";
+            });
+        segmentList.addEventListener("click", (event) => {
+            const button = event.target.closest("[data-remove-segment]");
+            if (!button) return;
+            segments.splice(Number(button.dataset.removeSegment), 1);
+            renderSegments();
+        });
+    }
 
     function buildCardJson() {
         const result = [];
@@ -257,13 +379,11 @@
             const stipulation = slot.querySelector(".slot-stipulation").value;
             const championshipId =
                 slot.querySelector(".slot-championship").value || null;
-            const winnerMode =
-                slot.querySelector(".slot-winner-mode").value;
+            const winnerMode = slot.querySelector(".slot-winner-mode").value;
             const winnerOverrideId =
                 slot.querySelector(".slot-winner-override").value || null;
             const storyId = slot.querySelector(".slot-story").value || null;
 
-            // Auto-select championship type if a title is picked
             let finalMatchType = matchType;
             if (championshipId && matchType !== "CHAMPIONSHIP") {
                 finalMatchType = "CHAMPIONSHIP";
@@ -295,14 +415,13 @@
                 .then((data) => {
                     if (!data.participant_ids) return;
 
-                    // Find first empty slot
                     const emptySlot = Array.from(slotEls).find(
                         (s) =>
                             s.querySelectorAll(".drop-zone .wrestler-chip")
                                 .length === 0
                     );
                     if (!emptySlot) {
-                        alert("No empty match slots.");
+                        alert("لا توجد أماكن مباريات فارغة.");
                         return;
                     }
 
@@ -319,14 +438,12 @@
                         chip.className = "wrestler-chip small";
                         chip.draggable = true;
                         chip.dataset.wrestlerId = pid;
-                        chip.dataset.wrestlerName =
-                            chipData.dataset.wrestlerName;
+                        chip.dataset.wrestlerName = chipData.dataset.wrestlerName;
                         chip.dataset.gender = chipData.dataset.gender;
                         chip.textContent = chipData.dataset.wrestlerName;
                         zone.appendChild(chip);
                     });
 
-                    // Set match type & importance
                     if (data.match_type) {
                         emptySlot.querySelector(".slot-type").value =
                             data.match_type;
@@ -344,13 +461,15 @@
                     }
 
                     updateSlotState(emptySlot);
-                    emptySlot.scrollIntoView({ behavior: "smooth", block: "center" });
+                    emptySlot.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center",
+                    });
                 })
                 .catch((err) => {
                     console.error(err);
-                    alert("Could not fetch suggestion.");
+                    alert("تعذر جلب اقتراح القصة.");
                 });
         });
-    });
-
+    })();
 })();

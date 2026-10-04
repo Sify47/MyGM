@@ -1,15 +1,15 @@
 {
-  "current_week": 5,
+  "current_week": 6,
   "season_length": 12,
   "player_name": "س",
-  "player_budget": 2368651,
-  "player_fans": 116548,
-  "player_casual_fans": 78783,
-  "player_hardcore_fans": 33765,
+  "player_budget": 2761678,
+  "player_fans": 120043,
+  "player_casual_fans": 84030,
+  "player_hardcore_fans": 36013,
   "ai_name": "Rival Promotion",
-  "ai_budget": 1125471,
-  "ai_fans": 109795,
-  "ai_last_show_rating": 65,
+  "ai_budget": 1116893,
+  "ai_fans": 111441,
+  "ai_last_show_rating": 70,
   "ai_roster": [
     {
       "id": "af2db03a-c3ac-4edb-9bf2-76ba75e3b9f1",
@@ -18,12 +18,12 @@
       "age": 38,
       "wrestler_class": "POWERHOUSE",
       "alignment": "HEEL",
-      "popularity": 92,
+      "popularity": 93,
       "ring_skill": 90,
       "mic_skill": 88,
-      "stamina": 85,
-      "health": 100,
-      "morale": 88,
+      "stamina": 75,
+      "health": 95,
+      "morale": 91,
       "potential": 90,
       "salary": 25000,
       "contract_weeks": 12,
@@ -34,7 +34,7 @@
       ],
       "is_injured": false,
       "injury_weeks": 0,
-      "wins": 0,
+      "wins": 1,
       "losses": 0,
       "current_rivalry_id": null,
       "current_story_id": null,
@@ -78,12 +78,12 @@
       "age": 32,
       "wrestler_class": "BRAWLER",
       "alignment": "HEEL",
-      "popularity": 83,
+      "popularity": 82,
       "ring_skill": 86,
       "mic_skill": 82,
-      "stamina": 78,
-      "health": 95,
-      "morale": 82,
+      "stamina": 68,
+      "health": 90,
+      "morale": 80,
       "potential": 88,
       "salary": 18000,
       "contract_weeks": 12,
@@ -95,7 +95,7 @@
       "is_injured": false,
       "injury_weeks": 0,
       "wins": 0,
-      "losses": 1,
+      "losses": 2,
       "current_rivalry_id": null,
       "current_story_id": null,
       "is_champion": false,
@@ -138,12 +138,12 @@
       "age": 40,
       "wrestler_class": "SHOWMAN",
       "alignment": "HEEL",
-      "popularity": 87,
+      "popularity": 86,
       "ring_skill": 84,
       "mic_skill": 94,
-      "stamina": 68,
-      "health": 95,
-      "morale": 85,
+      "stamina": 58,
+      "health": 90,
+      "morale": 83,
       "potential": 82,
       "salary": 19000,
       "contract_weeks": 12,
@@ -155,7 +155,7 @@
       "is_injured": false,
       "injury_weeks": 0,
       "wins": 1,
-      "losses": 0,
+      "losses": 1,
       "current_rivalry_id": null,
       "current_story_id": null,
       "is_champion": false,
@@ -198,12 +198,12 @@
       "age": 30,
       "wrestler_class": "TECHNICIAN",
       "alignment": "HEEL",
-      "popularity": 78,
+      "popularity": 80,
       "ring_skill": 88,
       "mic_skill": 80,
-      "stamina": 88,
-      "health": 100,
-      "morale": 80,
+      "stamina": 78,
+      "health": 95,
+      "morale": 83,
       "potential": 90,
       "salary": 15000,
       "contract_weeks": 12,
@@ -214,7 +214,7 @@
       ],
       "is_injured": false,
       "injury_weeks": 0,
-      "wins": 0,
+      "wins": 1,
       "losses": 0,
       "current_rivalry_id": null,
       "current_story_id": null,
@@ -380,15 +380,15 @@
       "age": 41,
       "wrestler_class": "POWERHOUSE",
       "alignment": "FACE",
-      "popularity": 97,
+      "popularity": 96,
       "ring_skill": 94,
       "mic_skill": 94,
       "stamina": 100,
-      "health": 73,
-      "morale": 100,
+      "health": 68,
+      "morale": 98,
       "potential": 94,
       "salary": 27000,
-      "contract_weeks": 8,
+      "contract_weeks": 7,
       "traits": [
         "Top Star",
         "Main Eventer",
@@ -397,7 +397,7 @@
       "is_injured": false,
       "injury_weeks": 0,
       "wins": 3,
-      "losses": 2,
+      "losses": 3,
       "current_rivalry_id": null,
       "current_story_id": "68e443c1-ff5d-4662-8efd-cb03f8e1f554",
       "is_champion": true,
@@ -410,15 +410,15 @@
       "age": 41,
       "wrestler_class": "SHOWMAN",
       "alignment": "FACE",
-      "popularity": 93,
+      "popularity": 94,
       "ring_skill": 91,
       "mic_skill": 94,
       "stamina": 100,
-      "health": 71,
-      "morale": 98,
+      "health": 66,
+      "morale": 100,
       "potential": 92,
       "salary": 25000,
-      "contract_weeks": 8,
+      "contract_weeks": 7,
       "traits": [
         "American Dream",
         "Main Eventer",
@@ -426,7 +426,7 @@
       ],
       "is_injured": false,
       "injury_weeks": 0,
-      "wins": 2,
+      "wins": 3,
       "losses": 3,
       "current_rivalry_id": null,
       "current_story_id": "68e443c1-ff5d-4662-8efd-cb03f8e1f554",
@@ -448,7 +448,7 @@
       "morale": 92,
       "potential": 84,
       "salary": 24000,
-      "contract_weeks": 8,
+      "contract_weeks": 7,
       "traits": [
         "Mic Master",
         "Veteran",
@@ -470,15 +470,15 @@
       "age": 40,
       "wrestler_class": "SHOWMAN",
       "alignment": "HEEL",
-      "popularity": 97,
+      "popularity": 98,
       "ring_skill": 94,
       "mic_skill": 91,
-      "stamina": 93,
-      "health": 63,
+      "stamina": 100,
+      "health": 58,
       "morale": 100,
       "potential": 90,
       "salary": 23000,
-      "contract_weeks": 8,
+      "contract_weeks": 7,
       "traits": [
         "Main Eventer",
         "Showman",
@@ -486,7 +486,7 @@
       ],
       "is_injured": false,
       "injury_weeks": 0,
-      "wins": 6,
+      "wins": 7,
       "losses": 1,
       "current_rivalry_id": "8d979a91-86f1-4d50-a4d1-32eab0f0935b",
       "current_story_id": "6d77da77-3ff6-4c94-8f85-fc0f8bdfa7fe",
@@ -508,7 +508,7 @@
       "morale": 78,
       "potential": 80,
       "salary": 21000,
-      "contract_weeks": 8,
+      "contract_weeks": 7,
       "traits": [
         "Veteran",
         "Legend",
@@ -538,7 +538,7 @@
       "morale": 87,
       "potential": 94,
       "salary": 23000,
-      "contract_weeks": 8,
+      "contract_weeks": 7,
       "traits": [
         "Ring General",
         "Technical Master",
@@ -568,7 +568,7 @@
       "morale": 92,
       "potential": 86,
       "salary": 17000,
-      "contract_weeks": 8,
+      "contract_weeks": 7,
       "traits": [
         "Underdog",
         "Fan Favorite",
@@ -598,7 +598,7 @@
       "morale": 90,
       "potential": 84,
       "salary": 17000,
-      "contract_weeks": 8,
+      "contract_weeks": 7,
       "traits": [
         "Brawler",
         "Fighter",
@@ -628,7 +628,7 @@
       "morale": 89,
       "potential": 89,
       "salary": 18000,
-      "contract_weeks": 8,
+      "contract_weeks": 7,
       "traits": [
         "Yeet",
         "Fan Favorite",
@@ -658,7 +658,7 @@
       "morale": 72,
       "potential": 80,
       "salary": 16000,
-      "contract_weeks": 8,
+      "contract_weeks": 7,
       "traits": [
         "Veteran",
         "Technical Master",
@@ -680,15 +680,15 @@
       "age": 29,
       "wrestler_class": "POWERHOUSE",
       "alignment": "HEEL",
-      "popularity": 81,
+      "popularity": 84,
       "ring_skill": 86,
       "mic_skill": 76,
       "stamina": 100,
-      "health": 90,
-      "morale": 78,
+      "health": 85,
+      "morale": 82,
       "potential": 97,
       "salary": 14000,
-      "contract_weeks": 8,
+      "contract_weeks": 7,
       "traits": [
         "Powerhouse",
         "Rising Star",
@@ -697,7 +697,7 @@
       "is_injured": false,
       "injury_weeks": 0,
       "wins": 0,
-      "losses": 2,
+      "losses": 3,
       "current_rivalry_id": "8d979a91-86f1-4d50-a4d1-32eab0f0935b",
       "current_story_id": "6d77da77-3ff6-4c94-8f85-fc0f8bdfa7fe",
       "is_champion": false,
@@ -718,7 +718,7 @@
       "morale": 86,
       "potential": 98,
       "salary": 13000,
-      "contract_weeks": 8,
+      "contract_weeks": 7,
       "traits": [
         "Monster",
         "Dominant",
@@ -744,11 +744,11 @@
       "ring_skill": 94,
       "mic_skill": 88,
       "stamina": 100,
-      "health": 70,
-      "morale": 93,
+      "health": 65,
+      "morale": 91,
       "potential": 95,
       "salary": 24000,
-      "contract_weeks": 8,
+      "contract_weeks": 7,
       "traits": [
         "Main Eventer",
         "Powerhouse",
@@ -757,7 +757,7 @@
       "is_injured": false,
       "injury_weeks": 0,
       "wins": 3,
-      "losses": 3,
+      "losses": 4,
       "current_rivalry_id": "a6235b95-7f33-46ab-88e1-f7450027bec6",
       "current_story_id": "ac647265-623d-404c-8765-578873db53cc",
       "is_champion": false,
@@ -770,15 +770,15 @@
       "age": 36,
       "wrestler_class": "HIGH_FLYER",
       "alignment": "FACE",
-      "popularity": 91,
+      "popularity": 93,
       "ring_skill": 96,
       "mic_skill": 80,
       "stamina": 100,
-      "health": 70,
-      "morale": 91,
+      "health": 65,
+      "morale": 94,
       "potential": 93,
       "salary": 18000,
-      "contract_weeks": 8,
+      "contract_weeks": 7,
       "traits": [
         "Genius of the Sky",
         "High Risk",
@@ -786,7 +786,7 @@
       ],
       "is_injured": false,
       "injury_weeks": 0,
-      "wins": 3,
+      "wins": 4,
       "losses": 3,
       "current_rivalry_id": "a6235b95-7f33-46ab-88e1-f7450027bec6",
       "current_story_id": "ac647265-623d-404c-8765-578873db53cc",
@@ -808,7 +808,7 @@
       "morale": 94,
       "potential": 97,
       "salary": 15000,
-      "contract_weeks": 8,
+      "contract_weeks": 7,
       "traits": [
         "Tiffy Time",
         "Showman",
@@ -838,7 +838,7 @@
       "morale": 76,
       "potential": 95,
       "salary": 16000,
-      "contract_weeks": 8,
+      "contract_weeks": 7,
       "traits": [
         "Powerhouse",
         "Athletic",
@@ -868,7 +868,7 @@
       "morale": 81,
       "potential": 85,
       "salary": 11000,
-      "contract_weeks": 8,
+      "contract_weeks": 7,
       "traits": [
         "Comedy",
         "Heat Magnet",
@@ -898,7 +898,7 @@
       "morale": 82,
       "potential": 89,
       "salary": 14000,
-      "contract_weeks": 8,
+      "contract_weeks": 7,
       "traits": [
         "Fan Favorite",
         "Character",
@@ -928,7 +928,7 @@
       "morale": 88,
       "potential": 96,
       "salary": 10000,
-      "contract_weeks": 8,
+      "contract_weeks": 7,
       "traits": [
         "High Flyer",
         "Rising Star",
@@ -958,7 +958,7 @@
       "morale": 88,
       "potential": 84,
       "salary": 13000,
-      "contract_weeks": 8,
+      "contract_weeks": 7,
       "traits": [
         "Powerhouse",
         "Veteran",
@@ -984,8 +984,8 @@
       "min_popularity": 70,
       "champion_id": "159ea488-dd94-4f00-a3f6-db0ec1e5a8e6",
       "defenses": 0,
-      "days_held": 28,
-      "weeks_held": 4,
+      "days_held": 35,
+      "weeks_held": 5,
       "history": []
     },
     {
@@ -997,8 +997,8 @@
       "min_popularity": 55,
       "champion_id": "a24332e7-77a3-4f7a-a078-be8d3f73c045",
       "defenses": 0,
-      "days_held": 28,
-      "weeks_held": 4,
+      "days_held": 35,
+      "weeks_held": 5,
       "history": []
     },
     {
@@ -1010,8 +1010,8 @@
       "min_popularity": 50,
       "champion_id": "848801c0-99d0-47bf-b8a4-d724447778df",
       "defenses": 0,
-      "days_held": 28,
-      "weeks_held": 4,
+      "days_held": 35,
+      "weeks_held": 5,
       "history": []
     },
     {
@@ -1023,8 +1023,8 @@
       "min_popularity": 70,
       "champion_id": "bb34947e-5661-4ab3-95cc-e7ad121cc1bd",
       "defenses": 0,
-      "days_held": 7,
-      "weeks_held": 1,
+      "days_held": 14,
+      "weeks_held": 2,
       "history": [
         {
           "week": 4,
@@ -1041,8 +1041,8 @@
       "min_popularity": 55,
       "champion_id": "bb34947e-5661-4ab3-95cc-e7ad121cc1bd",
       "defenses": 0,
-      "days_held": 28,
-      "weeks_held": 4,
+      "days_held": 35,
+      "weeks_held": 5,
       "history": []
     },
     {
@@ -1054,8 +1054,8 @@
       "min_popularity": 60,
       "champion_id": "195a9e53-04f7-44b9-b924-3d835aef06fb",
       "defenses": 0,
-      "days_held": 28,
-      "weeks_held": 4,
+      "days_held": 35,
+      "weeks_held": 5,
       "history": []
     }
   ],
@@ -1086,6 +1086,11 @@
           "week": 4,
           "event": "no_interaction",
           "heat_delta": 0
+        },
+        {
+          "week": 5,
+          "event": "no_interaction",
+          "heat_delta": 0
         }
       ]
     },
@@ -1093,8 +1098,8 @@
       "id": "a14a933f-db3b-490a-bc5a-19701a8ec8df",
       "wrestler_a_id": "195a9e53-04f7-44b9-b924-3d835aef06fb",
       "wrestler_b_id": "848801c0-99d0-47bf-b8a4-d724447778df",
-      "heat": 14,
-      "weeks_active": 4,
+      "heat": 11,
+      "weeks_active": 5,
       "history": [
         {
           "week": 1,
@@ -1115,6 +1120,11 @@
           "week": 4,
           "event": "no_interaction",
           "heat_delta": -3
+        },
+        {
+          "week": 5,
+          "event": "no_interaction",
+          "heat_delta": -3
         }
       ]
     },
@@ -1122,8 +1132,8 @@
       "id": "a6235b95-7f33-46ab-88e1-f7450027bec6",
       "wrestler_a_id": "18fe73d0-1a35-47bc-b0b8-adb2c29f0756",
       "wrestler_b_id": "bb34947e-5661-4ab3-95cc-e7ad121cc1bd",
-      "heat": 30,
-      "weeks_active": 3,
+      "heat": 40,
+      "weeks_active": 4,
       "history": [
         {
           "week": 2,
@@ -1139,6 +1149,11 @@
           "week": 4,
           "event": "singles",
           "heat_delta": 10
+        },
+        {
+          "week": 5,
+          "event": "singles",
+          "heat_delta": 10
         }
       ]
     },
@@ -1146,8 +1161,8 @@
       "id": "f5f7cf06-5518-48e8-858e-55ced9219873",
       "wrestler_a_id": "446b2fda-88eb-41e5-9f60-b40ed3c0a5f0",
       "wrestler_b_id": "2be125d8-18e7-4b26-a1c3-01b8e4f51227",
-      "heat": 17,
-      "weeks_active": 3,
+      "heat": 14,
+      "weeks_active": 4,
       "history": [
         {
           "week": 2,
@@ -1163,6 +1178,11 @@
           "week": 4,
           "event": "no_interaction",
           "heat_delta": -3
+        },
+        {
+          "week": 5,
+          "event": "no_interaction",
+          "heat_delta": -3
         }
       ]
     },
@@ -1170,13 +1190,18 @@
       "id": "8d979a91-86f1-4d50-a4d1-32eab0f0935b",
       "wrestler_a_id": "195a9e53-04f7-44b9-b924-3d835aef06fb",
       "wrestler_b_id": "94bd83d5-ec3d-4658-8c4f-74d8a7c533db",
-      "heat": 10,
-      "weeks_active": 1,
+      "heat": 7,
+      "weeks_active": 2,
       "history": [
         {
           "week": 4,
           "event": "singles",
           "heat_delta": 10
+        },
+        {
+          "week": 5,
+          "event": "no_interaction",
+          "heat_delta": -3
         }
       ]
     },
@@ -1184,13 +1209,18 @@
       "id": "d18ddde8-71e0-46aa-bf40-5a2019ff9e77",
       "wrestler_a_id": "9837599c-66d9-4d36-999a-b01875f95ffd",
       "wrestler_b_id": "c934708c-727a-4288-b87b-039bac789448",
-      "heat": 10,
-      "weeks_active": 1,
+      "heat": 7,
+      "weeks_active": 2,
       "history": [
         {
           "week": 4,
           "event": "singles",
           "heat_delta": 10
+        },
+        {
+          "week": 5,
+          "event": "no_interaction",
+          "heat_delta": -3
         }
       ]
     }
@@ -1204,9 +1234,9 @@
         "94bd83d5-ec3d-4658-8c4f-74d8a7c533db"
       ],
       "title": "Betrayal",
-      "stage": 2,
-      "heat": 45,
-      "weeks_active": 3,
+      "stage": 3,
+      "heat": 55,
+      "weeks_active": 4,
       "completed": false,
       "manual_mode": false,
       "stages": [
@@ -1227,6 +1257,11 @@
           "week": 4,
           "stage": "Tension",
           "note": "Featured on show"
+        },
+        {
+          "week": 5,
+          "stage": "Turn",
+          "note": "Featured on show"
         }
       ]
     },
@@ -1238,9 +1273,9 @@
         "bb34947e-5661-4ab3-95cc-e7ad121cc1bd"
       ],
       "title": "Betrayal",
-      "stage": 2,
-      "heat": 50,
-      "weeks_active": 2,
+      "stage": 3,
+      "heat": 60,
+      "weeks_active": 3,
       "completed": false,
       "manual_mode": false,
       "stages": [
@@ -1261,6 +1296,11 @@
           "week": 4,
           "stage": "Tension",
           "note": "Featured on show"
+        },
+        {
+          "week": 5,
+          "stage": "Turn",
+          "note": "Featured on show"
         }
       ]
     },
@@ -1272,9 +1312,9 @@
         "a24332e7-77a3-4f7a-a078-be8d3f73c045"
       ],
       "title": "Champion vs Challenger",
-      "stage": 1,
-      "heat": 40,
-      "weeks_active": 1,
+      "stage": 2,
+      "heat": 50,
+      "weeks_active": 2,
       "completed": false,
       "manual_mode": false,
       "stages": [
@@ -1289,6 +1329,11 @@
         {
           "week": 4,
           "stage": "Build",
+          "note": "Featured on show"
+        },
+        {
+          "week": 5,
+          "stage": "Doubt",
           "note": "Featured on show"
         }
       ]
@@ -1379,6 +1424,25 @@
         }
       ],
       "promos": [],
+      "segments": [],
+      "rundown": [
+        {
+          "kind": "match",
+          "index": 0
+        },
+        {
+          "kind": "match",
+          "index": 1
+        },
+        {
+          "kind": "match",
+          "index": 2
+        },
+        {
+          "kind": "match",
+          "index": 3
+        }
+      ],
       "rating": 72,
       "expected_attendance": 9356,
       "actual_attendance": 9294,
@@ -1450,6 +1514,21 @@
         }
       ],
       "promos": [],
+      "segments": [],
+      "rundown": [
+        {
+          "kind": "match",
+          "index": 0
+        },
+        {
+          "kind": "match",
+          "index": 1
+        },
+        {
+          "kind": "match",
+          "index": 2
+        }
+      ],
       "rating": 69,
       "expected_attendance": 10020,
       "actual_attendance": 10444,
@@ -1521,6 +1600,21 @@
         }
       ],
       "promos": [],
+      "segments": [],
+      "rundown": [
+        {
+          "kind": "match",
+          "index": 0
+        },
+        {
+          "kind": "match",
+          "index": 1
+        },
+        {
+          "kind": "match",
+          "index": 2
+        }
+      ],
       "rating": 68,
       "expected_attendance": 10128,
       "actual_attendance": 9420,
@@ -1649,11 +1743,124 @@
         }
       ],
       "promos": [],
+      "segments": [],
+      "rundown": [
+        {
+          "kind": "match",
+          "index": 0
+        },
+        {
+          "kind": "match",
+          "index": 1
+        },
+        {
+          "kind": "match",
+          "index": 2
+        },
+        {
+          "kind": "match",
+          "index": 3
+        },
+        {
+          "kind": "match",
+          "index": 4
+        },
+        {
+          "kind": "match",
+          "index": 5
+        }
+      ],
       "rating": 74,
       "expected_attendance": 10187,
       "actual_attendance": 9205,
       "revenue": 937579,
       "expenses": 485299
+    },
+    {
+      "id": "29dfdee8-a82e-4df8-8764-5d5201f5fde1",
+      "week": 5,
+      "name": "Week 5 Show",
+      "is_ple": false,
+      "matches": [
+        {
+          "id": "63a1a5c7-d148-4b8c-8ebb-1ff005a81704",
+          "match_type": "SINGLES",
+          "participant_ids": [
+            "195a9e53-04f7-44b9-b924-3d835aef06fb",
+            "94bd83d5-ec3d-4658-8c4f-74d8a7c533db"
+          ],
+          "importance": "MIDCARD",
+          "championship_id": null,
+          "rivalry_id": null,
+          "story_id": "6d77da77-3ff6-4c94-8f85-fc0f8bdfa7fe",
+          "stipulation": "NORMAL",
+          "winner_mode": "AUTO",
+          "winner_override_id": null,
+          "winner_id": "195a9e53-04f7-44b9-b924-3d835aef06fb",
+          "rating": 63,
+          "crowd_reaction": "HOT",
+          "story_notes": []
+        },
+        {
+          "id": "fba6917b-aab9-4c81-b57c-e1f1315591a2",
+          "match_type": "SINGLES",
+          "participant_ids": [
+            "159ea488-dd94-4f00-a3f6-db0ec1e5a8e6",
+            "a24332e7-77a3-4f7a-a078-be8d3f73c045"
+          ],
+          "importance": "MIDCARD",
+          "championship_id": null,
+          "rivalry_id": null,
+          "story_id": "68e443c1-ff5d-4662-8efd-cb03f8e1f554",
+          "stipulation": "NORMAL",
+          "winner_mode": "AUTO",
+          "winner_override_id": null,
+          "winner_id": "a24332e7-77a3-4f7a-a078-be8d3f73c045",
+          "rating": 75,
+          "crowd_reaction": "HOT",
+          "story_notes": []
+        },
+        {
+          "id": "9597e162-dc65-4df5-8763-0add45006f78",
+          "match_type": "SINGLES",
+          "participant_ids": [
+            "18fe73d0-1a35-47bc-b0b8-adb2c29f0756",
+            "bb34947e-5661-4ab3-95cc-e7ad121cc1bd"
+          ],
+          "importance": "MIDCARD",
+          "championship_id": null,
+          "rivalry_id": null,
+          "story_id": "ac647265-623d-404c-8765-578873db53cc",
+          "stipulation": "NORMAL",
+          "winner_mode": "AUTO",
+          "winner_override_id": null,
+          "winner_id": "bb34947e-5661-4ab3-95cc-e7ad121cc1bd",
+          "rating": 82,
+          "crowd_reaction": "ELECTRIC",
+          "story_notes": []
+        }
+      ],
+      "promos": [],
+      "segments": [],
+      "rundown": [
+        {
+          "kind": "match",
+          "index": 0
+        },
+        {
+          "kind": "match",
+          "index": 1
+        },
+        {
+          "kind": "match",
+          "index": 2
+        }
+      ],
+      "rating": 73,
+      "expected_attendance": 10790,
+      "actual_attendance": 11187,
+      "revenue": 815027,
+      "expenses": 422000
     }
   ],
   "news": [
@@ -1716,30 +1923,38 @@
     {
       "week": 5,
       "text": "📈 You gave Raquel Rodriguez a bigger push."
+    },
+    {
+      "week": 5,
+      "text": "❌ Objective missed: Put the Champion in the Spotlight."
+    },
+    {
+      "week": 6,
+      "text": "📈 You gave Bron Breakker a bigger push."
     }
   ],
   "weekly_objective": {
-    "id": "champion_main_event",
-    "title": "Put the Champion in the Spotlight",
-    "description": "Book a current champion in the Main Event.",
-    "kind": "CHAMPION_MAIN_EVENT",
-    "target": 1,
-    "reward_budget": 60000,
-    "reward_fans": 2000
+    "id": "profitable_week",
+    "title": "Keep the Books Healthy",
+    "description": "Finish the week with at least $180,000 profit.",
+    "kind": "PROFIT",
+    "target": 180000,
+    "reward_budget": 100000,
+    "reward_fans": 1000
   },
   "pending_decision": null,
-  "decision_resolved_week": 5,
+  "decision_resolved_week": 6,
   "last_objective_result": {
-    "completed": true,
-    "text": "✅ Objective complete: Build the Next Star (+$40,000, +4,000 fans).",
-    "progress": 1
+    "completed": false,
+    "text": "❌ Objective missed: Put the Champion in the Spotlight.",
+    "progress": 0
   },
   "last_decision_result": {
-    "text": "📈 You gave Raquel Rodriguez a bigger push.",
+    "text": "📈 You gave Bron Breakker a bigger push.",
     "option_id": "push"
   },
-  "total_revenue": 3021348,
-  "total_expenses": 1751299,
+  "total_revenue": 3836375,
+  "total_expenses": 2173299,
   "best_match_rating": 83,
   "best_match_desc": "Seth Rollins vs Bron Breakker (W4)",
   "negative_weeks": 0,

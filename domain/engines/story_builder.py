@@ -174,6 +174,11 @@ class StoryBuilder:
             return False
         if story.completed:
             return False
+        if story.stage >= story.total_stages - 1 and not story.payoff_ready:
+            self.state.add_news(
+                f"⚠️ لا يمكن إنهاء قصة {story.title} قبل تنفيذ كل الـBeats."
+            )
+            return False
 
         completed = story.advance_stage(
             self.state.current_week,

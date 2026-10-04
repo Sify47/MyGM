@@ -1,44 +1,46 @@
 {% extends "base.html" %}
-{% block title %}Results{% endblock %}
+{% block title %}نتائج العرض{% endblock %}
 
 {% block content %}
-<h1>🎬 Show Results</h1>
+<div class="page-header">
+    <h1>🎬 نتائج العرض</h1>
+</div>
 
 {% if result %}
 <div class="stats-row">
     <div class="stat">
-        <span class="label">Show Rating</span>
+        <span class="label">تقييم العرض</span>
         <span class="value">{{ result.show_rating }}/100</span>
     </div>
     <div class="stat">
-        <span class="label">Attendance</span>
+        <span class="label">الحضور</span>
         <span class="value">{{ "{:,}".format(result.economy.attendance) }}</span>
     </div>
     <div class="stat">
-        <span class="label">Revenue</span>
+        <span class="label">الإيرادات</span>
         <span class="value">${{ "{:,}".format(result.economy.revenue) }}</span>
     </div>
     <div class="stat">
-        <span class="label">Profit</span>
+        <span class="label">الربح</span>
         <span class="value {% if result.economy.profit >= 0 %}positive{% else %}negative{% endif %}">
             ${{ "{:,}".format(result.economy.profit) }}
         </span>
     </div>
     <div class="stat">
-        <span class="label">AI Show</span>
+        <span class="label">عرض الخصم</span>
         <span class="value">{{ result.ai_rating }}/100</span>
     </div>
 </div>
 
 {% if result.week_event %}
 <div class="event-banner">
-    🎲 <strong>Event:</strong> {{ result.week_event.text }}
+    🎲 <strong>حدث:</strong> {{ result.week_event.text }}
 </div>
 {% endif %}
 
 {% if result.objective %}
 <div class="event-banner">
-    🎯 <strong>Weekly Objective:</strong> {{ result.objective.text }}
+    🎯 <strong>هدف الأسبوع:</strong> {{ result.objective.text }}
 </div>
 {% endif %}
 
@@ -46,10 +48,10 @@
 <div class="story-results">
     <div class="story-results-heading">
         <div>
-            <span class="eyebrow">NARRATIVE OUTCOME</span>
-            <h2>📖 Stories moved tonight</h2>
+            <span class="eyebrow">نتيجة القصة</span>
+            <h2>📖 القصص التي تحركت الليلة</h2>
         </div>
-        <span class="muted">Your booking changed the season.</span>
+        <span class="muted">حجزك غيّر شكل الموسم.</span>
     </div>
     {% for story in result.story_updates %}
     <div class="story-result-row">
@@ -58,8 +60,37 @@
             <p class="muted">{{ story.message }}</p>
         </div>
         <div class="story-result-metrics">
-            <span>Heat <b>{{ story.heat }}</b></span>
-            <span>Stage <b>{{ story.stage_number }}/{{ story.total_stages }}</b></span>
+            <span>الحرارة <b>{{ story.heat }}</b></span>
+            <span>المرحلة <b>{{ story.stage_number }}/{{ story.total_stages }}</b></span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if result.segments %}
+<div class="segments-results">
+    <div class="segments-results-heading">
+        <div>
+            <span class="eyebrow">لحظات العرض</span>
+            <h2>🎙️ الفقرات التي صنعت الليلة</h2>
+        </div>
+        <span class="muted">كل برومو وكل حادثة لها تأثير.</span>
+    </div>
+    {% for segment in result.segments %}
+    <div class="segment-result-row">
+        <div>
+            <span class="segment-type">{{ segment.type.replace('_', ' ') }}</span>
+            <strong>{{ segment.text }}</strong>
+            {% if segment.story_title %}
+            <p class="muted">
+                القصة: {{ segment.story_title }} ·
+                الحرارة {{ "%+d"|format(segment.heat_delta) }}
+            </p>
+            {% if segment.beat_completed %}
+            <p class="segment-beat-success">✓ تم تنفيذ الحدث: {{ segment.beat_completed }}</p>
+            {% endif %}
+            {% endif %}
         </div>
     </div>
     {% endfor %}
@@ -69,7 +100,7 @@
 
 {% if show %}
 <div class="card">
-    <h2>📋 Match Results</h2>
+    <h2>📋 نتائج المباريات</h2>
     <ul class="results-list">
         {% for m in show.matches %}
         <li>
@@ -78,9 +109,9 @@
                 {% set w = state.get_wrestler(pid) %}
                 <span class="{% if pid == m.winner_id %}winner{% endif %}">
                     {{ w.name if w else "?" }}
-                </span>{% if not loop.last %} vs {% endif %}
+                </span>{% if not loop.last %} ضد {% endif %}
             {% endfor %}
-            <span class="rating">Rating: {{ m.rating }} · {{ m.crowd_reaction.value }}</span>
+            <span class="rating">التقييم: {{ m.rating }} · {{ m.crowd_reaction.value }}</span>
         </li>
         {% endfor %}
     </ul>
@@ -88,7 +119,7 @@
 {% endif %}
 
 <div class="actions">
-    <a href="{{ url_for('game.dashboard') }}" class="btn primary">← Back to Dashboard</a>
-    <a href="{{ url_for('game.booking') }}" class="btn">Book Next Show</a>
+    <a href="{{ url_for('game.dashboard') }}" class="btn primary">← العودة للوحة الإدارة</a>
+    <a href="{{ url_for('game.booking') }}" class="btn">حجز العرض التالي</a>
 </div>
 {% endblock %}

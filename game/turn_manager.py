@@ -87,8 +87,10 @@ class TurnManager:
                     match.winner_id, loser_id, self.state
                 )
 
-        # Show rating (weighted by importance)
-        show.rating = self._compute_show_rating(show)
+        # Show rating (weighted by importance + rundown flow)
+        show.rating = max(
+            0, min(100, self._compute_show_rating(show) + self._rundown_bonus(show))
+        )
 
         # Economy
         econ_result = self.economy_engine.process_show(show, self.state)
@@ -122,9 +124,13 @@ class TurnManager:
                     "completed": story.completed,
                     "manual_mode": story.manual_mode,
                     "message": (
-                        f"{story.title} advanced to {story.current_stage_name}."
-                        if not story.completed
-                        else f"{story.title} reached its finale."
+                        f"{story.title} was featured; heat is now {story.heat}."
+                        if story.manual_mode
+                        else (
+                            f"{story.title} advanced to {story.current_stage_name}."
+                            if not story.completed
+                            else f"{story.title} reached its finale."
+                        )
                     ),
                 }
             )
@@ -138,6 +144,7 @@ class TurnManager:
 
     def _resolve_segments(self, show: Show) -> tuple[list[dict], set[str]]:
         """Apply non-match moments and return readable results for the UI."""
+        show.rebuild_rundown()
         results = []
         story_ids: set[str] = set()
         effects = {
@@ -147,6 +154,14 @@ class TurnManager:
             "INTERFERENCE": (1, -3, 10, "caused an interference"),
             "CONTRACT_SIGNING": (1, 2, 10, "signed a contract"),
             "CELEBRATION": (3, 3, 5, "celebrated with the crowd"),
+        }
+        beat_types = {
+            "PROMO": "PROMO",
+            "CALLOUT": "CALLOUT",
+            "BACKSTAGE_ATTACK": "ATTACK",
+            "INTERFERENCE": "INTERFERENCE",
+            "CONTRACT_SIGNING": "CONFRONTATION",
+            "CELEBRATION": "RETURN",
         }
         for segment in getattr(show, "segments", []):
             segment_type = segment.get("type", "PROMO")
@@ -171,9 +186,30 @@ class TurnManager:
 
             story_id = segment.get("story_id")
             story = self.state.get_storyline(story_id) if story_id else None
+            completed_beat = None
             if story:
                 story_ids.add(story.id)
+                position = int(segment.get("position", 0))
+                adjacent_story_ids = set()
+                if position > 0 and position - 1 < len(show.matches):
+                    adjacent_story_ids.add(show.matches[position - 1].story_id)
+                if position < len(show.matches):
+                    adjacent_story_ids.add(show.matches[position].story_id)
+                if story.id in adjacent_story_ids:
+                    heat_delta += 5
                 story.adjust_heat(heat_delta)
+                desired_beat_type = beat_types.get(segment_type)
+                for beat in story.get_pending_beats():
+                    if (
+                        desired_beat_type
+                        and beat.beat_type.value == desired_beat_type
+                        and set(beat.participant_ids).intersection(
+                            segment.get("participant_ids", [])
+                        )
+                    ):
+                        story.complete_beat(beat.id, self.state.current_week)
+                        completed_beat = beat.label
+                        break
             names = " + ".join(w.name for w in participants)
             text = f"{names} {verb}."
             results.append(
@@ -183,10 +219,31 @@ class TurnManager:
                     "story_id": story.id if story else None,
                     "story_title": story.title if story else None,
                     "heat_delta": heat_delta if story else 0,
+                    "beat_completed": completed_beat,
                 }
             )
             self.state.add_news(f"🎙️ {text}")
         return results, story_ids
+
+    def _rundown_bonus(self, show: Show) -> int:
+        """Reward a coherent opening, transitions, and a true main event."""
+        show.rebuild_rundown()
+        bonus = 0
+        if show.rundown and show.rundown[0]["kind"] == "segment":
+            first = show.segments[show.rundown[0]["index"]]
+            if first.get("type") in {"PROMO", "CALLOUT"}:
+                bonus += 2
+        if show.rundown and show.rundown[-1]["kind"] == "match":
+            last_match = show.matches[show.rundown[-1]["index"]]
+            if last_match.importance == MatchImportance.MAIN_EVENT:
+                bonus += 3
+        for item in show.rundown:
+            if item["kind"] != "segment":
+                continue
+            segment = show.segments[item["index"]]
+            if segment.get("type") == "BACKSTAGE_ATTACK":
+                bonus += 2
+        return min(8, bonus)
 
     def _compute_show_rating(self, show: Show) -> int:
         """
